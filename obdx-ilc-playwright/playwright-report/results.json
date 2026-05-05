@@ -1,0 +1,255 @@
+{
+  "config": {
+    "configFile": "E:\\QA Artifacts\\HBL-TradeFinance-Automation-main\\obdx-ilc-playwright\\playwright.config.ts",
+    "rootDir": "E:/QA Artifacts/HBL-TradeFinance-Automation-main/obdx-ilc-playwright/tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "E:/QA Artifacts/HBL-TradeFinance-Automation-main/obdx-ilc-playwright/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "E:/QA Artifacts/HBL-TradeFinance-Automation-main/obdx-ilc-playwright/tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 180000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "playwright-report",
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "playwright-report/results.json"
+        }
+      ],
+      [
+        "E:\\QA Artifacts\\HBL-TradeFinance-Automation-main\\obdx-ilc-playwright\\custom-dashboard-reporter.js",
+        null
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "ilc-create.spec.ts",
+      "file": "ilc-create.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Create Import Letter of Credit — ILC-INL",
+          "file": "ilc-create.spec.ts",
+          "line": 26,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-ILC-001: Create Import LC (ILC-INL) end-to-end - happy path",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 56606,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "[ILC-001] Transaction Reference Number: 0505C8F04DF5\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "steps": [
+                        {
+                          "title": "Login with valid credentials",
+                          "duration": 12562
+                        },
+                        {
+                          "title": "Navigate: Trade Finance → Import Letter of Credit → Initiate Import LC",
+                          "duration": 4345
+                        },
+                        {
+                          "title": "Click Create LC button",
+                          "duration": 1335
+                        },
+                        {
+                          "title": "Tab 1 - Fill LC Details (product, dates, beneficiary, currency, amount, SWIFT)",
+                          "duration": 10103
+                        },
+                        {
+                          "title": "Tab 2 - Fill Goods & Shipment (partial shipment, ports, dates, goods)",
+                          "duration": 6042
+                        },
+                        {
+                          "title": "Tab 3 - Documents: navigate through without any field interaction",
+                          "duration": 1906
+                        },
+                        {
+                          "title": "Tab 4 - Linkages: add collateral account and contribution amount",
+                          "duration": 7963
+                        },
+                        {
+                          "title": "Tab 5 - Instructions: verify SWIFT and check mandatory Read Standard Instructions",
+                          "duration": 2304
+                        },
+                        {
+                          "title": "Tab 6 - Insurance: select AIG Insurance policy",
+                          "duration": 2535
+                        },
+                        {
+                          "title": "Tab 7 - Attachments: click Submit to go to Review page",
+                          "duration": 2908
+                        },
+                        {
+                          "title": "Review page: verify and click final Submit",
+                          "duration": 3169
+                        },
+                        {
+                          "title": "Confirm: assert success message and Pending for Approval status",
+                          "duration": 106
+                        }
+                      ],
+                      "startTime": "2026-05-05T13:37:00.612Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "116eed0567daf591f2da-71adbbf0c9e4d3e73799",
+              "file": "ilc-create.spec.ts",
+              "line": 33,
+              "column": 7
+            },
+            {
+              "title": "TC-ILC-002: Login with invalid credentials should show error",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 8081,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-05T13:37:57.739Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "116eed0567daf591f2da-b2b3f5fa446b86c55d97",
+              "file": "ilc-create.spec.ts",
+              "line": 143,
+              "column": 7
+            },
+            {
+              "title": "TC-ILC-003: Navigation to Import LC listing page is successful",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 180000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 20145,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-05-05T13:38:05.881Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "116eed0567daf591f2da-b63e51eb31ca7cfcdf0e",
+              "file": "ilc-create.spec.ts",
+              "line": 153,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-05-05T13:36:59.294Z",
+    "duration": 87170.66,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

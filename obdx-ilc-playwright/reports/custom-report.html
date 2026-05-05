@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Playwright Test Stats</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0f172a;
+    --panel: #1e293b;
+    --panel-2: #273449;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: #334155;
+    --pass: #22c55e;
+    --fail: #ef4444;
+    --skip: #f59e0b;
+    --accent: #38bdf8;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+  header {
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  header h1 { margin: 0; font-size: 22px; letter-spacing: 0.3px; }
+  header .meta { color: var(--muted); font-size: 13px; }
+  main { padding: 24px 32px 64px; max-width: 1400px; margin: 0 auto; }
+  h2 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--muted);
+    margin: 32px 0 12px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .card-label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 0.8px; }
+  .card-value { margin-top: 6px; font-size: 26px; font-weight: 600; }
+  .card.pass { border-left: 4px solid var(--pass); }
+  .card.fail { border-left: 4px solid var(--fail); }
+  .card.skip { border-left: 4px solid var(--skip); }
+  .card.delta-card .card-value { font-size: 18px; }
+  .card.placeholder {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .delta { font-weight: 600; }
+  .delta-good  { color: var(--pass); }
+  .delta-bad   { color: var(--fail); }
+  .delta-zero  { color: var(--muted); }
+
+  .charts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+  }
+  .chart-panel {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .chart-panel h3 {
+    margin: 0 0 8px; font-size: 13px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 1px;
+  }
+  .chart-panel canvas { width: 100% !important; height: 280px !important; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    vertical-align: top;
+  }
+  th { background: var(--panel-2); color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.6px; font-size: 11px; }
+  tr.current td { background: rgba(56, 189, 248, 0.08); }
+  td.pass-cell { color: var(--pass); }
+  td.fail-cell { color: var(--fail); }
+  td.skip-cell { color: var(--skip); }
+  .title-cell .title { font-weight: 600; }
+  .title-cell .meta  { color: var(--muted); font-size: 11px; margin-top: 4px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  pre.err {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 11.5px;
+    color: #fda4af;
+    background: rgba(239, 68, 68, 0.08);
+    padding: 8px 10px;
+    border-radius: 6px;
+    max-height: 260px;
+    overflow: auto;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .muted { color: var(--muted); }
+  .center { text-align: center; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Playwright Test Stats</h1>
+  <div class="meta">Run started: 5/5/2026, 6:36:59 PM · 3 tests · 1m 25s</div>
+</header>
+
+<main>
+  <h2>Summary</h2>
+  <div class="grid">
+  <div class="card"><div class="card-label">Total</div><div class="card-value">3</div></div>
+  <div class="card pass"><div class="card-label">Passed</div><div class="card-value">3</div></div>
+  <div class="card fail"><div class="card-label">Failed</div><div class="card-value">0</div></div>
+  <div class="card skip"><div class="card-label">Skipped</div><div class="card-value">0</div></div>
+  <div class="card"><div class="card-label">Duration</div><div class="card-value">1m 25s</div></div>
+  <div class="card"><div class="card-label">Pass Rate</div><div class="card-value">100.00%</div></div>
+</div>
+
+  <h2>Δ vs Previous Run</h2>
+  <div class="grid">
+  <div class="card delta-card"><div class="card-label">Δ Total</div><div class="card-value"><span class="delta delta-good">+2</span></div></div>
+  <div class="card delta-card"><div class="card-label">Δ Passed</div><div class="card-value"><span class="delta delta-good">+2</span></div></div>
+  <div class="card delta-card"><div class="card-label">Δ Failed</div><div class="card-value"><span class="delta delta-zero">0</span></div></div>
+  <div class="card delta-card"><div class="card-label">Δ Skipped</div><div class="card-value"><span class="delta delta-zero">0</span></div></div>
+  <div class="card delta-card"><div class="card-label">Δ Duration</div><div class="card-value"><span class="delta delta-bad">+1m 18s slower</span></div></div>
+  <div class="card delta-card"><div class="card-label">Δ Pass Rate</div><div class="card-value"><span class="delta delta-zero">0.00 pp</span></div></div>
+</div>
+
+  <h2>Charts</h2>
+  <div class="charts">
+    <div class="chart-panel"><h3>Current Run Distribution</h3><canvas id="pie"></canvas></div>
+    <div class="chart-panel"><h3>Current vs Previous Run</h3><canvas id="bar"></canvas></div>
+    <div class="chart-panel" style="grid-column: 1 / -1;"><h3>Trend (last 20 runs)</h3><canvas id="line"></canvas></div>
+  </div>
+
+  <h2>Historical Runs</h2>
+  <table>
+    <thead><tr><th>Timestamp</th><th>Total</th><th>Passed</th><th>Failed</th><th>Skipped</th><th>Duration</th><th>Pass Rate</th></tr></thead>
+    <tbody>
+  <tr class="current">
+    <td>5/5/2026, 6:36:59 PM</td>
+    <td>3</td>
+    <td class="pass-cell">3</td>
+    <td class="fail-cell">0</td>
+    <td class="skip-cell">0</td>
+    <td>1m 25s</td>
+    <td>100.00%</td>
+  </tr>
+
+  <tr>
+    <td>5/5/2026, 6:36:07 PM</td>
+    <td>1</td>
+    <td class="pass-cell">1</td>
+    <td class="fail-cell">0</td>
+    <td class="skip-cell">0</td>
+    <td>6.5 s</td>
+    <td>100.00%</td>
+  </tr>
+
+  <tr>
+    <td>5/5/2026, 6:32:00 PM</td>
+    <td>1</td>
+    <td class="pass-cell">1</td>
+    <td class="fail-cell">0</td>
+    <td class="skip-cell">0</td>
+    <td>6.2 s</td>
+    <td>100.00%</td>
+  </tr>
+
+  <tr>
+    <td>5/5/2026, 6:19:34 PM</td>
+    <td>3</td>
+    <td class="pass-cell">3</td>
+    <td class="fail-cell">0</td>
+    <td class="skip-cell">0</td>
+    <td>1m 21s</td>
+    <td>100.00%</td>
+  </tr>
+
+  <tr>
+    <td>5/5/2026, 6:19:34 PM</td>
+    <td>3</td>
+    <td class="pass-cell">3</td>
+    <td class="fail-cell">0</td>
+    <td class="skip-cell">0</td>
+    <td>1m 21s</td>
+    <td>100.00%</td>
+  </tr>
+
+  <tr>
+    <td>5/5/2026, 6:17:59 PM</td>
+    <td>1</td>
+    <td class="pass-cell">1</td>
+    <td class="fail-cell">0</td>
+    <td class="skip-cell">0</td>
+    <td>6.0 s</td>
+    <td>100.00%</td>
+  </tr>
+</tbody>
+  </table>
+
+  <h2>Failures</h2>
+  <table>
+    <thead><tr><th style="width: 28%;">Test</th><th>Error</th><th style="width: 18%;">Artifacts</th></tr></thead>
+    <tbody><tr><td colspan="3" class="muted center">No failures in this run 🎉</td></tr></tbody>
+  </table>
+</main>
+
+<script>
+  const DATA = {"pie":{"labels":["Passed","Failed","Skipped"],"values":[3,0,0]},"bar":{"labels":["Passed","Failed","Skipped"],"current":[3,0,0],"previous":[1,0,0]},"trend":{"labels":["5/5/2026, 6:17:59 PM","5/5/2026, 6:19:34 PM","5/5/2026, 6:19:34 PM","5/5/2026, 6:32:00 PM","5/5/2026, 6:36:07 PM","5/5/2026, 6:36:59 PM"],"passed":[1,3,3,1,1,3],"failed":[0,0,0,0,0,0],"skipped":[0,0,0,0,0,0],"passRate":[100,100,100,100,100,100]}};
+  const COLORS = { pass: '#22c55e', fail: '#ef4444', skip: '#f59e0b', accent: '#38bdf8', muted: '#64748b' };
+  Chart.defaults.color = '#cbd5e1';
+  Chart.defaults.borderColor = 'rgba(148, 163, 184, 0.15)';
+
+  // Pie / doughnut — current run distribution
+  new Chart(document.getElementById('pie'), {
+    type: 'doughnut',
+    data: {
+      labels: DATA.pie.labels,
+      datasets: [{
+        data: DATA.pie.values,
+        backgroundColor: [COLORS.pass, COLORS.fail, COLORS.skip],
+        borderColor: '#0f172a',
+        borderWidth: 2,
+      }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom' } },
+      cutout: '60%',
+    },
+  });
+
+  // Bar — current vs previous run
+  new Chart(document.getElementById('bar'), {
+    type: 'bar',
+    data: {
+      labels: DATA.bar.labels,
+      datasets: [
+        { label: 'Previous', data: DATA.bar.previous, backgroundColor: 'rgba(148, 163, 184, 0.5)' },
+        { label: 'Current',  data: DATA.bar.current,  backgroundColor: [COLORS.pass, COLORS.fail, COLORS.skip] },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom' } },
+      scales: { y: { beginAtZero: true, ticks: { precision: 0 } } },
+    },
+  });
+
+  // Line — trend
+  new Chart(document.getElementById('line'), {
+    type: 'line',
+    data: {
+      labels: DATA.trend.labels,
+      datasets: [
+        { label: 'Passed',  data: DATA.trend.passed,  borderColor: COLORS.pass, backgroundColor: 'rgba(34, 197, 94, 0.15)',  tension: 0.3, fill: false },
+        { label: 'Failed',  data: DATA.trend.failed,  borderColor: COLORS.fail, backgroundColor: 'rgba(239, 68, 68, 0.15)',  tension: 0.3, fill: false },
+        { label: 'Skipped', data: DATA.trend.skipped, borderColor: COLORS.skip, backgroundColor: 'rgba(245, 158, 11, 0.15)', tension: 0.3, fill: false },
+        { label: 'Pass Rate %', data: DATA.trend.passRate, borderColor: COLORS.accent, backgroundColor: 'rgba(56, 189, 248, 0.15)', tension: 0.3, yAxisID: 'y1', fill: false },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { position: 'bottom' } },
+      interaction: { mode: 'index', intersect: false },
+      scales: {
+        y:  { beginAtZero: true, ticks: { precision: 0 }, title: { display: true, text: 'Tests' } },
+        y1: { beginAtZero: true, max: 100, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Pass Rate %' } },
+      },
+    },
+  });
+</script>
+</body>
+</html>
