@@ -1,0 +1,120 @@
+- generic [ref=e1]:
+  - generic [ref=e116]:
+    - link "Skip to main content" [ref=e2247] [cursor=pointer]:
+      - /url: "#maincontent"
+    - generic [ref=e118]:
+      - banner [ref=e119]:
+        - generic [ref=e120]:
+          - generic [ref=e121]:
+            - generic [ref=e122]:
+              - generic "Toggle Menu" [ref=e2248]:
+                - button "Open Menu" [ref=e2249] [cursor=pointer]:
+                  - generic [ref=e127]: 
+              - link "Open Dashboard" [ref=e2250] [cursor=pointer]:
+                - /url: "#"
+                - img "Open Dashboard" [ref=e2251]
+            - generic "Search Transaction" [ref=e2252]:
+              - generic [ref=e136]: 
+              - combobox "Search Transaction" [ref=e2253]:
+                - textbox "Search Transaction" [ref=e2254]:
+                  - /placeholder: Search
+            - generic [ref=e139]:
+              - generic "99+" [ref=e2255]:
+                - button "99+" [ref=e2256] [cursor=pointer]:
+                  - generic [ref=e145]:
+                    - text: 
+                    - generic [ref=e177]: 99+
+              - button "corpmaker2" [ref=e2257] [cursor=pointer]:
+                - generic [ref=e149]:
+                  - img "corpmaker2" [ref=e2258]:
+                    - generic [ref=e154]: CM
+                  - text:  
+          - generic [ref=e159]:
+            - generic "Back" [ref=e2259]:
+              - button "Back" [ref=e2260] [cursor=pointer]:
+                - generic [ref=e336]:
+                  - generic [ref=e338]: 
+                  - generic [ref=e339]: Back
+            - generic [ref=e160]:
+              - heading "Initiate Letter of Credit" [level=1] [ref=e2261]
+              - generic [ref=e595]: JZNNZI ZO AZNZM ULI KZKVI YLCVH ZMW | P000168
+      - main [ref=e169]:
+        - generic [ref=e599]:
+          - generic [ref=e603]:
+            - generic [ref=e610]:
+              - text: 
+              - tablist "Initiate LC Screens" [ref=e2262]:
+                - tab " LC Details" [ref=e2263] [cursor=pointer]:
+                  - generic [ref=e615]: 
+                  - generic [ref=e617]: LC Details
+                - tab " Goods and Shipment Details" [ref=e2264] [cursor=pointer]:
+                  - generic [ref=e619]: 
+                  - generic [ref=e621]: Goods and Shipment Details
+                - tab " Documents and Conditions" [ref=e2265] [cursor=pointer]:
+                  - generic [ref=e623]: 
+                  - generic [ref=e625]: Documents and Conditions
+                - tab " Linkages" [selected] [ref=e2266] [cursor=pointer]:
+                  - generic [ref=e627]: 
+                  - generic [ref=e629]: Linkages
+                - tab " Instructions" [ref=e2267] [cursor=pointer]:
+                  - generic [ref=e631]: 
+                  - generic [ref=e633]: Instructions
+                - tab " Insurance" [ref=e2268] [cursor=pointer]:
+                  - generic [ref=e635]: 
+                  - generic [ref=e637]: Insurance
+                - tab " Attachments" [ref=e2269] [cursor=pointer]:
+                  - generic [ref=e639]: 
+                  - generic [ref=e641]: Attachments
+              - text: 
+            - generic [ref=e643]:
+              - generic [ref=e2281]:
+                - heading "Linkages" [level=2] [ref=e2284]
+                - generic "Linkages" [ref=e2286]:
+                  - generic [ref=e2288]:
+                    - generic [ref=e2296]:
+                      - generic [ref=e2299]: Cash Collateral Linkages
+                      - generic [ref=e2301]:
+                        - generic [ref=e2304]:
+                          - generic [ref=e2309]: Currency
+                          - generic [ref=e2311]:
+                            - generic [ref=e2314]: Description
+                            - generic [ref=e2316]: Cash Collateral Amount
+                        - generic [ref=e2319]:
+                          - generic [ref=e2321]:
+                            - generic [ref=e2324]: Percent
+                            - generic [ref=e2378]: "2"
+                          - generic [ref=e2335]:
+                            - generic [ref=e2341]:
+                              - generic [ref=e2344]: Collateral Amount
+                              - generic [ref=e2346]: 1,000.00
+                            - button "Reset" [ref=e2381] [cursor=pointer]:
+                              - generic [ref=e2383]: Reset
+                      - link "Click here to add Collateral Linkage" [ref=e2351] [cursor=pointer]:
+                        - /url: "#"
+                        - text: Add Account
+                      - generic [ref=e2355]:
+                        - generic [ref=e2356]: Total Collateral Amount
+                        - generic [ref=e2357]: "0.00"
+                    - generic [ref=e2360]: Select Deposits
+                    - link "Add Account" [active] [ref=e2365] [cursor=pointer]:
+                      - /url: "#"
+                    - generic [ref=e2368]:
+                      - generic [ref=e2369]: Total
+                      - generic [ref=e2370]: $0.00
+                    - generic [ref=e2373]: "Disclaimer: The total amount transactional currency may vary as per the rate applied during transaction by the bank."
+              - generic [ref=e955]:
+                - button "Next" [ref=e2374] [cursor=pointer]:
+                  - generic [ref=e959]: Next
+                - button "Save As Draft" [ref=e2375] [cursor=pointer]:
+                  - generic [ref=e963]: Save As Draft
+                - button "Cancel" [ref=e2376] [cursor=pointer]:
+                  - generic [ref=e967]: Cancel
+                - button "Back" [ref=e2377] [cursor=pointer]:
+                  - generic [ref=e1779]: Back
+          - generic:
+            - generic: 
+      - contentinfo:
+        - generic:
+          - generic:
+            - log
+  - text:    兩                                

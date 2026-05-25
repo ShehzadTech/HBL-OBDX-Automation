@@ -1,0 +1,44 @@
+[     997ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://172.20.3.113:7777/digx-common/user/v1/me?locale=en:0
+[    2157ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://172.20.3.113:7777/?ojr=login-form-main%3Bmodule%3Dwidgets%252Fpre-login:0
+[    2680ms] TypeError: Cannot read properties of null (reading 'style')
+    at eval (webpack-internal:///./components/login/oracle-live/oracle-live.js:184:63)
+[   28058ms] TypeError: Cannot read properties of null (reading 'style')
+    at eval (webpack-internal:///./components/login/oracle-live/oracle-live.js:172:71)
+[   29466ms] Error: Cannot find module './corporateDashboard/recent-payments/loader.js'
+    at webpackContextResolve (http://172.20.3.113:7777/js/components_file-upload_file-input_loader_js-components_origination_add-zip-code_loader_js-fra-fc5e9e.bundle.js:294:11)
+    at webpackContext (http://172.20.3.113:7777/js/components_file-upload_file-input_loader_js-components_origination_add-zip-code_loader_js-fra-fc5e9e.bundle.js:289:11)
+    at Module.getComponent (webpack-internal:///./modules/widgets.js:8:12)
+    at eval (webpack-internal:///./framework/js/utils.js:136:23)
+[  410191ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ http://172.20.3.113:7777/digx-common/forexdeal/v1/calculators/foreignExchange?locale=en:0
+[  454500ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ http://172.20.3.113:7777/digx-tradefinance/tradefinance/v1/equivalentAmount?startTime=1779527919170&locale=en:0
+[  454506ms] undefined
+[  454839ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ http://172.20.3.113:7777/digx-tradefinance/tradefinance/v1/tradeBicCodes?q=%7B%22criteria%22%3A%5B%7B%22operand%22%3A%22swiftCode%22%2C%22operator%22%3A%22EQUALS%22%2C%22value%22%3A%5B%22CITIGB2LXXX%22%5D%7D%5D%7D&locale=en:0
+[  467973ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ http://172.20.3.113:7777/digx-tradefinance/tradefinance/v1/tradeGoods?queryParams=%7B%22criteria%22%3A%5B%7B%22operand%22%3A%22transactionType%22%2C%22operator%22%3A%22EQUALS%22%2C%22value%22%3A%5B%22CONVENTIONAL%22%5D%7D%5D%7D&locale=en:0
+[  467977ms] TypeError: Cannot read properties of undefined (reading 'goods')
+    at eval (webpack-internal:///./extensions/components/letter-of-credit/shipment-details-init/hooks.js:87:32)
+[  693666ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ http://172.20.3.113:7777/static/fonts/OracleSans_W_XBdd0f3bcdab068fb0554dc.woff2:0
+[  693732ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ http://172.20.3.113:7777/digx-tradefinance/tradefinance/v1/letterofcredits/additionalConditions?locale=en:0
+[  693734ms] TypeError: Cannot read properties of undefined (reading 'list')
+    at eval (webpack-internal:///./components/letter-of-credit/letter-of-credit-document-details/hooks.js:214:55)
+[  693933ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ http://172.20.3.113:7777/digx-tradefinance/tradefinance/v1/tradeproducts/letterofcredits/ILC-INL/documents?locale=en:0
+[  693934ms] TypeError: Cannot read properties of undefined (reading 'letterOfCreditProductDTO')
+    at eval (webpack-internal:///./components/letter-of-credit/letter-of-credit-document-details/hooks.js:412:43)
+[  695292ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ http://172.20.3.113:7777/digx-tradefinance/tradefinance/v1/tradeDocument?locale=en:0
+[  695296ms] TypeError: Cannot read properties of undefined (reading 'documents')
+    at eval (webpack-internal:///./components/letter-of-credit/letter-of-credit-document-details/hooks.js:528:51)
+[  695295ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ http://172.20.3.113:7777/static/images/texture-dialog-144x20-opacity-08e6b3c6b2ea63172ea520.png:0
+[  695300ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ http://172.20.3.113:7777/digx-tradefinance/tradefinance/v1/tradeIncoterms?locale=en:0
+[  695303ms] TypeError: Cannot read properties of undefined (reading 'incotermList')
+    at eval (webpack-internal:///./components/letter-of-credit/letter-of-credit-document-details/hooks.js:544:43)
+[  811454ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ http://172.20.3.113:7777/digx-tradefinance/tradefinance/v1/corporateDeposit?partyId=CE591A5CEC06E91356736D800B25E66707A0D04DF8473F&locale=en:0
+[  811459ms] TypeError: Cannot read properties of undefined (reading 'accounts')
+    at eval (webpack-internal:///./extensions/components/letter-of-credit/letter-of-credit-linkage/hooks.js:139:35)
+[  811529ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ http://172.20.3.113:7777/digx-tradefinance/tradefinance/v1/tradeEnumerations/currencies?locale=en:0
+[  811534ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ http://172.20.3.113:7777/digx-common/dda/v1/demandDeposit?queryParams=%7B%22criteria%22%3A%5B%7B%22operand%22%3A%22partyId%22%2C%22operator%22%3A%22EQUALS%22%2C%22value%22%3A%5Bnull%5D%7D%5D%7D&locale=en:0
+[  811537ms] TypeError: Cannot read properties of undefined (reading 'accounts')
+    at eval (webpack-internal:///./extensions/components/business-components/trade-finance/trade-collateral/hooks.js:478:35)
+[ 1086952ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_TIMED_OUT @ http://172.20.3.113:7777/digx-tradefinance/tradefinance/v1/tradeEnumerations/confirmationInstruction?locale=en:0
+[ 1086954ms] TypeError: Cannot read properties of undefined (reading 'enumRepresentations')
+    at eval (webpack-internal:///./components/letter-of-credit/instructions/hooks.js:299:56)
+[75482916ms] [ERROR] Failed to load resource: net::ERR_ADDRESS_UNREACHABLE @ http://172.20.3.113:7777/static/fonts/OracleSans_W_Ltf2a2dc711b34a1d61967.woff2:0
+[75482978ms] [ERROR] Failed to load resource: net::ERR_ADDRESS_UNREACHABLE @ http://172.20.3.113:7777/static/fonts/OracleSans_W_Ltf416ef6c694bf4f2df1d.woff:0

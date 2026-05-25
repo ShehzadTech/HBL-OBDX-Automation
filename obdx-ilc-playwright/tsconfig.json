@@ -12,9 +12,11 @@
     "rootDir": "./",
     "baseUrl": ".",
     "paths": {
-      "@pages/*": ["pages/*"],
-      "@utils/*": ["utils/*"],
-      "@test-data/*": ["test-data/*"]
+      "@pages/*":    ["pages/*"],
+      "@utils/*":    ["utils/*"],
+      "@fixtures/*": ["fixtures/*"],
+      "@config/*":   ["config/*"],
+      "@data/*":     ["data/*"]
     }
   },
   "include": [
@@ -22,7 +24,9 @@
     "tests/**/*.ts",
     "pages/**/*.ts",
     "utils/**/*.ts",
-    "test-data/**/*.ts"
+    "fixtures/**/*.ts",
+    "config/**/*.ts",
+    "data/**/*.ts"
   ],
   "exclude": ["node_modules", "dist"]
 }

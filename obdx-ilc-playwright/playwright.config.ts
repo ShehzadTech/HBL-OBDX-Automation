@@ -1,8 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
-import * as dotenv from 'dotenv';
-import * as path from 'path';
-
-dotenv.config({ path: path.resolve(__dirname, '.env') });
+import { ENV } from './config/environments';
 
 export default defineConfig({
   testDir: './tests',
@@ -17,14 +14,14 @@ export default defineConfig({
     ['./custom-dashboard-reporter.js'],
   ],
   use: {
-    baseURL: process.env.BASE_URL || 'http://172.20.3.113:7777',
-    headless: false,
+    baseURL: ENV.baseUrl,
+    headless: process.env.HEADLESS !== 'false',
     viewport: { width: 1920, height: 1080 },
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     trace: 'on-first-retry',
-    actionTimeout: 30000,
-    navigationTimeout: 60000,
+    actionTimeout: ENV.defaultTimeout,
+    navigationTimeout: ENV.navigationTimeout,
   },
   projects: [
     {
@@ -32,5 +29,5 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
   ],
-  timeout: 180000,
+  timeout: ENV.testTimeout,
 });

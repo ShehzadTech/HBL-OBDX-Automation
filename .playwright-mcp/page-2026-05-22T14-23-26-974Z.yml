@@ -1,0 +1,199 @@
+- generic [ref=e1]:
+  - generic [ref=e112]:
+    - link "Skip to main content" [ref=e710] [cursor=pointer]:
+      - /url: "#maincontent"
+    - generic [ref=e114]:
+      - banner [ref=e115]:
+        - generic [ref=e116]:
+          - generic [ref=e117]:
+            - generic [ref=e118]:
+              - generic "Toggle Menu" [ref=e711]:
+                - button "Open Menu" [ref=e712] [cursor=pointer]:
+                  - generic [ref=e123]: 
+              - link "Open Dashboard" [ref=e713] [cursor=pointer]:
+                - /url: "#"
+                - img "Open Dashboard" [ref=e714]
+            - generic "Search Transaction" [ref=e715]:
+              - generic [ref=e132]: 
+              - combobox "Search Transaction" [ref=e716]:
+                - textbox "Search Transaction" [ref=e717]:
+                  - /placeholder: Search
+            - generic [ref=e135]:
+              - generic "99+" [ref=e718]:
+                - button "99+" [ref=e719] [cursor=pointer]:
+                  - generic [ref=e141]:
+                    - text: 
+                    - generic [ref=e142]: 99+
+              - button "corpmaker2" [ref=e720] [cursor=pointer]:
+                - generic [ref=e146]:
+                  - img "corpmaker2" [ref=e721]:
+                    - generic [ref=e151]: CM
+                  - text:  
+          - generic [ref=e156]:
+            - generic "Back" [ref=e724]:
+              - button "Back" [ref=e725] [cursor=pointer]:
+                - generic [ref=e726]:
+                  - generic [ref=e728]: 
+                  - generic [ref=e729]: Back
+            - generic [ref=e157]:
+              - heading "Initiate Letter of Credit" [level=1] [ref=e730]
+              - generic [ref=e985]: JZNNZI ZO AZNZM ULI KZKVI YLCVH ZMW | P000168
+      - main [ref=e167]:
+        - generic [ref=e993]:
+          - generic [ref=e1000]:
+            - text: 
+            - tablist "Initiate LC Screens" [ref=e1003]:
+              - tab " LC Details" [ref=e1864] [cursor=pointer]:
+                - generic [ref=e1005]: 
+                - generic [ref=e1007]: LC Details
+              - tab " Goods and Shipment Details" [ref=e2264] [cursor=pointer]:
+                - generic [ref=e1009]: 
+                - generic [ref=e1011]: Goods and Shipment Details
+              - tab " Documents and Conditions" [selected] [ref=e1012] [cursor=pointer]:
+                - generic [ref=e1013]: 
+                - generic [ref=e1015]: Documents and Conditions
+              - tab " Linkages" [ref=e1016] [cursor=pointer]:
+                - generic [ref=e1017]: 
+                - generic [ref=e1019]: Linkages
+              - tab " Instructions" [ref=e1020] [cursor=pointer]:
+                - generic [ref=e1021]: 
+                - generic [ref=e1023]: Instructions
+              - tab " Insurance" [ref=e1024] [cursor=pointer]:
+                - generic [ref=e1025]: 
+                - generic [ref=e1027]: Insurance
+              - tab " Attachments" [ref=e1028] [cursor=pointer]:
+                - generic [ref=e1029]: 
+                - generic [ref=e1031]: Attachments
+            - text: 
+          - generic [ref=e1033]:
+            - generic [ref=e2273]:
+              - heading "Documents and Conditions" [level=2] [ref=e2276]
+              - generic "Documents and Conditions" [ref=e2278]:
+                - generic [ref=e2280]:
+                  - generic [ref=e2282]: 46A
+                  - generic [ref=e2285]:
+                    - generic [ref=e2290]: Select Documents
+                    - generic "Search..." [ref=e2295]:
+                      - generic [ref=e2296]: 
+                      - textbox "Search..." [ref=e2298]:
+                        - /placeholder: Search by Document Name
+                  - generic [ref=e2300]: You can manage and save customized clause and identifiers by clicking on the link below.
+                  - link "Clause Maintenance." [ref=e2303] [cursor=pointer]:
+                    - /url: "#"
+                  - generic "Documents Table" [ref=e2306]:
+                    - application "Documents Table" [ref=e2308]:
+                      - rowgroup [ref=e2315]:
+                        - row "Name of Document Original Number of Copies Clause" [ref=e2316]:
+                          - columnheader [ref=e2317]:
+                            - generic [ref=e2320]: 
+                          - columnheader "Name of Document" [ref=e2321]:
+                            - generic [ref=e2322]:
+                              - generic [ref=e2323]: Name of Document
+                              - generic [ref=e2325]: 
+                          - columnheader "Original" [ref=e2326]:
+                            - generic [ref=e2327]:
+                              - generic [ref=e2328]: Original
+                              - generic [ref=e2330]: 
+                          - columnheader "Number of Copies" [ref=e2331]:
+                            - generic [ref=e2332]:
+                              - generic [ref=e2333]: Number of Copies
+                              - generic [ref=e2335]: 
+                          - columnheader "Clause" [ref=e2336]:
+                            - generic [ref=e2338]: Clause
+                      - rowgroup [ref=e2339]:
+                        - row "Check Item Air Way / View / Edit" [ref=e2340]:
+                          - cell "Check Item" [ref=e2341]:
+                            - group "Check Item" [ref=e2342]:
+                              - generic [ref=e2345]:
+                                - text: 
+                                - checkbox "Check Item" [ref=e2346]
+                          - cell "Air Way" [ref=e2348]:
+                            - generic [ref=e2350]: Air Way
+                          - cell / [ref=e2351]:
+                            - generic [ref=e2352]:
+                              - textbox "Original" [disabled] [ref=e2356]:
+                                - /placeholder: "0"
+                              - generic [ref=e2359]: /
+                              - textbox "Originals Required" [disabled] [ref=e2363]:
+                                - /placeholder: "0"
+                          - cell [ref=e2365]:
+                            - textbox "Number of Copies" [disabled] [ref=e2368]:
+                              - /placeholder: "0"
+                          - cell "View / Edit" [ref=e2369]:
+                            - generic [ref=e2370]: View / Edit
+                        - row "Check Item Sea Way-New / View / Edit" [ref=e2371]:
+                          - cell "Check Item" [ref=e2372]:
+                            - group "Check Item" [ref=e2373]:
+                              - generic [ref=e2376]:
+                                - text: 
+                                - checkbox "Check Item" [ref=e2377]
+                          - cell "Sea Way-New" [ref=e2379]:
+                            - generic [ref=e2381]: Sea Way-New
+                          - cell / [ref=e2382]:
+                            - generic [ref=e2383]:
+                              - textbox "Original" [disabled] [ref=e2387]:
+                                - /placeholder: "0"
+                              - generic [ref=e2390]: /
+                              - textbox "Originals Required" [disabled] [ref=e2394]:
+                                - /placeholder: "0"
+                          - cell [ref=e2396]:
+                            - textbox "Number of Copies" [disabled] [ref=e2399]:
+                              - /placeholder: "0"
+                          - cell "View / Edit" [ref=e2400]:
+                            - generic [ref=e2401]: View / Edit
+                    - status [ref=e2402]
+                    - generic [ref=e2407]: Select Row
+                  - link "Add Document" [ref=e2414] [cursor=pointer]:
+                    - /url: "#"
+                  - generic [ref=e2417]: 47A
+                  - generic [ref=e2420]:
+                    - generic [ref=e2425]: Additional Conditions
+                    - link "Refer Codes and Description" [ref=e2427] [cursor=pointer]:
+                      - /url: "#"
+                      - generic [ref=e2428]: Refer Codes and Description
+                  - generic "Additional Conditions" [ref=e2431]:
+                    - application "Additional Conditions" [ref=e2433]:
+                      - rowgroup [ref=e2439]:
+                        - row "Condition Code Identifier Description" [ref=e2440]:
+                          - columnheader "Condition Code" [ref=e2441]:
+                            - generic [ref=e2442]:
+                              - generic [ref=e2443]: Condition Code
+                              - generic [ref=e2445]: 
+                          - columnheader "Identifier" [ref=e2446]:
+                            - generic [ref=e2447]:
+                              - generic [ref=e2448]: Identifier
+                              - generic [ref=e2450]: 
+                          - columnheader "Description" [ref=e2451]:
+                            - generic [ref=e2452]:
+                              - generic [ref=e2453]: Description
+                              - generic [ref=e2455]: 
+                          - columnheader [ref=e2456]
+                      - rowgroup [ref=e2457]:
+                        - row "No data to display." [ref=e2458]:
+                          - cell "No data to display." [ref=e2459]
+                    - status [ref=e2460]
+                    - generic [ref=e2465]: Select Row
+                  - link "Add Condition" [ref=e2472] [cursor=pointer]:
+                    - /url: "#"
+                  - generic [ref=e2475]: "48"
+                  - generic [ref=e2477]: Documents to be presented within/beyond days after the date of shipment but within validity of this credit
+                  - textbox "0" [ref=e2484]
+                  - generic [ref=e2489]:
+                    - combobox "Incoterms" [ref=e2490]:
+                      - generic [ref=e2494]: Incoterms
+                      - generic [ref=e2496]: 
+                    - text: 
+            - generic [ref=e1345]:
+              - button "Next" [active] [ref=e1347] [cursor=pointer]:
+                - generic [ref=e1349]: Next
+              - button "Save As Draft" [ref=e1351] [cursor=pointer]:
+                - generic [ref=e1353]: Save As Draft
+              - button "Cancel" [ref=e1355] [cursor=pointer]:
+                - generic [ref=e1357]: Cancel
+              - button "Back" [ref=e2075] [cursor=pointer]:
+                - generic [ref=e2077]: Back
+      - contentinfo:
+        - generic:
+          - generic:
+            - log
+  - text:    兩                                

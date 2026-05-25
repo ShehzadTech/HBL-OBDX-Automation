@@ -1,0 +1,484 @@
+{
+  "env": "dev",
+  "baseUrl": "http://172.20.3.113:7777",
+  "startedAt": "2026-05-12T12:36:28.359Z",
+  "menu": [
+    {
+      "step": "Trade Finance",
+      "id": "ui-id-170",
+      "text": "Trade Finance",
+      "ariaLabel": null
+    },
+    {
+      "step": "Bank Guarantee/Stand By LC",
+      "id": "ui-id-150",
+      "text": "Bank Guarantee/Stand By LC",
+      "ariaLabel": null
+    },
+    {
+      "step": "Outward Bank Guarantee/Stand By LC",
+      "id": "ui-id-149",
+      "text": "Outward Bank Guarantee/Stand By LC",
+      "ariaLabel": null
+    },
+    {
+      "step": "View Outward Guarantee/Stand By LC",
+      "id": "ui-id-144",
+      "text": "View Outward Guarantee/Stand By LC",
+      "ariaLabel": null
+    }
+  ],
+  "listing": {
+    "heading": "View Outward Guarantee/Stand By LC",
+    "filters": [
+      {
+        "tag": "input",
+        "id": null,
+        "name": null,
+        "type": "text",
+        "role": null,
+        "ariaLabel": "Search Transaction",
+        "placeholder": "Search",
+        "labelledBy": null,
+        "className": "oj-inputsearch-input oj-text-field-input  oj-inputsearch-filter",
+        "visible": true,
+        "value": ""
+      },
+      {
+        "tag": "button",
+        "id": null,
+        "name": null,
+        "type": null,
+        "role": "button",
+        "ariaLabel": null,
+        "placeholder": null,
+        "labelledBy": null,
+        "className": "oj-button-button oj-component-initnode",
+        "visible": true,
+        "value": ""
+      },
+      {
+        "tag": "input",
+        "id": "RelatedParty4542662|input",
+        "name": null,
+        "type": "text",
+        "role": "combobox",
+        "ariaLabel": null,
+        "placeholder": null,
+        "labelledBy": "RelatedParty4542662-labelled-by",
+        "className": "oj-searchselect-input oj-text-field-input",
+        "visible": true,
+        "value": "JZNNZI ZO AZNZM ULI KZKVI YLCVH ZMW"
+      },
+      {
+        "tag": "oj-input-text",
+        "id": "oj-searchselect-filter-RelatedParty4542662",
+        "name": null,
+        "type": null,
+        "role": null,
+        "ariaLabel": null,
+        "placeholder": "All Parties",
+        "labelledBy": null,
+        "className": "oj-searchselect-filter oj-inputtext oj-form-control oj-component oj-text-field oj-has-no-value oj-complete",
+        "visible": true,
+        "value": null
+      },
+      {
+        "tag": "input",
+        "id": "oj-searchselect-filter-RelatedParty4542662|input",
+        "name": null,
+        "type": "text",
+        "role": null,
+        "ariaLabel": null,
+        "placeholder": "All Parties",
+        "labelledBy": null,
+        "className": "oj-inputtext-input oj-text-field-input oj-component-initnode",
+        "visible": true,
+        "value": ""
+      },
+      {
+        "tag": "button",
+        "id": null,
+        "name": null,
+        "type": null,
+        "role": "button",
+        "ariaLabel": null,
+        "placeholder": null,
+        "labelledBy": "ui-id-238",
+        "className": "oj-button-button oj-component-initnode",
+        "visible": true,
+        "value": ""
+      },
+      {
+        "tag": "oj-input-text",
+        "id": "filter",
+        "name": null,
+        "type": null,
+        "role": null,
+        "ariaLabel": null,
+        "placeholder": "[[nls.filterPlaceHolder]]",
+        "labelledBy": null,
+        "className": "oj-form-control-max-width-md oj-inputtext oj-form-control oj-component oj-text-field oj-has-no-value oj-text-field-label-inside oj-complete",
+        "visible": true,
+        "value": ""
+      },
+      {
+        "tag": "input",
+        "id": "filter|input",
+        "name": null,
+        "type": "text",
+        "role": null,
+        "ariaLabel": null,
+        "placeholder": null,
+        "labelledBy": null,
+        "className": "oj-inputtext-input oj-text-field-input oj-component-initnode",
+        "visible": true,
+        "value": ""
+      }
+    ],
+    "tableHeaders": [
+      "Guarantee Number",
+      "Customer Name",
+      "Applicant Name",
+      "Beneficiary Name",
+      "Customer Reference Number",
+      "Obdx Reference Number",
+      "Issue Date",
+      "Date of Expiry",
+      "Status",
+      "Undertaking Amount",
+      "Equivalent Undertaking Amount",
+      "Outstanding Amount",
+      "Equivalent Outstanding Amount",
+      "Transaction Type"
+    ],
+    "rows": [
+      [
+        "PK2GUIR211250504",
+        "GOODCARE PLC",
+        "GOODCARE PLC",
+        "MARKS AND SPENCER",
+        "",
+        "13024A38EC91",
+        "5/5/2021",
+        "8/3/2021",
+        "Active",
+        "£90,000.00",
+        "£90,000.00",
+        "£90,000.00",
+        "£90,000.00",
+        ""
+      ]
+    ],
+    "firstRowOpenLink": {
+      "text": "PK2GUIR211250504",
+      "href": "#",
+      "ariaLabel": "PK2GUIR211250504"
+    }
+  },
+  "detail": {
+    "header": [
+      {
+        "label": "Search Transaction",
+        "id": null,
+        "value": null,
+        "placeholder": "Search"
+      }
+    ],
+    "tabs": [
+      {
+        "index": 0,
+        "label": "View Guarantee Details",
+        "ariaLabel": null,
+        "id": null,
+        "contents": {
+          "fields": [],
+          "tables": []
+        }
+      },
+      {
+        "index": 1,
+        "label": "Amendments",
+        "ariaLabel": null,
+        "id": null,
+        "contents": {
+          "fields": [],
+          "tables": [
+            {
+              "headers": [
+                "Amendment Number",
+                "Issue Date",
+                "Expiry Date",
+                "New Guarantee Amount",
+                "Status"
+              ],
+              "firstRow": [
+                "1",
+                "7/4/2023",
+                "10/2/2023",
+                "£9,000.00",
+                "REJECTED",
+                "View"
+              ],
+              "rowCount": 4
+            },
+            {
+              "headers": [
+                "Amendment Number",
+                "Issue Date",
+                "Expiry Date",
+                "New Guarantee Amount",
+                "Status"
+              ],
+              "firstRow": [
+                "1",
+                "7/4/2023",
+                "10/2/2023",
+                "£9,000.00",
+                "REJECTED",
+                "View"
+              ],
+              "rowCount": 4
+            }
+          ]
+        }
+      },
+      {
+        "index": 2,
+        "label": "Attached Documents",
+        "ariaLabel": null,
+        "id": null,
+        "contents": {
+          "fields": [],
+          "tables": []
+        }
+      },
+      {
+        "index": 3,
+        "label": "Linkages",
+        "ariaLabel": null,
+        "id": null,
+        "contents": {
+          "fields": [],
+          "tables": [
+            {
+              "headers": [
+                "Account Number",
+                "Contribution Amount for Collateral",
+                "Contribution Percentage"
+              ],
+              "firstRow": [
+                "No data to display."
+              ],
+              "rowCount": 1
+            },
+            {
+              "headers": [
+                "Account Number",
+                "Contribution Amount for Collateral",
+                "Contribution Percentage"
+              ],
+              "firstRow": [
+                "No data to display."
+              ],
+              "rowCount": 1
+            }
+          ]
+        }
+      },
+      {
+        "index": 4,
+        "label": "Charges, Commissions and Taxes",
+        "ariaLabel": null,
+        "id": null,
+        "contents": {
+          "fields": [],
+          "tables": [
+            {
+              "headers": [
+                "Account No",
+                "Description of Charges",
+                "Amount",
+                "Split Amount Borne by You",
+                "Split Amount Borne by Other Party"
+              ],
+              "firstRow": [
+                "PK20010440017",
+                "SWIFT CHARGES FOR LC ISSUE",
+                "£50.00",
+                "£50.00",
+                "£0.00"
+              ],
+              "rowCount": 3
+            },
+            {
+              "headers": [
+                "Account No",
+                "Description of Charges",
+                "Amount",
+                "Split Amount Borne by You",
+                "Split Amount Borne by Other Party"
+              ],
+              "firstRow": [
+                "PK20010440017",
+                "SWIFT CHARGES FOR LC ISSUE",
+                "£50.00",
+                "£50.00",
+                "£0.00"
+              ],
+              "rowCount": 3
+            },
+            {
+              "headers": [
+                "Account No",
+                "Description of Commissions",
+                "Amount",
+                "Split Amount Borne by You",
+                "Split Amount Borne by Other Party"
+              ],
+              "firstRow": [
+                "No data to display."
+              ],
+              "rowCount": 1
+            },
+            {
+              "headers": [
+                "Account No",
+                "Description of Commissions",
+                "Amount",
+                "Split Amount Borne by You",
+                "Split Amount Borne by Other Party"
+              ],
+              "firstRow": [
+                "No data to display."
+              ],
+              "rowCount": 1
+            },
+            {
+              "headers": [
+                "Account No",
+                "Description of Taxes",
+                "Value Date",
+                "Amount",
+                "Equivalent Amount"
+              ],
+              "firstRow": [
+                "PK20010440017",
+                "LCTAX1",
+                "4/20/2022",
+                "£4.00",
+                "£4.00"
+              ],
+              "rowCount": 2
+            },
+            {
+              "headers": [
+                "Account No",
+                "Description of Taxes",
+                "Value Date",
+                "Amount",
+                "Equivalent Amount"
+              ],
+              "firstRow": [
+                "PK20010440017",
+                "LCTAX1",
+                "4/20/2022",
+                "£4.00",
+                "£4.00"
+              ],
+              "rowCount": 2
+            }
+          ]
+        }
+      },
+      {
+        "index": 5,
+        "label": "SWIFT Messages",
+        "ariaLabel": null,
+        "id": null,
+        "contents": {
+          "fields": [],
+          "tables": [
+            {
+              "headers": [
+                "Sr No.",
+                "Message ID",
+                "Direction",
+                "Date",
+                "Description",
+                "Sending/Receiving Bank",
+                "Message Type",
+                "Action"
+              ],
+              "firstRow": [
+                "1",
+                "1952027925737473",
+                "",
+                "3/21/2019",
+                "Acknowledgement of a Guarantee",
+                "BARCLAYS PLC",
+                "768",
+                "Download"
+              ],
+              "rowCount": 1
+            },
+            {
+              "headers": [
+                "Sr No.",
+                "Message ID",
+                "Direction",
+                "Date",
+                "Description",
+                "Sending/Receiving Bank",
+                "Message Type",
+                "Action"
+              ],
+              "firstRow": [
+                "1",
+                "1952027925737473",
+                "",
+                "3/21/2019",
+                "Acknowledgement of a Guarantee",
+                "BARCLAYS PLC",
+                "768",
+                "Download"
+              ],
+              "rowCount": 1
+            }
+          ]
+        }
+      }
+    ],
+    "actions": [
+      {
+        "text": "99+",
+        "id": null,
+        "ariaLabel": "99+"
+      },
+      {
+        "text": "Back",
+        "id": null,
+        "ariaLabel": null
+      },
+      {
+        "text": "Initiate Amendment",
+        "id": null,
+        "ariaLabel": "Initiate Amendment"
+      },
+      {
+        "text": "Copy and Initiate",
+        "id": null,
+        "ariaLabel": "Copy and Initiate"
+      },
+      {
+        "text": "Back",
+        "id": null,
+        "ariaLabel": "Back"
+      }
+    ],
+    "url": "http://172.20.3.113:7777/home.html?ojr=view-bank-guarantee-details%3Bmodule%3Dguarantee"
+  },
+  "notes": [],
+  "url": "http://172.20.3.113:7777/home.html?ojr=outward-guarantee-list%3Bmodule%3Dguarantee",
+  "finishedAt": "2026-05-12T12:37:01.232Z"
+}

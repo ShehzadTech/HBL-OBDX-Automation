@@ -1,0 +1,237 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e115]:
+    - link "Skip to main content" [ref=e116] [cursor=pointer]:
+      - /url: "#maincontent"
+    - generic [ref=e117]:
+      - banner [ref=e118]:
+        - generic [ref=e119]:
+          - generic [ref=e120]:
+            - generic [ref=e121]:
+              - generic "Toggle Menu" [ref=e122]:
+                - button "Open Menu" [ref=e123] [cursor=pointer]:
+                  - generic [ref=e126]: 
+              - link "Open Dashboard" [ref=e128] [cursor=pointer]:
+                - /url: "#"
+                - img "Open Dashboard" [ref=e129]
+            - generic "Search Transaction" [ref=e133]:
+              - generic [ref=e135]: 
+              - combobox "Search Transaction" [ref=e136]:
+                - textbox "Search Transaction" [ref=e137]:
+                  - /placeholder: Search
+            - generic [ref=e138]:
+              - generic "99+" [ref=e140]:
+                - button "99+" [ref=e141] [cursor=pointer]:
+                  - generic [ref=e144]:
+                    - text: 
+                    - generic [ref=e145]: 99+
+              - button "corpchecker2" [ref=e148] [cursor=pointer]:
+                - generic [ref=e149]:
+                  - img "corpchecker2" [ref=e151]:
+                    - generic [ref=e154]: CC
+                  - text:  
+          - generic [ref=e160]:
+            - heading "Overview" [level=1] [ref=e161]
+            - generic "Personalization Menu" [ref=e164]:
+              - button "Personalization Menu" [ref=e165] [cursor=pointer]:
+                - generic [ref=e166]:
+                  - generic [ref=e167]: Personalization Menu
+                  - generic [ref=e168]: 
+      - main [ref=e170]:
+        - generic [ref=e180]:
+          - generic [ref=e190]:
+            - generic [ref=e192]:
+              - generic:
+                - generic:
+                  - heading [level=2]
+            - generic [ref=e197]:
+              - link "Current & Savings 2 Total Accounts Specific Account Details Displaying page 1 of 2 filmStripCardPagingControl0Pagination Page 1 Page 2" [ref=e200] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e201]:
+                  - generic [ref=e203]:
+                    - heading "Current & Savings" [level=3] [ref=e204]
+                    - text: 2 Total Accounts
+                  - application "Specific Account Details Displaying page 1 of 2" [ref=e209]:
+                    - generic [ref=e213]:
+                      - generic [ref=e214]: MVR6,834,628,902.00
+                      - generic [ref=e215]: MVR (1 Accounts)
+                    - generic [ref=e216]: Displaying page 1 of 2
+                  - generic [ref=e220]:
+                    - status [ref=e221]: Page 1 content loaded
+                    - generic [ref=e222]: filmStripCardPagingControl0Pagination
+                    - region "filmStripCardPagingControl0Pagination" [ref=e223]:
+                      - generic [ref=e227]:
+                        - generic "Go To Page 1" [ref=e228]:
+                          - generic [ref=e229]: Page
+                          - generic [ref=e231]: "1"
+                        - link "Page 2" [ref=e232]:
+                          - /url: "#"
+                          - generic [ref=e233]: Page
+                          - generic [ref=e235]: "2"
+              - generic [ref=e238]:
+                - heading "Term Deposits" [level=3] [ref=e241]
+                - generic [ref=e246]: You do not have any Term Deposit
+              - generic [ref=e249]:
+                - heading "Loans and Finances" [level=3] [ref=e252]
+                - generic [ref=e257]: You do not have any Loans
+              - generic [ref=e265]:
+                - heading "Accounts Summary" [level=2] [ref=e270]
+                - generic [ref=e281]:
+                  - generic [ref=e282]:
+                    - generic [ref=e284]: 2 Record(s)
+                    - generic [ref=e286]:
+                      - button "Download" [ref=e288] [cursor=pointer]:
+                        - generic [ref=e289]:
+                          - generic [ref=e290]: 
+                          - generic [ref=e291]: Download
+                          - generic [ref=e292]: 
+                      - button "Manage Columns" [ref=e294] [cursor=pointer]:
+                        - generic [ref=e295]:
+                          - generic [ref=e297]: 
+                          - generic [ref=e298]: Manage Columns
+                  - generic [ref=e299]:
+                    - application "Party Name Account Number Account Type Available Balance XYZCorp Savings Account - Regular AT30008010036 Saving Account MVR6,834,628,902.00 XYZCorp Savings Account - Regular AT30008010014 Current Account £125,453,433.00 Select Row" [ref=e301]:
+                      - rowgroup [ref=e307]:
+                        - row "Party Name Account Number Account Type Available Balance" [ref=e308]:
+                          - columnheader "Party Name" [ref=e309]:
+                            - generic [ref=e310]:
+                              - generic [ref=e311]: Party Name
+                              - generic [ref=e313]: 
+                          - columnheader "Account Number" [ref=e314]:
+                            - generic [ref=e315]:
+                              - generic [ref=e316]: Account Number
+                              - generic [ref=e318]: 
+                          - columnheader "Account Type" [ref=e319]:
+                            - generic [ref=e320]:
+                              - generic [ref=e321]: Account Type
+                              - generic [ref=e323]: 
+                          - columnheader "Available Balance" [ref=e324]:
+                            - generic [ref=e325]:
+                              - generic [ref=e326]: Available Balance
+                              - generic [ref=e328]: 
+                      - rowgroup [ref=e329]:
+                        - row "XYZCorp Savings Account - Regular AT30008010036 Saving Account MVR6,834,628,902.00" [ref=e330]:
+                          - cell "XYZCorp" [ref=e331]
+                          - cell "Savings Account - Regular AT30008010036" [ref=e332]:
+                            - generic [ref=e340]:
+                              - generic [ref=e341]: Savings Account - Regular
+                              - link "AT30008010036" [ref=e343] [cursor=pointer]:
+                                - /url: "#"
+                          - cell "Saving Account" [ref=e344]:
+                            - generic [ref=e349]: Saving Account
+                          - cell "MVR6,834,628,902.00" [ref=e350]:
+                            - generic [ref=e351]: MVR6,834,628,902.00
+                        - row "XYZCorp Savings Account - Regular AT30008010014 Current Account £125,453,433.00" [ref=e352]:
+                          - cell "XYZCorp" [ref=e353]
+                          - cell "Savings Account - Regular AT30008010014" [ref=e354]:
+                            - generic [ref=e362]:
+                              - generic [ref=e363]: Savings Account - Regular
+                              - link "AT30008010014" [ref=e365] [cursor=pointer]:
+                                - /url: "#"
+                          - cell "Current Account" [ref=e366]:
+                            - generic [ref=e371]: Current Account
+                          - cell "£125,453,433.00" [ref=e372]:
+                            - generic [ref=e373]: £125,453,433.00
+                    - status [ref=e374]
+                    - generic [ref=e379]: Select Row
+          - generic [ref=e386]:
+            - heading "Bulk File Upload" [level=2] [ref=e391]
+            - generic [ref=e396]:
+              - generic [ref=e399]:
+                - combobox "Identifier" [ref=e400]:
+                  - generic [ref=e404]: Identifier
+                  - generic [ref=e406]: 
+                - text: 
+                - generic [ref=e409]: Required
+              - generic [ref=e412]:
+                - generic [ref=e416]: Upload
+                - generic [ref=e418]:
+                  - button " Choose File"
+                  - generic [ref=e419] [cursor=pointer]:  Choose File
+            - button "Submit" [ref=e424] [cursor=pointer]:
+              - generic [ref=e426]: Submit
+          - generic [ref=e431]:
+            - heading "Quick Links" [level=2] [ref=e436]
+            - list [ref=e440]:
+              - listitem [ref=e441]:
+                - link "Make Payment" [ref=e442] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=e443]: Make Payment
+              - listitem [ref=e444]:
+                - link "File Upload" [ref=e445] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=e446]: File Upload
+              - listitem [ref=e447]:
+                - link "Uploaded Files Inquiry" [ref=e448] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=e449]: Uploaded Files Inquiry
+          - generic [ref=e453]:
+            - heading "Transactions" [level=2] [ref=e458]
+            - generic [ref=e461]:
+              - generic [ref=e465]:
+                - text: 
+                - tablist "Transactions Pending For Action" [ref=e468]:
+                  - tab "Pending For Approval" [selected] [ref=e469] [cursor=pointer]:
+                    - generic [ref=e471]: Pending For Approval
+                  - tab "My Initiated List" [ref=e472] [cursor=pointer]:
+                    - generic [ref=e474]: My Initiated List
+                  - tab "Transaction Log" [ref=e475] [cursor=pointer]:
+                    - generic [ref=e477]: Transaction Log
+                  - tab "My Approved List" [ref=e478] [cursor=pointer]:
+                    - generic [ref=e480]: My Approved List
+                  - tab "Modification Requested" [ref=e481] [cursor=pointer]:
+                    - generic [ref=e483]: Modification Requested
+                - text: 
+              - generic [ref=e487]:
+                - generic [ref=e490]:
+                  - generic [ref=e491]: All
+                  - generic [ref=e494]: "49"
+                - generic [ref=e497]:
+                  - generic [ref=e498]: Financial
+                  - generic [ref=e501]: "7"
+                - generic [ref=e504]:
+                  - generic [ref=e505]: Non Financial
+                  - generic [ref=e508]: "42"
+                - generic [ref=e511]:
+                  - generic [ref=e512]: Urgent
+                  - generic [ref=e515]: "0"
+              - generic [ref=e516]:
+                - toolbar "Account type" [ref=e518]:
+                  - generic [ref=e519] [cursor=pointer]:
+                    - generic [ref=e522]: Financial
+                    - radio "Financial" [checked] [ref=e523]
+                  - generic [ref=e524] [cursor=pointer]:
+                    - generic [ref=e527]: Non Financial
+                    - radio "Non Financial" [ref=e528]
+                - generic [ref=e529]:
+                  - toolbar [ref=e530]:
+                    - generic [ref=e531] [cursor=pointer]:
+                      - generic [ref=e534]: 隷
+                      - radio "隷" [checked] [ref=e535]
+                    - generic [ref=e536] [cursor=pointer]:
+                      - generic [ref=e539]: 
+                      - radio "" [ref=e540]
+                  - link "Search Filter" [ref=e542] [cursor=pointer]:
+                    - /url: "#"
+                    - generic [ref=e543]: 
+              - 'application "Data Visualization: Chart" [ref=e546]':
+                - img [ref=e548]:
+                  - generic [ref=e551]:
+                    - generic [ref=e563]: Pending Approval
+                    - generic [ref=e566]:
+                      - generic [ref=e567]: "0"
+                      - generic [ref=e568]: "1"
+                      - generic [ref=e569]: "2"
+                      - generic [ref=e570]: "3"
+                      - generic [ref=e571]: "4"
+                      - generic [ref=e572]: "5"
+                      - generic [ref=e573]: "6"
+                      - generic [ref=e574]: "7"
+                    - generic [ref=e575]:
+                      - generic [ref=e577]: Bulk Record
+                      - generic [ref=e579]: Trade Finance Transactions
+                - img [ref=e580]
+      - contentinfo:
+        - generic:
+          - generic:
+            - log
+  - text:   兩                                   

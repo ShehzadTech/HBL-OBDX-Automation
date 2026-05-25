@@ -1,0 +1,52 @@
+- generic [ref=e1]:
+  - generic [ref=e6]:
+    - toolbar [ref=e43]:
+      - generic "Selected colour mode is Light" [ref=e44]:
+        - button "Selected colour mode is Light" [ref=e45] [cursor=pointer]:
+          - generic [ref=e46]:
+            - generic [ref=e47]: 麗
+            - generic [ref=e48]: Selected colour mode is Light
+            - generic [ref=e49]: 
+            - text: 麗  
+      - button "Selected Language is English" [ref=e51] [cursor=pointer]:
+        - generic [ref=e52]:
+          - generic [ref=e53]: English
+          - generic [ref=e54]: 
+      - button "Current Entity is Default Business Unit" [ref=e56] [cursor=pointer]:
+        - generic [ref=e57]:
+          - generic [ref=e58]: Default Business Unit
+          - generic [ref=e59]: 
+    - link "Skip to main content" [ref=e7] [cursor=pointer]:
+      - /url: "#maincontent"
+    - generic [ref=e8]:
+      - text: 麗  麗     
+      - main [ref=e33]:
+        - generic [ref=e73]:
+          - generic [ref=e112]: Invalid Username and/or Password.
+          - generic [ref=e75]:
+            - generic [ref=e82]:
+              - generic [ref=e85]: Username
+              - textbox "Username" [ref=e86]:
+                - /placeholder: ""
+                - text: corpchecker2
+            - generic [ref=e92]:
+              - generic [ref=e93]:
+                - generic [ref=e96]: Password
+                - textbox "Password" [ref=e97]:
+                  - /placeholder: ""
+                  - text: Admin@120
+              - button "Show password." [ref=e99] [cursor=pointer]:
+                - generic [ref=e100]: 
+          - generic [ref=e101]:
+            - link "Forgot Password" [ref=e102] [cursor=pointer]:
+              - /url: "#"
+            - text: /
+            - link "Username" [ref=e103] [cursor=pointer]:
+              - /url: "#"
+          - button "Login" [active] [ref=e105] [cursor=pointer]:
+            - generic [ref=e107]: Login
+      - contentinfo:
+        - generic:
+          - generic:
+            - log
+  - text:        

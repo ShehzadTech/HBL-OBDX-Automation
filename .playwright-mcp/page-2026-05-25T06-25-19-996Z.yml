@@ -1,0 +1,22 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e6]:
+    - link "Skip to main content" [ref=e7] [cursor=pointer]:
+      - /url: "#maincontent"
+    - generic [ref=e8]:
+      - banner [ref=e9]:
+        - generic [ref=e10]:
+          - img "Open Dashboard" [ref=e17]
+          - generic [ref=e23]:
+            - generic "Back" [ref=e26]:
+              - button "Back" [ref=e27] [cursor=pointer]:
+                - generic [ref=e28]:
+                  - generic [ref=e30]: 
+                  - generic [ref=e31]: Back
+            - generic:
+              - heading [level=1]
+      - main [ref=e33]
+      - contentinfo:
+        - generic:
+          - generic:
+            - log
+  - text: 

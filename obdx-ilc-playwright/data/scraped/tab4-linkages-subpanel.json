@@ -1,0 +1,462 @@
+{
+  "startedAt": "2026-05-22T09:15:47.578Z",
+  "steps": [],
+  "beforeAddAccount": {
+    "widgets": [
+      {
+        "tag": "input",
+        "id": null,
+        "name": null,
+        "type": "text",
+        "role": null,
+        "ariaLabel": "Search Transaction",
+        "labelText": null,
+        "placeholder": "Search",
+        "value": "",
+        "idPrefix": null
+      }
+    ],
+    "buttons": [
+      {
+        "text": "",
+        "id": null,
+        "ariaLabel": "Open Menu"
+      },
+      {
+        "text": "99+",
+        "id": "mailbox-holder",
+        "ariaLabel": null
+      },
+      {
+        "text": "99+",
+        "id": null,
+        "ariaLabel": "99+"
+      },
+      {
+        "text": "Back",
+        "id": null,
+        "ariaLabel": null
+      },
+      {
+        "text": "Back",
+        "id": null,
+        "ariaLabel": null
+      },
+      {
+        "text": "Reset",
+        "id": null,
+        "ariaLabel": null
+      },
+      {
+        "text": "Reset",
+        "id": null,
+        "ariaLabel": "Reset"
+      },
+      {
+        "text": "Next",
+        "id": null,
+        "ariaLabel": null
+      },
+      {
+        "text": "Next",
+        "id": null,
+        "ariaLabel": "Next"
+      },
+      {
+        "text": "Save As Draft",
+        "id": null,
+        "ariaLabel": null
+      },
+      {
+        "text": "Save As Draft",
+        "id": null,
+        "ariaLabel": "Save As Draft"
+      },
+      {
+        "text": "Cancel",
+        "id": null,
+        "ariaLabel": null
+      },
+      {
+        "text": "Cancel",
+        "id": null,
+        "ariaLabel": "Cancel"
+      },
+      {
+        "text": "Back",
+        "id": null,
+        "ariaLabel": null
+      },
+      {
+        "text": "Back",
+        "id": null,
+        "ariaLabel": "Back"
+      }
+    ],
+    "inputsByIdPrefix": {
+      "(no-id)": 1
+    },
+    "dialogs": [],
+    "url": "http://172.20.3.113:7777/home.html?ojr=initiate-letter-of-credit%3Bmodule%3Dletter-of-credit"
+  },
+  "addAccountClicked": {
+    "matchedText": "Add Account",
+    "id": "AddAccount2665268",
+    "tag": "a"
+  },
+  "afterAddAccount": {
+    "widgets": [
+      {
+        "tag": "input",
+        "id": null,
+        "name": null,
+        "type": "text",
+        "role": null,
+        "ariaLabel": "Search Transaction",
+        "labelText": null,
+        "placeholder": "Search",
+        "value": "",
+        "idPrefix": null
+      },
+      {
+        "tag": "oj-select-one",
+        "id": "Currency8451156",
+        "name": null,
+        "type": null,
+        "role": null,
+        "ariaLabel": null,
+        "labelText": "Currency",
+        "placeholder": null,
+        "value": "EUR",
+        "idPrefix": "Currency"
+      },
+      {
+        "tag": "oj-input-text",
+        "id": "amount-check",
+        "name": null,
+        "type": null,
+        "role": null,
+        "ariaLabel": null,
+        "labelText": null,
+        "placeholder": "€0.00",
+        "value": null,
+        "idPrefix": "amount-check"
+      },
+      {
+        "tag": "input",
+        "id": "amount-check|input",
+        "name": null,
+        "type": "text",
+        "role": null,
+        "ariaLabel": "Contribution Amount for Collateral",
+        "labelText": null,
+        "placeholder": "€0.00",
+        "value": "",
+        "idPrefix": "amount-check|input"
+      },
+      {
+        "tag": "oj-input-number",
+        "id": "ContributionPercentage472144",
+        "name": null,
+        "type": null,
+        "role": null,
+        "ariaLabel": null,
+        "labelText": null,
+        "placeholder": "[[$parent.numericPlaceholder]]",
+        "value": null,
+        "idPrefix": "ContributionPercentage"
+      },
+      {
+        "tag": "input",
+        "id": "ContributionPercentage472144|input",
+        "name": null,
+        "type": "text",
+        "role": null,
+        "ariaLabel": "Contribution Percentage",
+        "labelText": null,
+        "placeholder": "0",
+        "value": "",
+        "idPrefix": "ContributionPercentage472144|input"
+      }
+    ],
+    "buttons": [
+      {
+        "text": "",
+        "id": null,
+        "ariaLabel": "Open Menu"
+      },
+      {
+        "text": "99+",
+        "id": "mailbox-holder",
+        "ariaLabel": null
+      },
+      {
+        "text": "99+",
+        "id": null,
+        "ariaLabel": "99+"
+      },
+      {
+        "text": "Back",
+        "id": null,
+        "ariaLabel": null
+      },
+      {
+        "text": "Back",
+        "id": null,
+        "ariaLabel": null
+      },
+      {
+        "text": "Reset",
+        "id": null,
+        "ariaLabel": null
+      },
+      {
+        "text": "Reset",
+        "id": null,
+        "ariaLabel": "Reset"
+      },
+      {
+        "text": "Next",
+        "id": null,
+        "ariaLabel": null
+      },
+      {
+        "text": "Next",
+        "id": null,
+        "ariaLabel": "Next"
+      },
+      {
+        "text": "Save As Draft",
+        "id": null,
+        "ariaLabel": null
+      },
+      {
+        "text": "Save As Draft",
+        "id": null,
+        "ariaLabel": "Save As Draft"
+      },
+      {
+        "text": "Cancel",
+        "id": null,
+        "ariaLabel": null
+      },
+      {
+        "text": "Cancel",
+        "id": null,
+        "ariaLabel": "Cancel"
+      },
+      {
+        "text": "Back",
+        "id": null,
+        "ariaLabel": null
+      },
+      {
+        "text": "Back",
+        "id": null,
+        "ariaLabel": "Back"
+      }
+    ],
+    "inputsByIdPrefix": {
+      "(no-id)": 1,
+      "amount-check|input": 1,
+      "ContributionPercentage472144|input": 1
+    },
+    "dialogs": [],
+    "url": "http://172.20.3.113:7777/home.html?ojr=initiate-letter-of-credit%3Bmodule%3Dletter-of-credit"
+  },
+  "newWidgetsAfterClick": [
+    {
+      "tag": "oj-select-one",
+      "id": "Currency8451156",
+      "name": null,
+      "type": null,
+      "role": null,
+      "ariaLabel": null,
+      "labelText": "Currency",
+      "placeholder": null,
+      "value": "EUR",
+      "idPrefix": "Currency"
+    },
+    {
+      "tag": "oj-input-text",
+      "id": "amount-check",
+      "name": null,
+      "type": null,
+      "role": null,
+      "ariaLabel": null,
+      "labelText": null,
+      "placeholder": "€0.00",
+      "value": null,
+      "idPrefix": "amount-check"
+    },
+    {
+      "tag": "input",
+      "id": "amount-check|input",
+      "name": null,
+      "type": "text",
+      "role": null,
+      "ariaLabel": "Contribution Amount for Collateral",
+      "labelText": null,
+      "placeholder": "€0.00",
+      "value": "",
+      "idPrefix": "amount-check|input"
+    },
+    {
+      "tag": "oj-input-number",
+      "id": "ContributionPercentage472144",
+      "name": null,
+      "type": null,
+      "role": null,
+      "ariaLabel": null,
+      "labelText": null,
+      "placeholder": "[[$parent.numericPlaceholder]]",
+      "value": null,
+      "idPrefix": "ContributionPercentage"
+    },
+    {
+      "tag": "input",
+      "id": "ContributionPercentage472144|input",
+      "name": null,
+      "type": "text",
+      "role": null,
+      "ariaLabel": "Contribution Percentage",
+      "labelText": null,
+      "placeholder": "0",
+      "value": "",
+      "idPrefix": "ContributionPercentage472144|input"
+    }
+  ],
+  "screenshot": "data\\scraped\\tab4-after-add-account.png",
+  "htmlDump": "data\\scraped\\tab4-after-add-account.html",
+  "allInputsRaw": [
+    {
+      "tag": "input",
+      "id": null,
+      "idPrefix": null,
+      "placeholder": "Search",
+      "ariaLabel": "Search Transaction",
+      "name": null,
+      "type": "text",
+      "visible": true,
+      "rect": {
+        "w": 393,
+        "h": 42,
+        "x": 890,
+        "y": 9
+      }
+    },
+    {
+      "tag": "oj-select-one",
+      "id": "Currency8451156",
+      "idPrefix": "Currency",
+      "placeholder": null,
+      "ariaLabel": null,
+      "name": null,
+      "type": null,
+      "visible": true,
+      "rect": {
+        "w": 168,
+        "h": 20,
+        "x": 384,
+        "y": 358
+      }
+    },
+    {
+      "tag": "input",
+      "id": null,
+      "idPrefix": null,
+      "placeholder": null,
+      "ariaLabel": null,
+      "name": null,
+      "type": "text",
+      "visible": false,
+      "rect": {
+        "w": 0,
+        "h": 0,
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "tag": "oj-input-text",
+      "id": "amount-check",
+      "idPrefix": "amount-check",
+      "placeholder": "€0.00",
+      "ariaLabel": null,
+      "name": null,
+      "type": null,
+      "visible": true,
+      "rect": {
+        "w": 159,
+        "h": 21,
+        "x": 721,
+        "y": 590
+      }
+    },
+    {
+      "tag": "input",
+      "id": "amount-check|input",
+      "idPrefix": "amount-check|input",
+      "placeholder": "€0.00",
+      "ariaLabel": "Contribution Amount for Collateral",
+      "name": null,
+      "type": "text",
+      "visible": true,
+      "rect": {
+        "w": 159,
+        "h": 21,
+        "x": 721,
+        "y": 590
+      }
+    },
+    {
+      "tag": "input",
+      "id": "ContributionPercentage472144|input",
+      "idPrefix": "ContributionPercentage472144|input",
+      "placeholder": "0",
+      "ariaLabel": "Contribution Percentage",
+      "name": null,
+      "type": "text",
+      "visible": true,
+      "rect": {
+        "w": 127,
+        "h": 21,
+        "x": 913,
+        "y": 590
+      }
+    },
+    {
+      "tag": "oj-input-text",
+      "id": "NameoftheDraft5341057",
+      "idPrefix": "NameoftheDraft",
+      "placeholder": null,
+      "ariaLabel": null,
+      "name": null,
+      "type": null,
+      "visible": false,
+      "rect": {
+        "w": 0,
+        "h": 0,
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "tag": "input",
+      "id": "NameoftheDraft5341057|input",
+      "idPrefix": "NameoftheDraft5341057|input",
+      "placeholder": null,
+      "ariaLabel": null,
+      "name": null,
+      "type": "text",
+      "visible": false,
+      "rect": {
+        "w": 0,
+        "h": 0,
+        "x": 0,
+        "y": 0
+      }
+    }
+  ],
+  "finishedAt": "2026-05-22T09:16:59.819Z"
+}

@@ -1,0 +1,379 @@
+{
+  "name": "OBDX Test Generator & Runner",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "OBDX Test Generator",
+        "formDescription": "Paste a TSD / UST and a feature slug. The agent will generate OBDX-format test cases, transpile them into a Playwright .spec.ts, and (optionally) execute the suite against the running OBDX instance.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "TSD or UST",
+              "fieldType": "textarea",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Feature slug (kebab-case, used as filename)",
+              "fieldType": "text",
+              "requiredField": true,
+              "placeholder": "amend-import-lc"
+            },
+            {
+              "fieldLabel": "Module code (TC-ID prefix)",
+              "fieldType": "text",
+              "requiredField": true,
+              "placeholder": "AMLC"
+            },
+            {
+              "fieldLabel": "Execute tests after generation?",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  { "option": "yes" },
+                  { "option": "no" }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "form-trigger",
+      "name": "Form Trigger",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.1,
+      "position": [240, 320],
+      "webhookId": "obdx-test-gen"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "1",
+              "name": "projectPath",
+              "value": "D:/QA Artifacts/HBL-TradeFinance-Automation-main/obdx-ilc-playwright",
+              "type": "string"
+            },
+            {
+              "id": "2",
+              "name": "claudeModel",
+              "value": "claude-sonnet-4-6",
+              "type": "string"
+            },
+            {
+              "id": "3",
+              "name": "featureSlug",
+              "value": "={{ $json['Feature slug (kebab-case, used as filename)'].toLowerCase().replace(/[^a-z0-9-]/g, '-').replace(/-+/g, '-').replace(/^-|-$/g, '') }}",
+              "type": "string"
+            },
+            {
+              "id": "4",
+              "name": "moduleCode",
+              "value": "={{ $json['Module code (TC-ID prefix)'].toUpperCase().replace(/[^A-Z0-9]/g, '') }}",
+              "type": "string"
+            },
+            {
+              "id": "5",
+              "name": "tsd",
+              "value": "={{ $json['TSD or UST'] }}",
+              "type": "string"
+            },
+            {
+              "id": "6",
+              "name": "executeTests",
+              "value": "={{ $json['Execute tests after generation?'] === 'yes' }}",
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "config",
+      "name": "Set Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [460, 320]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Stage 1 system prompt — keep in sync with n8n/prompts/01-test-cases.md\nreturn [{ json: { systemPrompt: `You are a senior QA engineer on the Techlogix HBL OBDX 25.1 Trade Finance programme. You convert a UST / TSD / feature description into manual test cases that conform to the project's OBDX 11-column format (the format used in data/manual-test-cases.xlsx).\n\nThe workbook column order is: Test Case ID, Scenario, Test Objective, Pre-conditions, Test Steps, Expected Result, Type, Priority, Source Tab, Tab / Field, FSD Reference. The JSON field order below mirrors that workbook order so downstream JSON→xlsx tooling can map 1-to-1 without reordering.\n\nReturn ONLY a single fenced JSON code block. No prose before or after. The JSON must be a single object with: feature (kebab-case slug), module_code (TC-ID prefix, e.g. IMPLC, AMLC), summary, test_cases (array). Each test_case has, in this order: test_case_id, scenario, test_objective, preconditions, test_steps, expected_result, type, priority, source_tab, tab_field, fsd_reference, category.\n\nHARD RULES:\n1. TC-ID format: TC-<MODULE>-<NNN> for tab-scoped tests; TC-BS-<NNN> for cross-tab Business Scenario flows. Numbers zero-padded 3-digit, unique within batch.\n2. source_tab: 'Tab 1 — LC Details' / 'Tab 2 — Goods & Shipment' / 'Tab 3 — Documents & Conditions' / 'Tab 4 — Linkages' / 'Tab 5 — Instructions' / 'Tab 6 — Attachments / Submit' / 'Business Scenarios'.\n3. type: 'Positive' or 'Negative' only. Boundary/Edge are flagged in scenario prefix ('Boundary —', 'Edge —').\n4. category: 'Happy Path' / 'Negative' / 'Boundary' / 'Edge'.\n5. priority: P1 (critical), P2 (important), P3 (nice-to-have).\n6. Use LC_TEST_DATA.* references (product, beneficiaryName, lcCurrency, lcAmount, swiftCode, dateOfExpiry, placeOfExpiry, placeOfTaking, finalDestination, goodsType, collateralAccountNumber). Literals only when scenario hinges on the value.\n7. Every test_steps starts with: open URL → login as Maker (corpmaker2 / Admin@131) → navigate via hamburger.\n8. expected_result quotes OBDX system messages verbatim (e.g. 'Transaction submitted for approval.', 'Pending for Approval').\n9. Standard Instructions checkbox on Tab 5 is mandatory in happy-path submission flows — include the tick step.\n10. Maker-only scope: end at the success-message screen + reference number. NO checker / back-office / revert flows unless asked.\n\nCOVERAGE: produce 15–30 test cases for a typical TSD with 4–6 ACs. Cover Happy Path, Negative, Boundary, Edge.\n\nDATE-SENSITIVE: if the TSD mentions cut-offs / 'within N days' / calendar references, add Boundary tests at one-day-before / on / one-day-after the boundary, plus a year-rollover case.\n\nPITFALLS TO AVOID: no Given/When/Then; no inventing fields not in the TSD; no paraphrasing quoted system messages; no checker/approval scope; no output other than the single JSON code block.\n\nTarget module code for this batch: ${$('Set Config').item.json.moduleCode}.\nTarget feature slug for this batch: ${$('Set Config').item.json.featureSlug}.` } }];"
+      },
+      "id": "build-prompt-1",
+      "name": "Build Stage-1 Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 320]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "anthropic-version", "value": "2023-06-01" },
+            { "name": "content-type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: $('Set Config').item.json.claudeModel, max_tokens: 16000, system: $json.systemPrompt, messages: [ { role: 'user', content: $('Set Config').item.json.tsd } ] }) }}",
+        "options": {
+          "timeout": 180000
+        }
+      },
+      "id": "claude-test-cases",
+      "name": "Claude — Test Cases",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [900, 320],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "anthropic-api-key",
+          "name": "Anthropic API Key (x-api-key)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract the JSON code block from Claude's response and parse it.\nconst raw = $json.content?.[0]?.text || '';\nconst match = raw.match(/```(?:json)?\\s*([\\s\\S]*?)```/);\nconst jsonText = match ? match[1].trim() : raw.trim();\n\nlet parsed;\ntry {\n  parsed = JSON.parse(jsonText);\n} catch (e) {\n  throw new Error(`Stage-1 output was not valid JSON: ${e.message}\\n\\nRaw response:\\n${raw}`);\n}\n\nif (!parsed.test_cases || !Array.isArray(parsed.test_cases) || parsed.test_cases.length === 0) {\n  throw new Error(`Stage-1 produced no test cases. Raw:\\n${raw}`);\n}\n\nreturn [{ json: { ...parsed, raw } }];"
+      },
+      "id": "parse-test-cases",
+      "name": "Parse Test Cases",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 320]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Stage 2 system prompt — keep in sync with n8n/prompts/02-playwright.md\nreturn [{ json: { systemPrompt: `You are a senior automation engineer on the OBDX 25.1 Playwright + TypeScript framework (HBL Trade Finance). You convert a JSON test-case batch into a single runnable .spec.ts file that fits the project's existing conventions.\n\nThe obdx-25.1-framework conventions are authoritative.\n\nFOLDER LAYOUT: spec files at tests/trade-finance/<feature>.spec.ts (kebab-case). Page objects at pages/common/ and pages/trade-finance/<Module>FlowPage.ts. NO src/ wrapper. Path aliases: @pages/*, @utils/*, @fixtures/*, @config/*, @data/*. Never use ../../ relative imports.\n\nIMPORTS (verbatim where applicable):\nimport { test, expect } from '@fixtures/auth.fixture';\nimport { LC_TEST_DATA } from '@data/lcTestData';\nimport { LoginPage } from '@pages/common/LoginPage';\nimport { DashboardPage } from '@pages/common/DashboardPage';\nimport { ImportLcFlowPage } from '@pages/trade-finance/ImportLcFlowPage';\n\nFixtures available: loginPage, dashboardPage, importLcFlowPage, loggedInDashboard. NEVER import test/expect from '@playwright/test' directly.\n\nTEST STRUCTURE:\ntest.describe('<Module> — <feature>', () => {\n  test.describe.configure({ mode: 'serial' });\n  test('TC-XXX-NNN: <title>', { tag: ['@positive', '@P1', '@regression', '@<area>'] }, async ({ loggedInDashboard, importLcFlowPage }) => {\n    await test.step('...', async () => { ... });\n  });\n});\n\nTAGS by category: Happy Path → @positive; Negative → @negative; Boundary → @boundary; Edge → @edge. Always add @<priority>, @regression, and an area tag (@tab1..@tab6 or @trade-finance).\n\nOBDX GOTCHAS — MUST RESPECT:\n1. NEVER call locator.fill() on Oracle JET inputs. Use OjHelper.ojFill() / ojFillLocator() / ojFillDate() from @utils/ojHelper.\n2. NEVER use page.waitForLoadState('networkidle'). Use WaitHelper.waitForUrlFragment() or element-based waits.\n3. ALWAYS call dashboardPage.waitForDashboard() (or use loggedInDashboard fixture) before navigation — it dismisses screen-size warning + login toasts.\n4. Standard Instructions checkbox on Tab 5 is mandatory — call importLcFlowPage.fillInstructions() (handles via JS click).\n5. Tab 3 (Documents) is no-touch — use importLcFlowPage.navigateThroughDocuments() only.\n6. Goods Total warning on Tab 2 Next is benign — fillGoodsAndShipment() dismisses automatically.\n7. NEVER write raw page.locator(...) in spec files. Selectors live in page objects.\n\nUSE ONLY THESE EXISTING ImportLcFlowPage METHODS:\n- assertOnLcNavPage, clickCreateLC, selectProduct\n- fillLcDetails (and granular: selectApplicantType, selectApplicant, selectBeneficiaryType, selectExistingBeneficiary, fillNonCustomerApplicant, fillNewBeneficiary, fillDateOfExpiry, fillPlaceOfExpiry, selectCurrency, fillLcAmount, fillCustomerReference, fillSwiftAndVerify, setToleranceFields, fillField39C, getField40ARadioOptions)\n- fillGoodsAndShipment\n- navigateThroughDocuments\n- fillLinkages\n- fillInstructions\n- fillInsurance\n- submitFromAttachments, assertOnReviewPage, submitFromReview, assertOnConfirmationPage, assertConfirmation, getReferenceNumber\n- Assertions: assertApplicantAddressReadOnly, assertApplicantCountryReadOnly, assertBeneficiaryAddressReadOnly, assertBeneficiaryCountryReadOnly, assertSwiftBankAutoFilled, assertTotalExposureContains, assertNextBlockedWithError, clickNext\n\nIf a Stage-1 step needs a method not in this list, ADD a // FIXME: comment in the spec and call clickNext / a placeholder — do NOT invent locators or page methods.\n\nOUTPUT FORMAT — STRICT: return ONLY a single fenced TypeScript code block. No prose before or after. The block is the complete contents of tests/trade-finance/${$('Set Config').item.json.featureSlug}.spec.ts.\n\nFeature slug: ${$('Set Config').item.json.featureSlug}\nModule code: ${$('Set Config').item.json.moduleCode}` } }];"
+      },
+      "id": "build-prompt-2",
+      "name": "Build Stage-2 Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1340, 320]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "anthropic-version", "value": "2023-06-01" },
+            { "name": "content-type", "value": "application/json" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: $('Set Config').item.json.claudeModel, max_tokens: 32000, system: $json.systemPrompt, messages: [ { role: 'user', content: 'Test cases JSON:\\n\\n```json\\n' + JSON.stringify($('Parse Test Cases').item.json, null, 2) + '\\n```\\n\\nProduce the .spec.ts file.' } ] }) }}",
+        "options": {
+          "timeout": 240000
+        }
+      },
+      "id": "claude-playwright",
+      "name": "Claude — Playwright Spec",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1560, 320],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "anthropic-api-key",
+          "name": "Anthropic API Key (x-api-key)"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Strip the fenced code block from Claude's response.\nconst raw = $json.content?.[0]?.text || '';\nconst match = raw.match(/```(?:ts|typescript)?\\s*([\\s\\S]*?)```/);\nconst code = match ? match[1].trim() : raw.trim();\n\nif (!code.includes(\"from '@fixtures/auth.fixture'\") && !code.includes('from \"@fixtures/auth.fixture\"')) {\n  throw new Error(`Stage-2 output missing the @fixtures/auth.fixture import. Raw:\\n${raw}`);\n}\n\nconst slug = $('Set Config').item.json.featureSlug;\nconst projectPath = $('Set Config').item.json.projectPath;\nconst specPath = `${projectPath}/tests/trade-finance/${slug}.spec.ts`;\n\nreturn [{ json: { code, specPath, slug, projectPath, raw } }];"
+      },
+      "id": "extract-spec",
+      "name": "Extract Spec",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1780, 320]
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "={{ $json.specPath }}",
+        "dataPropertyName": "data",
+        "options": {
+          "encoding": "utf8"
+        }
+      },
+      "id": "write-spec",
+      "name": "Write Spec File",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [2000, 320],
+      "notes": "Writes the generated spec to tests/trade-finance/<slug>.spec.ts on the local filesystem. Requires self-hosted N8N with write access to the project directory."
+    },
+    {
+      "parameters": {
+        "jsCode": "// readWriteFile expects a binary buffer on `data`. Convert the spec text → buffer first.\nconst code = $('Extract Spec').item.json.code;\nconst buffer = Buffer.from(code, 'utf8');\nreturn [{\n  json: $('Extract Spec').item.json,\n  binary: { data: { data: buffer.toString('base64'), mimeType: 'text/typescript', fileName: `${$('Extract Spec').item.json.slug}.spec.ts` } }\n}];"
+      },
+      "id": "to-buffer",
+      "name": "Code → Buffer",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1900, 320]
+    },
+    {
+      "parameters": {
+        "command": "=cd \"{{ $('Set Config').item.json.projectPath }}\" && npx tsc --noEmit"
+      },
+      "id": "tsc-check",
+      "name": "TypeScript Check",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [2220, 320],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "tsc-ok",
+              "leftValue": "={{ $json.exitCode }}",
+              "rightValue": 0,
+              "operator": { "type": "number", "operation": "equals" }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-tsc-ok",
+      "name": "If TSC Passed",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [2440, 320]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "", "typeValidation": "strict" },
+          "conditions": [
+            {
+              "id": "exec",
+              "leftValue": "={{ $('Set Config').item.json.executeTests }}",
+              "rightValue": true,
+              "operator": { "type": "boolean", "operation": "equals" }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-execute",
+      "name": "If Execute Tests",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [2660, 240]
+    },
+    {
+      "parameters": {
+        "command": "=cd \"{{ $('Set Config').item.json.projectPath }}\" && npx playwright test \"tests/trade-finance/{{ $('Set Config').item.json.featureSlug }}.spec.ts\""
+      },
+      "id": "run-playwright",
+      "name": "Run Playwright",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [2880, 180],
+      "continueOnFail": true,
+      "notes": "Uses the project's playwright.config.ts (list + html + json + custom-dashboard reporters). Runs serial on a single worker as configured."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Read playwright-report/results.json and summarise.\nconst fs = require('fs');\nconst path = require('path');\nconst projectPath = $('Set Config').item.json.projectPath;\nconst resultsPath = path.join(projectPath, 'playwright-report', 'results.json');\n\nlet summary = {\n  status: 'unknown',\n  passed: 0,\n  failed: 0,\n  skipped: 0,\n  flaky: 0,\n  duration_ms: 0,\n  failures: [],\n};\n\ntry {\n  const raw = fs.readFileSync(resultsPath, 'utf8');\n  const r = JSON.parse(raw);\n  summary.duration_ms = r.stats?.duration ?? 0;\n  summary.status = (r.stats?.unexpected ?? 0) > 0 ? 'failed' : 'passed';\n  // Walk suites recursively to collect tests.\n  const walk = (suite) => {\n    (suite.suites || []).forEach(walk);\n    (suite.specs || []).forEach((spec) => {\n      (spec.tests || []).forEach((t) => {\n        const result = (t.results || [])[0];\n        if (!result) return;\n        if (result.status === 'passed') summary.passed++;\n        else if (result.status === 'skipped') summary.skipped++;\n        else if (result.status === 'flaky') summary.flaky++;\n        else {\n          summary.failed++;\n          summary.failures.push({\n            test: spec.title,\n            file: spec.file,\n            error: result.error?.message?.split('\\n').slice(0, 5).join('\\n') ?? 'unknown',\n          });\n        }\n      });\n    });\n  };\n  (r.suites || []).forEach(walk);\n} catch (e) {\n  summary.status = 'no-results';\n  summary.error = e.message;\n}\n\nreturn [{ json: { summary, specPath: $('Extract Spec').item.json.specPath, executionStdout: ($('Run Playwright').item.json.stdout || '').slice(-4000) } }];"
+      },
+      "id": "parse-results",
+      "name": "Parse Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [3100, 180]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'ok', stage: 'executed', specPath: $json.specPath, summary: $json.summary, stdout_tail: $json.executionStdout }, null, 2) }}",
+        "options": {}
+      },
+      "id": "respond-executed",
+      "name": "Respond — Executed",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [3320, 180]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'ok', stage: 'generated', specPath: $('Extract Spec').item.json.specPath, message: 'Spec generated and TypeScript-checked. Tests not executed (per form input).' }, null, 2) }}",
+        "options": {}
+      },
+      "id": "respond-generated",
+      "name": "Respond — Generated Only",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [2880, 320]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ status: 'error', stage: 'tsc-failed', specPath: $('Extract Spec').item.json.specPath, tsc_stdout: $('TypeScript Check').item.json.stdout, tsc_stderr: $('TypeScript Check').item.json.stderr, hint: 'Open the generated .spec.ts and resolve TypeScript errors. Most often: a method called on ImportLcFlowPage that does not exist — check the prompt allow-list.' }, null, 2) }}",
+        "options": {}
+      },
+      "id": "respond-tsc-failed",
+      "name": "Respond — TSC Failed",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [2660, 460]
+    }
+  ],
+  "connections": {
+    "Form Trigger": { "main": [[{ "node": "Set Config", "type": "main", "index": 0 }]] },
+    "Set Config": { "main": [[{ "node": "Build Stage-1 Prompt", "type": "main", "index": 0 }]] },
+    "Build Stage-1 Prompt": { "main": [[{ "node": "Claude — Test Cases", "type": "main", "index": 0 }]] },
+    "Claude — Test Cases": { "main": [[{ "node": "Parse Test Cases", "type": "main", "index": 0 }]] },
+    "Parse Test Cases": { "main": [[{ "node": "Build Stage-2 Prompt", "type": "main", "index": 0 }]] },
+    "Build Stage-2 Prompt": { "main": [[{ "node": "Claude — Playwright Spec", "type": "main", "index": 0 }]] },
+    "Claude — Playwright Spec": { "main": [[{ "node": "Extract Spec", "type": "main", "index": 0 }]] },
+    "Extract Spec": { "main": [[{ "node": "Code → Buffer", "type": "main", "index": 0 }]] },
+    "Code → Buffer": { "main": [[{ "node": "Write Spec File", "type": "main", "index": 0 }]] },
+    "Write Spec File": { "main": [[{ "node": "TypeScript Check", "type": "main", "index": 0 }]] },
+    "TypeScript Check": { "main": [[{ "node": "If TSC Passed", "type": "main", "index": 0 }]] },
+    "If TSC Passed": {
+      "main": [
+        [{ "node": "If Execute Tests", "type": "main", "index": 0 }],
+        [{ "node": "Respond — TSC Failed", "type": "main", "index": 0 }]
+      ]
+    },
+    "If Execute Tests": {
+      "main": [
+        [{ "node": "Run Playwright", "type": "main", "index": 0 }],
+        [{ "node": "Respond — Generated Only", "type": "main", "index": 0 }]
+      ]
+    },
+    "Run Playwright": { "main": [[{ "node": "Parse Results", "type": "main", "index": 0 }]] },
+    "Parse Results": { "main": [[{ "node": "Respond — Executed", "type": "main", "index": 0 }]] }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Asia/Karachi"
+  },
+  "tags": []
+}

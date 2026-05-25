@@ -1,0 +1,6966 @@
+{
+  "env": "dev",
+  "baseUrl": "http://172.20.3.113:7777",
+  "startedAt": "2026-05-21T12:53:52.577Z",
+  "menu": [
+    {
+      "step": "Trade Finance",
+      "id": "ui-id-170",
+      "text": "Trade Finance",
+      "ariaLabel": null
+    },
+    {
+      "step": "Letter Of Credit",
+      "id": "ui-id-120",
+      "text": "Letter Of Credit",
+      "ariaLabel": null
+    },
+    {
+      "step": "Import Letter of Credit",
+      "id": "ui-id-108",
+      "text": "Import Letter of Credit",
+      "ariaLabel": null
+    },
+    {
+      "step": "Initiate Import LC",
+      "id": "ui-id-100",
+      "text": "Initiate Import LC",
+      "ariaLabel": null
+    }
+  ],
+  "listing": {
+    "url": "http://172.20.3.113:7777/home.html?ojr=lc-nav-bar%3Bmodule%3Dletter-of-credit",
+    "heading": "Initiate Letter of Credit",
+    "snapshot": {
+      "widgets": [
+        {
+          "tag": "input",
+          "id": null,
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Search Transaction",
+          "placeholder": "Search",
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": null
+        }
+      ],
+      "buttons": [
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Open Menu",
+          "text": "",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": "mailbox-holder",
+          "ariaLabel": null,
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "99+",
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": "createButton",
+          "ariaLabel": null,
+          "text": "Create LC",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Create LC",
+          "disabled": null
+        }
+      ],
+      "links": [
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Skip to main content",
+          "href": "#maincontent"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "By Template",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Copy & Initiate",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "By Drafts",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back To Back LC",
+          "href": "#"
+        }
+      ],
+      "url": "http://172.20.3.113:7777/home.html?ojr=lc-nav-bar%3Bmodule%3Dletter-of-credit",
+      "title": "Initiate Letter of Credit - HBL"
+    }
+  },
+  "tabs": [
+    {
+      "index": 1,
+      "label": "Tab 1 — initial state after Create LC",
+      "widgets": [
+        {
+          "tag": "input",
+          "id": null,
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Search Transaction",
+          "placeholder": "Search",
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": null
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "ApplicantDetails3883366",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Applicant Details",
+          "placeholder": null,
+          "labelText": null,
+          "value": "true",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "true",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": true,
+              "label": "Existing customer",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"ApplicantDetails\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-265|rb",
+          "role": null,
+          "type": "radio",
+          "name": "ApplicantDetails3883366",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Existing customer",
+          "value": "true",
+          "checked": true,
+          "readonly": null,
+          "disabled": true,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-265|rb\"]"
+        },
+        {
+          "tag": "oj-select-one",
+          "id": "ApplicantName1425571",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "C864F7B91796AB1B5C1488D3BED58F9E6E9AEDF3F65CA1",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "C864F7B91796AB1B5C1488D3BED58F9E6E9AEDF3F65CA1",
+              "label": "JZNNZI ZO AZNZM ULI KZKVI YLCVH ZMW",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"ApplicantName\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "Transferable1086972",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Type of Documentary Credit",
+          "placeholder": null,
+          "labelText": null,
+          "value": "false",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "true",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": true,
+              "label": "Transferable",
+              "checked": null
+            },
+            {
+              "value": "false",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "{{false}}",
+              "label": "Non Transferable",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"Transferable\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-268|rb",
+          "role": null,
+          "type": "radio",
+          "name": "Transferable1086972",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Transferable",
+          "value": "true",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-268|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-269|rb",
+          "role": null,
+          "type": "radio",
+          "name": "Transferable1086972",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Non Transferable",
+          "value": "false",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-269|rb\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "LCType7704147",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "LC Type",
+          "placeholder": null,
+          "labelText": null,
+          "value": "SIGHT",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "SIGHT",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "SIGHT",
+              "label": "Sight",
+              "checked": null
+            },
+            {
+              "value": "USANCE",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "USANCE",
+              "label": "Usance",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"LCType\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-271|rb",
+          "role": null,
+          "type": "radio",
+          "name": "LCType7704147",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Sight",
+          "value": "SIGHT",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-271|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-272|rb",
+          "role": null,
+          "type": "radio",
+          "name": "LCType7704147",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Usance",
+          "value": "USANCE",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-272|rb\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "Revolving5328169",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Revolving",
+          "placeholder": null,
+          "labelText": null,
+          "value": "false",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "true",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": true,
+              "label": "Yes",
+              "checked": null
+            },
+            {
+              "value": "false",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "{{false}}",
+              "label": "No",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"Revolving\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-274|rb",
+          "role": null,
+          "type": "radio",
+          "name": "Revolving5328169",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Yes",
+          "value": "true",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-274|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-275|rb",
+          "role": null,
+          "type": "radio",
+          "name": "Revolving5328169",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "No",
+          "value": "false",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-275|rb\"]"
+        },
+        {
+          "tag": "oj-select-one",
+          "id": "SelectProduct8713118",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": "[[nls.pleaseSelect]]",
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.productId}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SelectProduct\"]"
+        },
+        {
+          "tag": "oj-input-date",
+          "id": "DateofExpiry3481130",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.expiryDate}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"DateofExpiry\"]"
+        },
+        {
+          "tag": "input",
+          "id": "DateofExpiry3481130|input",
+          "role": "combobox",
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Date of Expiry",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"DateofExpiry3481130|input\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "PlaceofExpiry2710814",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.expiryPlace}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"PlaceofExpiry\"]"
+        },
+        {
+          "tag": "input",
+          "id": "PlaceofExpiry2710814|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Place of Expiry",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"PlaceofExpiry2710814|input\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "BeneficiaryDetails7386148",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Beneficiary Details",
+          "placeholder": null,
+          "labelText": null,
+          "value": "EXISTING",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "EXISTING",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "EXISTING",
+              "label": "Existing",
+              "checked": null
+            },
+            {
+              "value": "NEW",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "NEW",
+              "label": "New",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"BeneficiaryDetails\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-277|rb",
+          "role": null,
+          "type": "radio",
+          "name": "BeneficiaryDetails7386148",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Existing",
+          "value": "EXISTING",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-277|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-278|rb",
+          "role": null,
+          "type": "radio",
+          "name": "BeneficiaryDetails7386148",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "New",
+          "value": "NEW",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-278|rb\"]"
+        },
+        {
+          "tag": "oj-select-one",
+          "id": "BeneficiaryName8826275",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": "[[nls.pleaseSelect]]",
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.beneId}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "52",
+              "label": "Shehzad",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"BeneficiaryName\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "Under3869314",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.toleranceUnder}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Under\"]"
+        },
+        {
+          "tag": "input",
+          "id": "Under3869314|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Tolerance Under(%)",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Under3869314|input\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "Above4228273",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.toleranceAbove}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Above\"]"
+        },
+        {
+          "tag": "input",
+          "id": "Above4228273|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Tolerance Above(%)",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Above4228273|input\"]"
+        },
+        {
+          "tag": "oj-text-area",
+          "id": "AdditionalAmountCovered8411447",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.additionalAmountCovered}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"AdditionalAmountCovered\"]"
+        },
+        {
+          "tag": "textarea",
+          "id": "AdditionalAmountCovered8411447|input",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Additional Amount Covered",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"AdditionalAmountCovered8411447|input\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "CustomerReferenceNumber8344067",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.customerReferenceNo}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"CustomerReferenceNumber\"]"
+        },
+        {
+          "tag": "input",
+          "id": "CustomerReferenceNumber8344067|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Customer Reference Number",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"CustomerReferenceNumber8344067|input\"]"
+        },
+        {
+          "tag": "oj-text-area",
+          "id": "[['negotiationPaymentDetails']]",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.paymentDetails}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"[['negotiationPaymentDetails']]\"]"
+        },
+        {
+          "tag": "textarea",
+          "id": "[['negotiationPaymentDetails']]|input",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": "Payment Details",
+          "placeholder": null,
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"[['negotiationPaymentDetails']]|input\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "CreditAvailableWith4862688",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Credit Available With",
+          "placeholder": null,
+          "labelText": null,
+          "value": "SWIFTCODE",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "SWIFTCODE",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "SWIFTCODE",
+              "label": "SWIFT Code",
+              "checked": null
+            },
+            {
+              "value": "BANKADDRESS",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "BANKADDRESS",
+              "label": "Bank Address",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"CreditAvailableWith\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-282|rb",
+          "role": null,
+          "type": "radio",
+          "name": "CreditAvailableWith4862688",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "SWIFT Code",
+          "value": "SWIFTCODE",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-282|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-283|rb",
+          "role": null,
+          "type": "radio",
+          "name": "CreditAvailableWith4862688",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Bank Address",
+          "value": "BANKADDRESS",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-283|rb\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "availableWithSwiftCode",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.availableWith}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"availableWithSwiftCode\"]"
+        },
+        {
+          "tag": "input",
+          "id": "availableWithSwiftCode|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "SWIFT Code",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"availableWithSwiftCode|input\"]"
+        },
+        {
+          "tag": "oj-input-number",
+          "id": "[['draftTenor']]",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{tenor}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"[['draftTenor']]\"]"
+        },
+        {
+          "tag": "input",
+          "id": "[['draftTenor']]|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Tenor",
+          "placeholder": null,
+          "labelText": "Tenor",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"[['draftTenor']]|input\"]"
+        },
+        {
+          "tag": "oj-text-area",
+          "id": "[['draftCreditDays']]",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": "[[nls.CreditDaysFrom]]",
+          "labelText": null,
+          "value": "{{creditDays}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"[['draftCreditDays']]\"]"
+        },
+        {
+          "tag": "textarea",
+          "id": "[['draftCreditDays']]|input",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": "Credit Days From",
+          "placeholder": null,
+          "labelText": "Credit Days From",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"[['draftCreditDays']]|input\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "[['draweeBankSelected']]",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Drawee Bank",
+          "placeholder": null,
+          "labelText": null,
+          "value": "SWIFTCODE",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "SWIFTCODE",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "SWIFTCODE",
+              "label": "SWIFT Code",
+              "checked": null
+            },
+            {
+              "value": "BANKADDRESS",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "BANKADDRESS",
+              "label": "Name and Address",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"[['draweeBankSelected']]\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-285|rb",
+          "role": null,
+          "type": "radio",
+          "name": "[['draweeBankSelected']]",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "SWIFT Code",
+          "value": "SWIFTCODE",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-285|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-286|rb",
+          "role": null,
+          "type": "radio",
+          "name": "[['draweeBankSelected']]",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Name and Address",
+          "value": "BANKADDRESS",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-286|rb\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "[['draweeSwiftCode']]",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{draweeBankId}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"[['draweeSwiftCode']]\"]"
+        },
+        {
+          "tag": "input",
+          "id": "[['draweeSwiftCode']]|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Drawee Swift Code",
+          "placeholder": null,
+          "labelText": "SWIFT Code",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"[['draweeSwiftCode']]|input\"]"
+        }
+      ],
+      "buttons": [
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Open Menu",
+          "text": "",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": "mailbox-holder",
+          "ariaLabel": null,
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "99+",
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Verify",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Verify",
+          "text": "Verify",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Verify",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Verify",
+          "text": "Verify",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Next",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Next",
+          "text": "Next",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Save As Draft",
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Cancel",
+          "text": "Cancel",
+          "disabled": null
+        }
+      ],
+      "links": [
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Skip to main content",
+          "href": "#maincontent"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "LC Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Goods and Shipment Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Documents and Conditions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Linkages",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Instructions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Insurance",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Attachments",
+          "href": "#"
+        },
+        {
+          "id": "LookupSWIFTCode7829249",
+          "ariaLabel": "Lookup SWIFT Code",
+          "text": "Lookup SWIFT Code",
+          "href": "#"
+        },
+        {
+          "id": "LookupSWIFTCode1184155",
+          "ariaLabel": "Lookup SWIFT Code",
+          "text": "Lookup SWIFT Code",
+          "href": "#"
+        }
+      ],
+      "url": "http://172.20.3.113:7777/home.html?ojr=initiate-letter-of-credit%3Bmodule%3Dletter-of-credit",
+      "title": "Initiate Letter of Credit - HBL",
+      "capturedAt": "2026-05-21T12:54:25.176Z"
+    },
+    {
+      "index": 1,
+      "label": "Tab 1 — after happy-path fill",
+      "widgets": [
+        {
+          "tag": "input",
+          "id": null,
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Search Transaction",
+          "placeholder": "Search",
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": null
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "ApplicantDetails3883366",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Applicant Details",
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "true",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "true",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": true,
+              "label": "Existing customer",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"ApplicantDetails\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-265|rb",
+          "role": null,
+          "type": "radio",
+          "name": "ApplicantDetails3883366",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Existing customer",
+          "value": "true",
+          "checked": true,
+          "readonly": null,
+          "disabled": true,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-265|rb\"]"
+        },
+        {
+          "tag": "oj-select-one",
+          "id": "ApplicantName1425571",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "C864F7B91796AB1B5C1488D3BED58F9E6E9AEDF3F65CA1",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "C864F7B91796AB1B5C1488D3BED58F9E6E9AEDF3F65CA1",
+              "label": "JZNNZI ZO AZNZM ULI KZKVI YLCVH ZMW",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"ApplicantName\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "Transferable1086972",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Type of Documentary Credit",
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "false",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "true",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": true,
+              "label": "Transferable",
+              "checked": null
+            },
+            {
+              "value": "false",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "{{false}}",
+              "label": "Non Transferable",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"Transferable\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-268|rb",
+          "role": null,
+          "type": "radio",
+          "name": "Transferable1086972",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Transferable",
+          "value": "true",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-268|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-269|rb",
+          "role": null,
+          "type": "radio",
+          "name": "Transferable1086972",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Non Transferable",
+          "value": "false",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-269|rb\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "LCType7704147",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "LC Type",
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "SIGHT",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "SIGHT",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "SIGHT",
+              "label": "Sight",
+              "checked": null
+            },
+            {
+              "value": "USANCE",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "USANCE",
+              "label": "Usance",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"LCType\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-271|rb",
+          "role": null,
+          "type": "radio",
+          "name": "LCType7704147",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Sight",
+          "value": "SIGHT",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-271|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-272|rb",
+          "role": null,
+          "type": "radio",
+          "name": "LCType7704147",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Usance",
+          "value": "USANCE",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-272|rb\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "Revolving5328169",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Revolving",
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "false",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "true",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": true,
+              "label": "Yes",
+              "checked": null
+            },
+            {
+              "value": "false",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "{{false}}",
+              "label": "No",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"Revolving\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-274|rb",
+          "role": null,
+          "type": "radio",
+          "name": "Revolving5328169",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Yes",
+          "value": "true",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-274|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-275|rb",
+          "role": null,
+          "type": "radio",
+          "name": "Revolving5328169",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "No",
+          "value": "false",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-275|rb\"]"
+        },
+        {
+          "tag": "oj-select-one",
+          "id": "SelectProduct8713118",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": "[[nls.pleaseSelect]]",
+          "labelText": "LC Amount Tolerance",
+          "value": "ILC-INL",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SelectProduct\"]"
+        },
+        {
+          "tag": "oj-input-date",
+          "id": "DateofExpiry3481130",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "2026-12-31",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"DateofExpiry\"]"
+        },
+        {
+          "tag": "input",
+          "id": "DateofExpiry3481130|input",
+          "role": "combobox",
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Date of Expiry",
+          "value": "12/31/2026",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"DateofExpiry3481130|input\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "PlaceofExpiry2710814",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "{{letterOfCreditDetails.expiryPlace}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"PlaceofExpiry\"]"
+        },
+        {
+          "tag": "input",
+          "id": "PlaceofExpiry2710814|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Place of Expiry",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"PlaceofExpiry2710814|input\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "BeneficiaryDetails7386148",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Beneficiary Details",
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "EXISTING",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "EXISTING",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "EXISTING",
+              "label": "Existing",
+              "checked": null
+            },
+            {
+              "value": "NEW",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "NEW",
+              "label": "New",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"BeneficiaryDetails\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-277|rb",
+          "role": null,
+          "type": "radio",
+          "name": "BeneficiaryDetails7386148",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Existing",
+          "value": "EXISTING",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-277|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-278|rb",
+          "role": null,
+          "type": "radio",
+          "name": "BeneficiaryDetails7386148",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "New",
+          "value": "NEW",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-278|rb\"]"
+        },
+        {
+          "tag": "oj-select-one",
+          "id": "BeneficiaryName8826275",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": "[[nls.pleaseSelect]]",
+          "labelText": "LC Amount Tolerance",
+          "value": "52",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "52",
+              "label": "Shehzad",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"BeneficiaryName\"]"
+        },
+        {
+          "tag": "oj-select-one",
+          "id": "lc-amount_currency",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "KRW",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "KRW",
+              "label": "KRW",
+              "checked": null
+            },
+            {
+              "value": "NLG",
+              "label": "NLG",
+              "checked": null
+            },
+            {
+              "value": "NOK",
+              "label": "NOK",
+              "checked": null
+            },
+            {
+              "value": "NPR",
+              "label": "NPR",
+              "checked": null
+            },
+            {
+              "value": "NZD",
+              "label": "NZD",
+              "checked": null
+            },
+            {
+              "value": "PHP",
+              "label": "PHP",
+              "checked": null
+            },
+            {
+              "value": "PYG",
+              "label": "PYG",
+              "checked": null
+            },
+            {
+              "value": "QAR",
+              "label": "QAR",
+              "checked": null
+            },
+            {
+              "value": "SRG",
+              "label": "SRG",
+              "checked": null
+            },
+            {
+              "value": "TMM",
+              "label": "TMM",
+              "checked": null
+            },
+            {
+              "value": "UZS",
+              "label": "UZS",
+              "checked": null
+            },
+            {
+              "value": "WST",
+              "label": "WST",
+              "checked": null
+            },
+            {
+              "value": "ZWD",
+              "label": "ZWD",
+              "checked": null
+            },
+            {
+              "value": "TZS",
+              "label": "TZS",
+              "checked": null
+            },
+            {
+              "value": "BOB",
+              "label": "BOB",
+              "checked": null
+            },
+            {
+              "value": "CFA",
+              "label": "CFA",
+              "checked": null
+            },
+            {
+              "value": "COP",
+              "label": "COP",
+              "checked": null
+            },
+            {
+              "value": "CRC",
+              "label": "CRC",
+              "checked": null
+            },
+            {
+              "value": "BIF",
+              "label": "BIF",
+              "checked": null
+            },
+            {
+              "value": "EEK",
+              "label": "EEK",
+              "checked": null
+            },
+            {
+              "value": "FRF",
+              "label": "FRF",
+              "checked": null
+            },
+            {
+              "value": "GBP",
+              "label": "GBP",
+              "checked": null
+            },
+            {
+              "value": "IEP",
+              "label": "IEP",
+              "checked": null
+            },
+            {
+              "value": "ITL",
+              "label": "ITL",
+              "checked": null
+            },
+            {
+              "value": "JMD",
+              "label": "JMD",
+              "checked": null
+            },
+            {
+              "value": "GWP",
+              "label": "GWP",
+              "checked": null
+            },
+            {
+              "value": "HKD",
+              "label": "HKD",
+              "checked": null
+            },
+            {
+              "value": "LAK",
+              "label": "LAK",
+              "checked": null
+            },
+            {
+              "value": "MVR",
+              "label": "MVR",
+              "checked": null
+            },
+            {
+              "value": "KYD",
+              "label": "KYD",
+              "checked": null
+            },
+            {
+              "value": "OMR",
+              "label": "OMR",
+              "checked": null
+            },
+            {
+              "value": "PGK",
+              "label": "PGK",
+              "checked": null
+            },
+            {
+              "value": "PKR",
+              "label": "PKR",
+              "checked": null
+            },
+            {
+              "value": "SGD",
+              "label": "SGD",
+              "checked": null
+            },
+            {
+              "value": "SAR",
+              "label": "SAR",
+              "checked": null
+            },
+            {
+              "value": "ZAR",
+              "label": "ZAR",
+              "checked": null
+            },
+            {
+              "value": "UGX",
+              "label": "UGX",
+              "checked": null
+            },
+            {
+              "value": "ATS",
+              "label": "ATS",
+              "checked": null
+            },
+            {
+              "value": "AWG",
+              "label": "AWG",
+              "checked": null
+            },
+            {
+              "value": "BEF",
+              "label": "BEF",
+              "checked": null
+            },
+            {
+              "value": "BRL",
+              "label": "BRL",
+              "checked": null
+            },
+            {
+              "value": "BTN",
+              "label": "BTN",
+              "checked": null
+            },
+            {
+              "value": "BZD",
+              "label": "BZD",
+              "checked": null
+            },
+            {
+              "value": "CVE",
+              "label": "CVE",
+              "checked": null
+            },
+            {
+              "value": "CZK",
+              "label": "CZK",
+              "checked": null
+            },
+            {
+              "value": "EGP",
+              "label": "EGP",
+              "checked": null
+            },
+            {
+              "value": "DEM",
+              "label": "DEM",
+              "checked": null
+            },
+            {
+              "value": "HRK",
+              "label": "HRK",
+              "checked": null
+            },
+            {
+              "value": "IDR",
+              "label": "IDR",
+              "checked": null
+            },
+            {
+              "value": "IQD",
+              "label": "IQD",
+              "checked": null
+            },
+            {
+              "value": "LTL",
+              "label": "LTL",
+              "checked": null
+            },
+            {
+              "value": "LVL",
+              "label": "LVL",
+              "checked": null
+            },
+            {
+              "value": "MNT",
+              "label": "MNT",
+              "checked": null
+            },
+            {
+              "value": "MUR",
+              "label": "MUR",
+              "checked": null
+            },
+            {
+              "value": "PAB",
+              "label": "PAB",
+              "checked": null
+            },
+            {
+              "value": "MXN",
+              "label": "MXN",
+              "checked": null
+            },
+            {
+              "value": "TTD",
+              "label": "TTD",
+              "checked": null
+            },
+            {
+              "value": "VEB",
+              "label": "VEB",
+              "checked": null
+            },
+            {
+              "value": "VND",
+              "label": "VND",
+              "checked": null
+            },
+            {
+              "value": "XEU",
+              "label": "XEU",
+              "checked": null
+            },
+            {
+              "value": "ZMK",
+              "label": "ZMK",
+              "checked": null
+            },
+            {
+              "value": "ZRN",
+              "label": "ZRN",
+              "checked": null
+            },
+            {
+              "value": "BSD",
+              "label": "BSD",
+              "checked": null
+            },
+            {
+              "value": "BWP",
+              "label": "BWP",
+              "checked": null
+            },
+            {
+              "value": "FJD",
+              "label": "FJD",
+              "checked": null
+            },
+            {
+              "value": "GTQ",
+              "label": "GTQ",
+              "checked": null
+            },
+            {
+              "value": "DJF",
+              "label": "DJF",
+              "checked": null
+            },
+            {
+              "value": "LBP",
+              "label": "LBP",
+              "checked": null
+            },
+            {
+              "value": "LYD",
+              "label": "LYD",
+              "checked": null
+            },
+            {
+              "value": "MAD",
+              "label": "MAD",
+              "checked": null
+            },
+            {
+              "value": "MRO",
+              "label": "MRO",
+              "checked": null
+            },
+            {
+              "value": "MWK",
+              "label": "MWK",
+              "checked": null
+            },
+            {
+              "value": "SEK",
+              "label": "SEK",
+              "checked": null
+            },
+            {
+              "value": "SLL",
+              "label": "SLL",
+              "checked": null
+            },
+            {
+              "value": "SVC",
+              "label": "SVC",
+              "checked": null
+            },
+            {
+              "value": "SZL",
+              "label": "SZL",
+              "checked": null
+            },
+            {
+              "value": "SBD",
+              "label": "SBD",
+              "checked": null
+            },
+            {
+              "value": "XPF",
+              "label": "XPF",
+              "checked": null
+            },
+            {
+              "value": "ALL",
+              "label": "ALL",
+              "checked": null
+            },
+            {
+              "value": "BBD",
+              "label": "BBD",
+              "checked": null
+            },
+            {
+              "value": "CUP",
+              "label": "CUP",
+              "checked": null
+            },
+            {
+              "value": "BGL",
+              "label": "BGL",
+              "checked": null
+            },
+            {
+              "value": "FIM",
+              "label": "FIM",
+              "checked": null
+            },
+            {
+              "value": "GIP",
+              "label": "GIP",
+              "checked": null
+            },
+            {
+              "value": "GMD",
+              "label": "GMD",
+              "checked": null
+            },
+            {
+              "value": "DOP",
+              "label": "DOP",
+              "checked": null
+            },
+            {
+              "value": "ILS",
+              "label": "ILS",
+              "checked": null
+            },
+            {
+              "value": "KHR",
+              "label": "KHR",
+              "checked": null
+            },
+            {
+              "value": "GYD",
+              "label": "GYD",
+              "checked": null
+            },
+            {
+              "value": "HNL",
+              "label": "HNL",
+              "checked": null
+            },
+            {
+              "value": "MOP",
+              "label": "MOP",
+              "checked": null
+            },
+            {
+              "value": "KZT",
+              "label": "KZT",
+              "checked": null
+            },
+            {
+              "value": "NIO",
+              "label": "NIO",
+              "checked": null
+            },
+            {
+              "value": "PEN",
+              "label": "PEN",
+              "checked": null
+            },
+            {
+              "value": "PLZ",
+              "label": "PLZ",
+              "checked": null
+            },
+            {
+              "value": "PTE",
+              "label": "PTE",
+              "checked": null
+            },
+            {
+              "value": "RWF",
+              "label": "RWF",
+              "checked": null
+            },
+            {
+              "value": "MYR",
+              "label": "MYR",
+              "checked": null
+            },
+            {
+              "value": "SHP",
+              "label": "SHP",
+              "checked": null
+            },
+            {
+              "value": "THB",
+              "label": "THB",
+              "checked": null
+            },
+            {
+              "value": "TND",
+              "label": "TND",
+              "checked": null
+            },
+            {
+              "value": "TOP",
+              "label": "TOP",
+              "checked": null
+            },
+            {
+              "value": "TPE",
+              "label": "TPE",
+              "checked": null
+            },
+            {
+              "value": "UYU",
+              "label": "UYU",
+              "checked": null
+            },
+            {
+              "value": "VUV",
+              "label": "VUV",
+              "checked": null
+            },
+            {
+              "value": "XCD",
+              "label": "XCD",
+              "checked": null
+            },
+            {
+              "value": "AON",
+              "label": "AON",
+              "checked": null
+            },
+            {
+              "value": "AUD",
+              "label": "AUD",
+              "checked": null
+            },
+            {
+              "value": "BND",
+              "label": "BND",
+              "checked": null
+            },
+            {
+              "value": "GRD",
+              "label": "GRD",
+              "checked": null
+            },
+            {
+              "value": "HUF",
+              "label": "HUF",
+              "checked": null
+            },
+            {
+              "value": "INR",
+              "label": "INR",
+              "checked": null
+            },
+            {
+              "value": "KGS",
+              "label": "KGS",
+              "checked": null
+            },
+            {
+              "value": "KPW",
+              "label": "KPW",
+              "checked": null
+            },
+            {
+              "value": "MDL",
+              "label": "MDL",
+              "checked": null
+            },
+            {
+              "value": "ROL",
+              "label": "ROL",
+              "checked": null
+            },
+            {
+              "value": "RUR",
+              "label": "RUR",
+              "checked": null
+            },
+            {
+              "value": "MZM",
+              "label": "MZM",
+              "checked": null
+            },
+            {
+              "value": "SKK",
+              "label": "SKK",
+              "checked": null
+            },
+            {
+              "value": "SCR",
+              "label": "SCR",
+              "checked": null
+            },
+            {
+              "value": "SDD",
+              "label": "SDD",
+              "checked": null
+            },
+            {
+              "value": "XAF",
+              "label": "XAF",
+              "checked": null
+            },
+            {
+              "value": "XAU",
+              "label": "XAU",
+              "checked": null
+            },
+            {
+              "value": "YUN",
+              "label": "YUN",
+              "checked": null
+            },
+            {
+              "value": "ADP",
+              "label": "ADP",
+              "checked": null
+            },
+            {
+              "value": "AED",
+              "label": "AED",
+              "checked": null
+            },
+            {
+              "value": "AMD",
+              "label": "AMD",
+              "checked": null
+            },
+            {
+              "value": "BDT",
+              "label": "BDT",
+              "checked": null
+            },
+            {
+              "value": "CAD",
+              "label": "CAD",
+              "checked": null
+            },
+            {
+              "value": "CHF",
+              "label": "CHF",
+              "checked": null
+            },
+            {
+              "value": "BHD",
+              "label": "BHD",
+              "checked": null
+            },
+            {
+              "value": "DZD",
+              "label": "DZD",
+              "checked": null
+            },
+            {
+              "value": "ECS",
+              "label": "ECS",
+              "checked": null
+            },
+            {
+              "value": "EUR",
+              "label": "EUR",
+              "checked": null
+            },
+            {
+              "value": "DKK",
+              "label": "DKK",
+              "checked": null
+            },
+            {
+              "value": "JPY",
+              "label": "JPY",
+              "checked": null
+            },
+            {
+              "value": "KES",
+              "label": "KES",
+              "checked": null
+            },
+            {
+              "value": "KMF",
+              "label": "KMF",
+              "checked": null
+            },
+            {
+              "value": "LKR",
+              "label": "LKR",
+              "checked": null
+            },
+            {
+              "value": "LRD",
+              "label": "LRD",
+              "checked": null
+            },
+            {
+              "value": "LUF",
+              "label": "LUF",
+              "checked": null
+            },
+            {
+              "value": "NGN",
+              "label": "NGN",
+              "checked": null
+            },
+            {
+              "value": "SOS",
+              "label": "SOS",
+              "checked": null
+            },
+            {
+              "value": "USD",
+              "label": "USD",
+              "checked": null
+            },
+            {
+              "value": "YER",
+              "label": "YER",
+              "checked": null
+            },
+            {
+              "value": "TWD",
+              "label": "TWD",
+              "checked": null
+            },
+            {
+              "value": "UAK",
+              "label": "UAK",
+              "checked": null
+            },
+            {
+              "value": "ANG",
+              "label": "ANG",
+              "checked": null
+            },
+            {
+              "value": "ARS",
+              "label": "ARS",
+              "checked": null
+            },
+            {
+              "value": "BYB",
+              "label": "BYB",
+              "checked": null
+            },
+            {
+              "value": "CLP",
+              "label": "CLP",
+              "checked": null
+            },
+            {
+              "value": "CYP",
+              "label": "CYP",
+              "checked": null
+            },
+            {
+              "value": "BMD",
+              "label": "BMD",
+              "checked": null
+            },
+            {
+              "value": "ESP",
+              "label": "ESP",
+              "checked": null
+            },
+            {
+              "value": "FKP",
+              "label": "FKP",
+              "checked": null
+            },
+            {
+              "value": "GEK",
+              "label": "GEK",
+              "checked": null
+            },
+            {
+              "value": "GHC",
+              "label": "GHC",
+              "checked": null
+            },
+            {
+              "value": "IRR",
+              "label": "IRR",
+              "checked": null
+            },
+            {
+              "value": "ISK",
+              "label": "ISK",
+              "checked": null
+            },
+            {
+              "value": "JOD",
+              "label": "JOD",
+              "checked": null
+            },
+            {
+              "value": "LSL",
+              "label": "LSL",
+              "checked": null
+            },
+            {
+              "value": "MGF",
+              "label": "MGF",
+              "checked": null
+            },
+            {
+              "value": "MMK",
+              "label": "MMK",
+              "checked": null
+            },
+            {
+              "value": "KWD",
+              "label": "KWD",
+              "checked": null
+            },
+            {
+              "value": "SIT",
+              "label": "SIT",
+              "checked": null
+            },
+            {
+              "value": "STD",
+              "label": "STD",
+              "checked": null
+            },
+            {
+              "value": "SYP",
+              "label": "SYP",
+              "checked": null
+            },
+            {
+              "value": "TRL",
+              "label": "TRL",
+              "checked": null
+            },
+            {
+              "value": "XOF",
+              "label": "XOF",
+              "checked": null
+            },
+            {
+              "value": "AFA",
+              "label": "AFA",
+              "checked": null
+            },
+            {
+              "value": "AZM",
+              "label": "AZM",
+              "checked": null
+            },
+            {
+              "value": "CNY",
+              "label": "CNY",
+              "checked": null
+            },
+            {
+              "value": "ETB",
+              "label": "ETB",
+              "checked": null
+            },
+            {
+              "value": "GNF",
+              "label": "GNF",
+              "checked": null
+            },
+            {
+              "value": "HTG",
+              "label": "HTG",
+              "checked": null
+            },
+            {
+              "value": "MTL",
+              "label": "MTL",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"lc-amount_currency\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "lc-amount",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": "0",
+          "labelText": "LC Amount Tolerance",
+          "value": "50000",
+          "checked": null,
+          "readonly": true,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"lc-amount\"]"
+        },
+        {
+          "tag": "input",
+          "id": "lc-amount|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "LC Amount",
+          "placeholder": null,
+          "labelText": "LC Amount",
+          "value": "50,000",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"lc-amount|input\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "Under3869314",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "0",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Under\"]"
+        },
+        {
+          "tag": "input",
+          "id": "Under3869314|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Tolerance Under(%)",
+          "value": "0",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Under3869314|input\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "Above4228273",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "0",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Above\"]"
+        },
+        {
+          "tag": "input",
+          "id": "Above4228273|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Tolerance Above(%)",
+          "value": "0",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Above4228273|input\"]"
+        },
+        {
+          "tag": "oj-text-area",
+          "id": "ui-id-299",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "₩50,000",
+          "checked": null,
+          "readonly": true,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-\"]"
+        },
+        {
+          "tag": "oj-text-area",
+          "id": "AdditionalAmountCovered8411447",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "{{letterOfCreditDetails.additionalAmountCovered}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"AdditionalAmountCovered\"]"
+        },
+        {
+          "tag": "textarea",
+          "id": "AdditionalAmountCovered8411447|input",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Additional Amount Covered",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"AdditionalAmountCovered8411447|input\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "CustomerReferenceNumber8344067",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "CUSTREF2024001",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"CustomerReferenceNumber\"]"
+        },
+        {
+          "tag": "input",
+          "id": "CustomerReferenceNumber8344067|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Customer Reference Number",
+          "value": "CUSTREF2024001",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"CustomerReferenceNumber8344067|input\"]"
+        },
+        {
+          "tag": "oj-select-one",
+          "id": "CreditAvailableBy4735824",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "NEGOTIATION",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "NEGOTIATION",
+              "label": "Negotiation",
+              "checked": null
+            },
+            {
+              "value": "SIGHTPAYMENT",
+              "label": "Sight Payment",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"CreditAvailableBy\"]"
+        },
+        {
+          "tag": "oj-text-area",
+          "id": "[['negotiationPaymentDetails']]",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "{{letterOfCreditDetails.paymentDetails}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"[['negotiationPaymentDetails']]\"]"
+        },
+        {
+          "tag": "textarea",
+          "id": "[['negotiationPaymentDetails']]|input",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": "Payment Details",
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"[['negotiationPaymentDetails']]|input\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "CreditAvailableWith4862688",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Credit Available With",
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "SWIFTCODE",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "SWIFTCODE",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "SWIFTCODE",
+              "label": "SWIFT Code",
+              "checked": null
+            },
+            {
+              "value": "BANKADDRESS",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "BANKADDRESS",
+              "label": "Bank Address",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"CreditAvailableWith\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-282|rb",
+          "role": null,
+          "type": "radio",
+          "name": "CreditAvailableWith4862688",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "SWIFT Code",
+          "value": "SWIFTCODE",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-282|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-283|rb",
+          "role": null,
+          "type": "radio",
+          "name": "CreditAvailableWith4862688",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Bank Address",
+          "value": "BANKADDRESS",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-283|rb\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "availableWithSwiftCode",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "{{letterOfCreditDetails.availableWith}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"availableWithSwiftCode\"]"
+        },
+        {
+          "tag": "input",
+          "id": "availableWithSwiftCode|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "SWIFT Code",
+          "value": "CITIGB2LXXX",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"availableWithSwiftCode|input\"]"
+        },
+        {
+          "tag": "oj-input-number",
+          "id": "[['draftTenor']]",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "{{tenor}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"[['draftTenor']]\"]"
+        },
+        {
+          "tag": "input",
+          "id": "[['draftTenor']]|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Tenor",
+          "placeholder": null,
+          "labelText": "Tenor",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"[['draftTenor']]|input\"]"
+        },
+        {
+          "tag": "oj-text-area",
+          "id": "[['draftCreditDays']]",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": "[[nls.CreditDaysFrom]]",
+          "labelText": "LC Amount Tolerance",
+          "value": "{{creditDays}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"[['draftCreditDays']]\"]"
+        },
+        {
+          "tag": "textarea",
+          "id": "[['draftCreditDays']]|input",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": "Credit Days From",
+          "placeholder": null,
+          "labelText": "Credit Days From",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"[['draftCreditDays']]|input\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "[['draweeBankSelected']]",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Drawee Bank",
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "SWIFTCODE",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "SWIFTCODE",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "SWIFTCODE",
+              "label": "SWIFT Code",
+              "checked": null
+            },
+            {
+              "value": "BANKADDRESS",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "BANKADDRESS",
+              "label": "Name and Address",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"[['draweeBankSelected']]\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-285|rb",
+          "role": null,
+          "type": "radio",
+          "name": "[['draweeBankSelected']]",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "SWIFT Code",
+          "value": "SWIFTCODE",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-285|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-286|rb",
+          "role": null,
+          "type": "radio",
+          "name": "[['draweeBankSelected']]",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Name and Address",
+          "value": "BANKADDRESS",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-286|rb\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "[['draweeSwiftCode']]",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "LC Amount Tolerance",
+          "value": "{{draweeBankId}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"[['draweeSwiftCode']]\"]"
+        },
+        {
+          "tag": "input",
+          "id": "[['draweeSwiftCode']]|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Drawee Swift Code",
+          "placeholder": null,
+          "labelText": "SWIFT Code",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"[['draweeSwiftCode']]|input\"]"
+        }
+      ],
+      "buttons": [
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Open Menu",
+          "text": "",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": "mailbox-holder",
+          "ariaLabel": null,
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "99+",
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Verify",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Verify",
+          "text": "Verify",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Verify",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Verify",
+          "text": "Verify",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Next",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Next",
+          "text": "Next",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Save As Draft",
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Cancel",
+          "text": "Cancel",
+          "disabled": null
+        }
+      ],
+      "links": [
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Skip to main content",
+          "href": "#maincontent"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "LC Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Goods and Shipment Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Documents and Conditions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Linkages",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Instructions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Insurance",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Attachments",
+          "href": "#"
+        },
+        {
+          "id": "LookupSWIFTCode7829249",
+          "ariaLabel": "Lookup SWIFT Code",
+          "text": "Lookup SWIFT Code",
+          "href": "#"
+        },
+        {
+          "id": "LookupSWIFTCode1184155",
+          "ariaLabel": "Lookup SWIFT Code",
+          "text": "Lookup SWIFT Code",
+          "href": "#"
+        }
+      ],
+      "url": "http://172.20.3.113:7777/home.html?ojr=initiate-letter-of-credit%3Bmodule%3Dletter-of-credit",
+      "title": "Initiate Letter of Credit - HBL",
+      "capturedAt": "2026-05-21T12:56:12.357Z"
+    },
+    {
+      "index": 2,
+      "label": "Tab 2 — Goods and Shipment Details",
+      "widgets": [
+        {
+          "tag": "input",
+          "id": null,
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Search Transaction",
+          "placeholder": "Search",
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": null
+        },
+        {
+          "tag": "oj-select-one",
+          "id": "PartialShipment2681350",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": "[[nls.label.pleaseSelect]]",
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.shipmentDetails.partial}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "Y",
+              "label": "Allowed",
+              "checked": null
+            },
+            {
+              "value": "N",
+              "label": "Not Allowed",
+              "checked": null
+            },
+            {
+              "value": "C",
+              "label": "Conditional",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"PartialShipment\"]"
+        },
+        {
+          "tag": "oj-select-one",
+          "id": "Transshipment8893098",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": "[[nls.label.pleaseSelect]]",
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.shipmentDetails.transShipment}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "Y",
+              "label": "Allowed",
+              "checked": null
+            },
+            {
+              "value": "N",
+              "label": "Not Allowed",
+              "checked": null
+            },
+            {
+              "value": "C",
+              "label": "Conditional",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"Transshipment\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "PlaceofTaking770471",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.shipmentDetails.source}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"PlaceofTaking\"]"
+        },
+        {
+          "tag": "input",
+          "id": "PlaceofTaking770471|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Place of Taking",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"PlaceofTaking770471|input\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "PlaceofFinalDestination7797471",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.shipmentDetails.destination}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"PlaceofFinalDestination\"]"
+        },
+        {
+          "tag": "input",
+          "id": "PlaceofFinalDestination7797471|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Place of Final Destination",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"PlaceofFinalDestination7797471|input\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "Shipment2414745",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Shipment",
+          "placeholder": null,
+          "labelText": null,
+          "value": "DATE",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "DATE",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "DATE",
+              "label": "Date",
+              "checked": null
+            },
+            {
+              "value": "PERIOD",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "PERIOD",
+              "label": "Period",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"Shipment\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-320|rb",
+          "role": null,
+          "type": "radio",
+          "name": "Shipment2414745",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Date",
+          "value": "DATE",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-320|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-321|rb",
+          "role": null,
+          "type": "radio",
+          "name": "Shipment2414745",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Period",
+          "value": "PERIOD",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-321|rb\"]"
+        },
+        {
+          "tag": "oj-input-date",
+          "id": "ShipmentDate8869450",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.shipmentDetails.date}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ShipmentDate\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ShipmentDate8869450|input",
+          "role": "combobox",
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Shipment Date",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ShipmentDate8869450|input\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "PortofLoading7310493",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.shipmentDetails.loadingPort}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"PortofLoading\"]"
+        },
+        {
+          "tag": "input",
+          "id": "PortofLoading7310493|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Port of Loading",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"PortofLoading7310493|input\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "PortofDischarge4407721",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.shipmentDetails.dischargePort}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"PortofDischarge\"]"
+        },
+        {
+          "tag": "input",
+          "id": "PortofDischarge4407721|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Port of Discharge",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"PortofDischarge4407721|input\"]"
+        },
+        {
+          "tag": "oj-select-one",
+          "id": "GoodsType4990836",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": "[[$parent.nls.label.pleaseSelect]]",
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "1059200",
+              "label": "1059200",
+              "checked": null
+            },
+            {
+              "value": "1060000",
+              "label": "1060000",
+              "checked": null
+            },
+            {
+              "value": "2011000",
+              "label": "2011000",
+              "checked": null
+            },
+            {
+              "value": "2061000",
+              "label": "2061000",
+              "checked": null
+            },
+            {
+              "value": "2064100",
+              "label": "2064100",
+              "checked": null
+            },
+            {
+              "value": "2073300",
+              "label": "2073300",
+              "checked": null
+            },
+            {
+              "value": "2081000",
+              "label": "2081000",
+              "checked": null
+            },
+            {
+              "value": "1011100",
+              "label": "1011100",
+              "checked": null
+            },
+            {
+              "value": "1041000",
+              "label": "1041000",
+              "checked": null
+            },
+            {
+              "value": "1051200",
+              "label": "1051200",
+              "checked": null
+            },
+            {
+              "value": "2032100",
+              "label": "2032100",
+              "checked": null
+            },
+            {
+              "value": "2042100",
+              "label": "2042100",
+              "checked": null
+            },
+            {
+              "value": "2050000",
+              "label": "2050000",
+              "checked": null
+            },
+            {
+              "value": "2062100",
+              "label": "2062100",
+              "checked": null
+            },
+            {
+              "value": "2101900",
+              "label": "2101900",
+              "checked": null
+            },
+            {
+              "value": "1021000",
+              "label": "1021000",
+              "checked": null
+            },
+            {
+              "value": "1039100",
+              "label": "1039100",
+              "checked": null
+            },
+            {
+              "value": "2043000",
+              "label": "2043000",
+              "checked": null
+            },
+            {
+              "value": "2044200",
+              "label": "2044200",
+              "checked": null
+            },
+            {
+              "value": "2071200",
+              "label": "2071200",
+              "checked": null
+            },
+            {
+              "value": "2072600",
+              "label": "2072600",
+              "checked": null
+            },
+            {
+              "value": "2073600",
+              "label": "2073600",
+              "checked": null
+            },
+            {
+              "value": "2090000",
+              "label": "2090000",
+              "checked": null
+            },
+            {
+              "value": "1039200",
+              "label": "1039200",
+              "checked": null
+            },
+            {
+              "value": "1042000",
+              "label": "1042000",
+              "checked": null
+            },
+            {
+              "value": "2013000",
+              "label": "2013000",
+              "checked": null
+            },
+            {
+              "value": "2031200",
+              "label": "2031200",
+              "checked": null
+            },
+            {
+              "value": "2031900",
+              "label": "2031900",
+              "checked": null
+            },
+            {
+              "value": "2032200",
+              "label": "2032200",
+              "checked": null
+            },
+            {
+              "value": "2062200",
+              "label": "2062200",
+              "checked": null
+            },
+            {
+              "value": "2062900",
+              "label": "2062900",
+              "checked": null
+            },
+            {
+              "value": "2068000",
+              "label": "2068000",
+              "checked": null
+            },
+            {
+              "value": "2071400",
+              "label": "2071400",
+              "checked": null
+            },
+            {
+              "value": "2042200",
+              "label": "2042200",
+              "checked": null
+            },
+            {
+              "value": "2063000",
+              "label": "2063000",
+              "checked": null
+            },
+            {
+              "value": "2071100",
+              "label": "2071100",
+              "checked": null
+            },
+            {
+              "value": "2071300",
+              "label": "2071300",
+              "checked": null
+            },
+            {
+              "value": "2073200",
+              "label": "2073200",
+              "checked": null
+            },
+            {
+              "value": "2073500",
+              "label": "2073500",
+              "checked": null
+            },
+            {
+              "value": "2089000",
+              "label": "2089000",
+              "checked": null
+            },
+            {
+              "value": "1051100",
+              "label": "1051100",
+              "checked": null
+            },
+            {
+              "value": "1059300",
+              "label": "1059300",
+              "checked": null
+            },
+            {
+              "value": "2031100",
+              "label": "2031100",
+              "checked": null
+            },
+            {
+              "value": "2032900",
+              "label": "2032900",
+              "checked": null
+            },
+            {
+              "value": "2044100",
+              "label": "2044100",
+              "checked": null
+            },
+            {
+              "value": "2064900",
+              "label": "2064900",
+              "checked": null
+            },
+            {
+              "value": "2069000",
+              "label": "2069000",
+              "checked": null
+            },
+            {
+              "value": "2072500",
+              "label": "2072500",
+              "checked": null
+            },
+            {
+              "value": "2082000",
+              "label": "2082000",
+              "checked": null
+            },
+            {
+              "value": "1012000",
+              "label": "1012000",
+              "checked": null
+            },
+            {
+              "value": "1029000",
+              "label": "1029000",
+              "checked": null
+            },
+            {
+              "value": "2012000",
+              "label": "2012000",
+              "checked": null
+            },
+            {
+              "value": "2041000",
+              "label": "2041000",
+              "checked": null
+            },
+            {
+              "value": "2042300",
+              "label": "2042300",
+              "checked": null
+            },
+            {
+              "value": "2072700",
+              "label": "2072700",
+              "checked": null
+            },
+            {
+              "value": "2101200",
+              "label": "2101200",
+              "checked": null
+            },
+            {
+              "value": "2102000",
+              "label": "2102000",
+              "checked": null
+            },
+            {
+              "value": "2109000",
+              "label": "2109000",
+              "checked": null
+            },
+            {
+              "value": "1011900",
+              "label": "1011900",
+              "checked": null
+            },
+            {
+              "value": "1031000",
+              "label": "1031000",
+              "checked": null
+            },
+            {
+              "value": "1051900",
+              "label": "1051900",
+              "checked": null
+            },
+            {
+              "value": "1059900",
+              "label": "1059900",
+              "checked": null
+            },
+            {
+              "value": "2044300",
+              "label": "2044300",
+              "checked": null
+            },
+            {
+              "value": "2045000",
+              "label": "2045000",
+              "checked": null
+            },
+            {
+              "value": "2072400",
+              "label": "2072400",
+              "checked": null
+            },
+            {
+              "value": "2073400",
+              "label": "2073400",
+              "checked": null
+            },
+            {
+              "value": "2101100",
+              "label": "2101100",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"GoodsType\"]"
+        },
+        {
+          "tag": "oj-input-number",
+          "id": "Quantity6865691",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": "[[$parent.numericPlaceholder]]",
+          "labelText": null,
+          "value": "0",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Quantity\"]"
+        },
+        {
+          "tag": "input",
+          "id": "Quantity6865691|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Quantity",
+          "placeholder": "0",
+          "labelText": null,
+          "value": "0",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Quantity6865691|input\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "cost_per_unit",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": "₩0",
+          "labelText": null,
+          "value": "0",
+          "checked": null,
+          "readonly": true,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"cost_per_unit\"]"
+        },
+        {
+          "tag": "input",
+          "id": "cost_per_unit|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Cost per Unit",
+          "placeholder": "₩0",
+          "labelText": null,
+          "value": "₩0",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"cost_per_unit|input\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "gross_amount",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": "₩0",
+          "labelText": null,
+          "value": "0",
+          "checked": null,
+          "readonly": true,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"gross_amount\"]"
+        }
+      ],
+      "buttons": [
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Open Menu",
+          "text": "",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": "mailbox-holder",
+          "ariaLabel": null,
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "99+",
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Next",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Next",
+          "text": "Next",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Save As Draft",
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Cancel",
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Back",
+          "text": "Back",
+          "disabled": null
+        }
+      ],
+      "links": [
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Skip to main content",
+          "href": "#maincontent"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "LC Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Goods and Shipment Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Documents and Conditions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Linkages",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Instructions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Insurance",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Attachments",
+          "href": "#"
+        },
+        {
+          "id": "ViewEdit8189372",
+          "ariaLabel": "View / Edit",
+          "text": "View / Edit",
+          "href": "#"
+        },
+        {
+          "id": "AddGoods7337627",
+          "ariaLabel": "Add Goods",
+          "text": "Add Goods",
+          "href": "#"
+        }
+      ],
+      "url": "http://172.20.3.113:7777/home.html?ojr=initiate-letter-of-credit%3Bmodule%3Dletter-of-credit",
+      "title": "Initiate Letter of Credit - HBL",
+      "capturedAt": "2026-05-21T12:56:14.486Z"
+    },
+    {
+      "index": 3,
+      "label": "Tab 3 — Documents and Conditions",
+      "widgets": [
+        {
+          "tag": "input",
+          "id": null,
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Search Transaction",
+          "placeholder": "Search",
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": null
+        },
+        {
+          "tag": "input",
+          "id": null,
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Search...",
+          "placeholder": "Search by Document Name",
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": null
+        },
+        {
+          "tag": "oj-input-number",
+          "id": "InputDays9476795",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": "[[numericPlaceholder]]",
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.documentPresentationDays}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"InputDays\"]"
+        },
+        {
+          "tag": "input",
+          "id": "InputDays9476795|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": "0",
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"InputDays9476795|input\"]"
+        }
+      ],
+      "buttons": [
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Open Menu",
+          "text": "",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": "mailbox-holder",
+          "ariaLabel": null,
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "99+",
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Next",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Next",
+          "text": "Next",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Save As Draft",
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Cancel",
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Back",
+          "text": "Back",
+          "disabled": null
+        }
+      ],
+      "links": [
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Skip to main content",
+          "href": "#maincontent"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "LC Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Goods and Shipment Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Documents and Conditions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Linkages",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Instructions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Insurance",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Attachments",
+          "href": "#"
+        },
+        {
+          "id": "ClauseMaintenance676292",
+          "ariaLabel": "Clause Maintenance.",
+          "text": "Clause Maintenance.",
+          "href": "#"
+        },
+        {
+          "id": "AddCondition3088651",
+          "ariaLabel": "Add Condition",
+          "text": "Add Condition",
+          "href": "#"
+        }
+      ],
+      "url": "http://172.20.3.113:7777/home.html?ojr=initiate-letter-of-credit%3Bmodule%3Dletter-of-credit",
+      "title": "Initiate Letter of Credit - HBL",
+      "capturedAt": "2026-05-21T12:56:16.463Z"
+    },
+    {
+      "index": 4,
+      "label": "Tab 4 — Linkages",
+      "widgets": [
+        {
+          "tag": "input",
+          "id": null,
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Search Transaction",
+          "placeholder": "Search",
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": null
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "Percent2774746",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": "[[numericPlaceholder]]",
+          "labelText": "Percent",
+          "value": "{{collateralPercentage()}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Percent\"]"
+        },
+        {
+          "tag": "input",
+          "id": "Percent2774746|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Percent",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Percent2774746|input\"]"
+        }
+      ],
+      "buttons": [
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Open Menu",
+          "text": "",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": "mailbox-holder",
+          "ariaLabel": null,
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "99+",
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Next",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Next",
+          "text": "Next",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Save As Draft",
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Cancel",
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Back",
+          "text": "Back",
+          "disabled": null
+        }
+      ],
+      "links": [
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Skip to main content",
+          "href": "#maincontent"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "LC Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Goods and Shipment Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Documents and Conditions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Linkages",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Instructions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Insurance",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Attachments",
+          "href": "#"
+        },
+        {
+          "id": "AddAccount2665268",
+          "ariaLabel": "Click here to add Collateral Linkage",
+          "text": "Add Account",
+          "href": "#"
+        },
+        {
+          "id": "AddAccount7209291",
+          "ariaLabel": "Add Account",
+          "text": "Add Account",
+          "href": "#"
+        }
+      ],
+      "url": "http://172.20.3.113:7777/home.html?ojr=initiate-letter-of-credit%3Bmodule%3Dletter-of-credit",
+      "title": "Initiate Letter of Credit - HBL",
+      "capturedAt": "2026-05-21T12:56:18.305Z"
+    },
+    {
+      "index": 5,
+      "label": "Tab 5 — Instructions",
+      "widgets": [
+        {
+          "tag": "input",
+          "id": null,
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Search Transaction",
+          "placeholder": "Search",
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": null
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "AdvisingBank3000831",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Advising Bank",
+          "placeholder": null,
+          "labelText": null,
+          "value": "SWIFTCODE",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "SWIFTCODE",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "SWIFTCODE",
+              "label": "SWIFT Code",
+              "checked": null
+            },
+            {
+              "value": "BANKADDRESS",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "BANKADDRESS",
+              "label": "Name and Address",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"AdvisingBank\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-338|rb",
+          "role": null,
+          "type": "radio",
+          "name": "AdvisingBank3000831",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "SWIFT Code",
+          "value": "SWIFTCODE",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-338|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-339|rb",
+          "role": null,
+          "type": "radio",
+          "name": "AdvisingBank3000831",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Name and Address",
+          "value": "BANKADDRESS",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-339|rb\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "advBankSwiftCode",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "CITIGB2LXXX",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"advBankSwiftCode\"]"
+        },
+        {
+          "tag": "input",
+          "id": "advBankSwiftCode|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "SWIFT Code",
+          "value": "CITIGB2LXXX",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"advBankSwiftCode|input\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "AdviseThroughBank6595065",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Advise Through Bank",
+          "placeholder": null,
+          "labelText": null,
+          "value": "SWIFTCODE",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "SWIFTCODE",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "SWIFTCODE",
+              "label": "SWIFT Code",
+              "checked": null
+            },
+            {
+              "value": "BANKADDRESS",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "BANKADDRESS",
+              "label": "Name and Address",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"AdviseThroughBank\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-341|rb",
+          "role": null,
+          "type": "radio",
+          "name": "AdviseThroughBank6595065",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "SWIFT Code",
+          "value": "SWIFTCODE",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-341|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-342|rb",
+          "role": null,
+          "type": "radio",
+          "name": "AdviseThroughBank6595065",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Name and Address",
+          "value": "BANKADDRESS",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-342|rb\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "advThroughBankSwiftCode",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.advisingThroughBankCode}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"advThroughBankSwiftCode\"]"
+        },
+        {
+          "tag": "input",
+          "id": "advThroughBankSwiftCode|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "SWIFT Code",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"advThroughBankSwiftCode|input\"]"
+        },
+        {
+          "tag": "oj-text-area",
+          "id": "SpecialPaymentConditionsforBeneficiary3001606",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.paymentConditionsBene}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SpecialPaymentConditionsforBeneficiary\"]"
+        },
+        {
+          "tag": "textarea",
+          "id": "SpecialPaymentConditionsforBeneficiary3001606|input",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Special Payment Conditions for Beneficiary",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SpecialPaymentConditionsforBeneficiary3001606|input\"]"
+        },
+        {
+          "tag": "oj-text-area",
+          "id": "SpecialPaymentConditionsforBankOnly9311284",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.paymentConditionsBank}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SpecialPaymentConditionsforBankOnly\"]"
+        },
+        {
+          "tag": "textarea",
+          "id": "SpecialPaymentConditionsforBankOnly9311284|input",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Special Payment Conditions for Bank Only",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SpecialPaymentConditionsforBankOnly9311284|input\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "ConfirmationInstructions2562782",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Confirmation Instructions",
+          "placeholder": null,
+          "labelText": null,
+          "value": "WITHOUT",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "CONFIRM",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "CONFIRM",
+              "label": "Confirm",
+              "checked": null
+            },
+            {
+              "value": "MAY_ADD",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "MAY_ADD",
+              "label": "May Add",
+              "checked": null
+            },
+            {
+              "value": "WITHOUT",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "WITHOUT",
+              "label": "Without",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"ConfirmationInstructions\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-357|rb",
+          "role": null,
+          "type": "radio",
+          "name": "ConfirmationInstructions2562782",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Confirm",
+          "value": "CONFIRM",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-357|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-358|rb",
+          "role": null,
+          "type": "radio",
+          "name": "ConfirmationInstructions2562782",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "May Add",
+          "value": "MAY_ADD",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-358|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-359|rb",
+          "role": null,
+          "type": "radio",
+          "name": "ConfirmationInstructions2562782",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Without",
+          "value": "WITHOUT",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-359|rb\"]"
+        },
+        {
+          "tag": "oj-text-area",
+          "id": "SendertoReceiverInformation6300598",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.senderReceiverInfo}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SendertoReceiverInformation\"]"
+        },
+        {
+          "tag": "textarea",
+          "id": "SendertoReceiverInformation6300598|input",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Sender to Receiver Information",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SendertoReceiverInformation6300598|input\"]"
+        },
+        {
+          "tag": "oj-text-area",
+          "id": "Charges9637008",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.chargesFromBeneficiary}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Charges\"]"
+        },
+        {
+          "tag": "textarea",
+          "id": "Charges9637008|input",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Charges",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Charges9637008|input\"]"
+        },
+        {
+          "tag": "oj-text-area",
+          "id": "SpecialInstructions2287485",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.instructionDescription}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SpecialInstructions\"]"
+        },
+        {
+          "tag": "textarea",
+          "id": "SpecialInstructions2287485|input",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Special Instructions",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SpecialInstructions2287485|input\"]"
+        },
+        {
+          "tag": "oj-checkboxset",
+          "id": "ReadStandardInstructions6671350",
+          "role": "group",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Read Standard Instructions",
+          "placeholder": null,
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "READ",
+              "label": "Read Standard Instructions",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"ReadStandardInstructions\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-344|cb",
+          "role": null,
+          "type": "checkbox",
+          "name": "ReadStandardInstructions6671350",
+          "ariaLabel": "Read Standard Instructions",
+          "placeholder": null,
+          "labelText": "",
+          "value": "READ",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-344|cb\"]"
+        }
+      ],
+      "buttons": [
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Open Menu",
+          "text": "",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": "mailbox-holder",
+          "ariaLabel": null,
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "99+",
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Verify",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Verify",
+          "text": "Verify",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Verify",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Verify",
+          "text": "Verify",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Next",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Next",
+          "text": "Next",
+          "disabled": true
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Save As Draft",
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Cancel",
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Back",
+          "text": "Back",
+          "disabled": null
+        }
+      ],
+      "links": [
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Skip to main content",
+          "href": "#maincontent"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "LC Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Goods and Shipment Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Documents and Conditions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Linkages",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Instructions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Insurance",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Attachments",
+          "href": "#"
+        },
+        {
+          "id": "LookupSWIFTCode4137481",
+          "ariaLabel": "Lookup SWIFT Code",
+          "text": "Lookup SWIFT Code",
+          "href": "#"
+        },
+        {
+          "id": "LookupSWIFTCode5980098",
+          "ariaLabel": "Lookup SWIFT Code",
+          "text": "Lookup SWIFT Code",
+          "href": "#"
+        },
+        {
+          "id": "KindlygothroughalltheStandardInstructions3154142",
+          "ariaLabel": "Kindly go through all the Standard Instructions",
+          "text": "Kindly go through all the Standard Instructions",
+          "href": "#"
+        }
+      ],
+      "url": "http://172.20.3.113:7777/home.html?ojr=initiate-letter-of-credit%3Bmodule%3Dletter-of-credit",
+      "title": "Initiate Letter of Credit - HBL",
+      "capturedAt": "2026-05-21T12:56:20.547Z"
+    },
+    {
+      "index": 6,
+      "label": "Tab 6 — Insurance",
+      "widgets": [
+        {
+          "tag": "input",
+          "id": null,
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Search Transaction",
+          "placeholder": "Search",
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": null
+        },
+        {
+          "tag": "input",
+          "id": null,
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Search...",
+          "placeholder": "Search",
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": null
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "[['checkbox_' + $context.cellContext.status.rowIndex]]",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Select Row",
+          "placeholder": null,
+          "labelText": null,
+          "value": "false",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "true",
+              "label": "Select Row",
+              "checked": null
+            },
+            {
+              "value": true,
+              "label": "Select Row",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"[['checkbox_' + $context.cellContext.status.rowIndex]]\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-362|rb",
+          "role": null,
+          "type": "radio",
+          "name": "[['checkbox_' + $context.cellContext.status.rowIndex]]",
+          "ariaLabel": "Select Row",
+          "placeholder": null,
+          "labelText": "",
+          "value": "true",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-362|rb\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "[['checkbox_' + $context.cellContext.status.rowIndex]]",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Select Row",
+          "placeholder": null,
+          "labelText": null,
+          "value": "false",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "true",
+              "label": "Select Row",
+              "checked": null
+            },
+            {
+              "value": true,
+              "label": "Select Row",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"[['checkbox_' + $context.cellContext.status.rowIndex]]\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-363|rb",
+          "role": null,
+          "type": "radio",
+          "name": "[['checkbox_' + $context.cellContext.status.rowIndex]]",
+          "ariaLabel": "Select Row",
+          "placeholder": null,
+          "labelText": "",
+          "value": "true",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-363|rb\"]"
+        }
+      ],
+      "buttons": [
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Open Menu",
+          "text": "",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": "mailbox-holder",
+          "ariaLabel": null,
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "99+",
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Clear Selection",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Clear Selection",
+          "text": "Clear Selection",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Next",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Next",
+          "text": "Next",
+          "disabled": true
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Save As Draft",
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Cancel",
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Back",
+          "text": "Back",
+          "disabled": null
+        }
+      ],
+      "links": [
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Skip to main content",
+          "href": "#maincontent"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "LC Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Goods and Shipment Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Documents and Conditions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Linkages",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Instructions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Insurance",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Attachments",
+          "href": "#"
+        }
+      ],
+      "url": "http://172.20.3.113:7777/home.html?ojr=initiate-letter-of-credit%3Bmodule%3Dletter-of-credit",
+      "title": "Initiate Letter of Credit - HBL",
+      "capturedAt": "2026-05-21T12:56:22.481Z"
+    },
+    {
+      "index": 7,
+      "label": "Tab 7 — Attachments",
+      "widgets": [
+        {
+          "tag": "input",
+          "id": null,
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Search Transaction",
+          "placeholder": "Search",
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": null
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "SaveAsTemplate1696954",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Save As Template",
+          "placeholder": null,
+          "labelText": null,
+          "value": "NO",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "YES",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "YES",
+              "label": "Yes",
+              "checked": null
+            },
+            {
+              "value": "NO",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "NO",
+              "label": "No",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"SaveAsTemplate\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-364|rb",
+          "role": null,
+          "type": "radio",
+          "name": "SaveAsTemplate1696954",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Yes",
+          "value": "YES",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-364|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-365|rb",
+          "role": null,
+          "type": "radio",
+          "name": "SaveAsTemplate1696954",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "No",
+          "value": "NO",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-365|rb\"]"
+        },
+        {
+          "tag": "oj-checkboxset",
+          "id": "AcceptTermsandConditions9226903",
+          "role": "group",
+          "type": null,
+          "name": null,
+          "ariaLabel": "I accept Terms and Conditions",
+          "placeholder": null,
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "ACCEPT",
+              "label": "I accept Terms and Conditions",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"AcceptTermsandConditions\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-369|cb",
+          "role": null,
+          "type": "checkbox",
+          "name": "AcceptTermsandConditions9226903",
+          "ariaLabel": "I accept Terms and Conditions",
+          "placeholder": null,
+          "labelText": "",
+          "value": "ACCEPT",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-369|cb\"]"
+        }
+      ],
+      "buttons": [
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Open Menu",
+          "text": "",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": "mailbox-holder",
+          "ariaLabel": null,
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "99+",
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "div",
+          "id": null,
+          "ariaLabel": "Add Files. Drag and Drop. Select or drop files here.",
+          "text": "Drag and DropSelect or drop files here.",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Submit",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Submit",
+          "text": "Submit",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Save As Draft",
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Cancel",
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Back",
+          "text": "Back",
+          "disabled": null
+        }
+      ],
+      "links": [
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Skip to main content",
+          "href": "#maincontent"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "LC Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Goods and Shipment Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Documents and Conditions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Linkages",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Instructions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Insurance",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Attachments",
+          "href": "#"
+        },
+        {
+          "id": "IaccepttheTermsConditions5920332",
+          "ariaLabel": "I accept the Terms & Conditions",
+          "text": "I accept the Terms & Conditions",
+          "href": "#"
+        }
+      ],
+      "url": "http://172.20.3.113:7777/home.html?ojr=initiate-letter-of-credit%3Bmodule%3Dletter-of-credit",
+      "title": "Initiate Letter of Credit - HBL",
+      "capturedAt": "2026-05-21T12:56:24.509Z"
+    }
+  ],
+  "dependentCaptures": {
+    "advisingBankByNameAddress": {
+      "widgets": [
+        {
+          "tag": "input",
+          "id": null,
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Search Transaction",
+          "placeholder": "Search",
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": null
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "AdvisingBank3000831",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Advising Bank",
+          "placeholder": null,
+          "labelText": null,
+          "value": "BANKADDRESS",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "SWIFTCODE",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "SWIFTCODE",
+              "label": "SWIFT Code",
+              "checked": null
+            },
+            {
+              "value": "BANKADDRESS",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "BANKADDRESS",
+              "label": "Name and Address",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"AdvisingBank\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-376|rb",
+          "role": null,
+          "type": "radio",
+          "name": "AdvisingBank3000831",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "SWIFT Code",
+          "value": "SWIFTCODE",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-376|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-377|rb",
+          "role": null,
+          "type": "radio",
+          "name": "AdvisingBank3000831",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Name and Address",
+          "value": "BANKADDRESS",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-377|rb\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "Name6443099",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.advisingBankDetails.name}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Name\"]"
+        },
+        {
+          "tag": "input",
+          "id": "Name6443099|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Name",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Name6443099|input\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "Address3276872",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.advisingBankDetails.branchAddress.line1}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Address\"]"
+        },
+        {
+          "tag": "input",
+          "id": "Address3276872|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Address",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Address3276872|input\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "AddressLine5785752",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.advisingBankDetails.branchAddress.line2}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"AddressLine\"]"
+        },
+        {
+          "tag": "input",
+          "id": "AddressLine5785752|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"AddressLine5785752|input\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "AddressLine8553367",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.advisingBankDetails.branchAddress.line3}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"AddressLine\"]"
+        },
+        {
+          "tag": "input",
+          "id": "AddressLine8553367|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"AddressLine8553367|input\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "AdviseThroughBank6595065",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Advise Through Bank",
+          "placeholder": null,
+          "labelText": null,
+          "value": "SWIFTCODE",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "SWIFTCODE",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "SWIFTCODE",
+              "label": "SWIFT Code",
+              "checked": null
+            },
+            {
+              "value": "BANKADDRESS",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "BANKADDRESS",
+              "label": "Name and Address",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"AdviseThroughBank\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-379|rb",
+          "role": null,
+          "type": "radio",
+          "name": "AdviseThroughBank6595065",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "SWIFT Code",
+          "value": "SWIFTCODE",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-379|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-380|rb",
+          "role": null,
+          "type": "radio",
+          "name": "AdviseThroughBank6595065",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Name and Address",
+          "value": "BANKADDRESS",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-380|rb\"]"
+        },
+        {
+          "tag": "oj-input-text",
+          "id": "advThroughBankSwiftCode",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.advisingThroughBankCode}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"advThroughBankSwiftCode\"]"
+        },
+        {
+          "tag": "input",
+          "id": "advThroughBankSwiftCode|input",
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "SWIFT Code",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"advThroughBankSwiftCode|input\"]"
+        },
+        {
+          "tag": "oj-text-area",
+          "id": "SpecialPaymentConditionsforBeneficiary3001606",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.paymentConditionsBene}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SpecialPaymentConditionsforBeneficiary\"]"
+        },
+        {
+          "tag": "textarea",
+          "id": "SpecialPaymentConditionsforBeneficiary3001606|input",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Special Payment Conditions for Beneficiary",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SpecialPaymentConditionsforBeneficiary3001606|input\"]"
+        },
+        {
+          "tag": "oj-text-area",
+          "id": "SpecialPaymentConditionsforBankOnly9311284",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.paymentConditionsBank}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SpecialPaymentConditionsforBankOnly\"]"
+        },
+        {
+          "tag": "textarea",
+          "id": "SpecialPaymentConditionsforBankOnly9311284|input",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Special Payment Conditions for Bank Only",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SpecialPaymentConditionsforBankOnly9311284|input\"]"
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "ConfirmationInstructions2562782",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Confirmation Instructions",
+          "placeholder": null,
+          "labelText": null,
+          "value": "WITHOUT",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "CONFIRM",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "CONFIRM",
+              "label": "Confirm",
+              "checked": null
+            },
+            {
+              "value": "MAY_ADD",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "MAY_ADD",
+              "label": "May Add",
+              "checked": null
+            },
+            {
+              "value": "WITHOUT",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "WITHOUT",
+              "label": "Without",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"ConfirmationInstructions\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-395|rb",
+          "role": null,
+          "type": "radio",
+          "name": "ConfirmationInstructions2562782",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Confirm",
+          "value": "CONFIRM",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-395|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-396|rb",
+          "role": null,
+          "type": "radio",
+          "name": "ConfirmationInstructions2562782",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "May Add",
+          "value": "MAY_ADD",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-396|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-397|rb",
+          "role": null,
+          "type": "radio",
+          "name": "ConfirmationInstructions2562782",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Without",
+          "value": "WITHOUT",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-397|rb\"]"
+        },
+        {
+          "tag": "oj-text-area",
+          "id": "SendertoReceiverInformation6300598",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.senderReceiverInfo}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SendertoReceiverInformation\"]"
+        },
+        {
+          "tag": "textarea",
+          "id": "SendertoReceiverInformation6300598|input",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Sender to Receiver Information",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SendertoReceiverInformation6300598|input\"]"
+        },
+        {
+          "tag": "oj-text-area",
+          "id": "Charges9637008",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.chargesFromBeneficiary}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Charges\"]"
+        },
+        {
+          "tag": "textarea",
+          "id": "Charges9637008|input",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Charges",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"Charges9637008|input\"]"
+        },
+        {
+          "tag": "oj-text-area",
+          "id": "SpecialInstructions2287485",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": null,
+          "value": "{{letterOfCreditDetails.instructionDescription}}",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SpecialInstructions\"]"
+        },
+        {
+          "tag": "textarea",
+          "id": "SpecialInstructions2287485|input",
+          "role": null,
+          "type": null,
+          "name": null,
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Special Instructions",
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"SpecialInstructions2287485|input\"]"
+        },
+        {
+          "tag": "oj-checkboxset",
+          "id": "ReadStandardInstructions6671350",
+          "role": "group",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Read Standard Instructions",
+          "placeholder": null,
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "READ",
+              "label": "Read Standard Instructions",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"ReadStandardInstructions\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-382|cb",
+          "role": null,
+          "type": "checkbox",
+          "name": "ReadStandardInstructions6671350",
+          "ariaLabel": "Read Standard Instructions",
+          "placeholder": null,
+          "labelText": "",
+          "value": "READ",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-382|cb\"]"
+        }
+      ],
+      "buttons": [
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Open Menu",
+          "text": "",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": "mailbox-holder",
+          "ariaLabel": null,
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "99+",
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Verify",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Verify",
+          "text": "Verify",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Next",
+          "disabled": true
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Next",
+          "text": "Next",
+          "disabled": true
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Save As Draft",
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Cancel",
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Back",
+          "text": "Back",
+          "disabled": null
+        }
+      ],
+      "links": [
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Skip to main content",
+          "href": "#maincontent"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "LC Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Goods and Shipment Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Documents and Conditions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Linkages",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Instructions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Insurance",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Attachments",
+          "href": "#"
+        },
+        {
+          "id": "LookupSWIFTCode5980098",
+          "ariaLabel": "Lookup SWIFT Code",
+          "text": "Lookup SWIFT Code",
+          "href": "#"
+        },
+        {
+          "id": "KindlygothroughalltheStandardInstructions3154142",
+          "ariaLabel": "Kindly go through all the Standard Instructions",
+          "text": "Kindly go through all the Standard Instructions",
+          "href": "#"
+        }
+      ],
+      "url": "http://172.20.3.113:7777/home.html?ojr=initiate-letter-of-credit%3Bmodule%3Dletter-of-credit",
+      "title": "Initiate Letter of Credit - HBL"
+    },
+    "standardInstructionsLinkPresent": true,
+    "standardInstructionsLinkMeta": {
+      "id": "KindlygothroughalltheStandardInstructions3154142",
+      "text": "Kindly go through all the Standard Instructions",
+      "href": "http://172.20.3.113:7777/home.html?ojr=initiate-letter-of-credit%3Bmodule%3Dletter-of-credit#",
+      "ariaLabel": "Kindly go through all the Standard Instructions"
+    },
+    "saveAsTemplate": {
+      "widgets": [
+        {
+          "tag": "input",
+          "id": null,
+          "role": null,
+          "type": "text",
+          "name": null,
+          "ariaLabel": "Search Transaction",
+          "placeholder": "Search",
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": null
+        },
+        {
+          "tag": "oj-radioset",
+          "id": "SaveAsTemplate1696954",
+          "role": "radiogroup",
+          "type": null,
+          "name": null,
+          "ariaLabel": "Save As Template",
+          "placeholder": null,
+          "labelText": null,
+          "value": "NO",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "YES",
+              "label": null,
+              "checked": null
+            },
+            {
+              "value": "YES",
+              "label": "Yes",
+              "checked": null
+            },
+            {
+              "value": "NO",
+              "label": null,
+              "checked": true
+            },
+            {
+              "value": "NO",
+              "label": "No",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"SaveAsTemplate\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-405|rb",
+          "role": null,
+          "type": "radio",
+          "name": "SaveAsTemplate1696954",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "Yes",
+          "value": "YES",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-405|rb\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-406|rb",
+          "role": null,
+          "type": "radio",
+          "name": "SaveAsTemplate1696954",
+          "ariaLabel": null,
+          "placeholder": null,
+          "labelText": "No",
+          "value": "NO",
+          "checked": true,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-406|rb\"]"
+        },
+        {
+          "tag": "oj-checkboxset",
+          "id": "AcceptTermsandConditions9226903",
+          "role": "group",
+          "type": null,
+          "name": null,
+          "ariaLabel": "I accept Terms and Conditions",
+          "placeholder": null,
+          "labelText": null,
+          "value": "",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": [
+            {
+              "value": "ACCEPT",
+              "label": "I accept Terms and Conditions",
+              "checked": null
+            }
+          ],
+          "idPattern": "[id^=\"AcceptTermsandConditions\"]"
+        },
+        {
+          "tag": "input",
+          "id": "ui-id-410|cb",
+          "role": null,
+          "type": "checkbox",
+          "name": "AcceptTermsandConditions9226903",
+          "ariaLabel": "I accept Terms and Conditions",
+          "placeholder": null,
+          "labelText": "",
+          "value": "ACCEPT",
+          "checked": null,
+          "readonly": null,
+          "disabled": null,
+          "options": null,
+          "idPattern": "[id^=\"ui-id-410|cb\"]"
+        }
+      ],
+      "buttons": [
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Open Menu",
+          "text": "",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": "mailbox-holder",
+          "ariaLabel": null,
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "99+",
+          "text": "99+",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "div",
+          "id": null,
+          "ariaLabel": "Add Files. Drag and Drop. Select or drop files here.",
+          "text": "Drag and DropSelect or drop files here.",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Submit",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Submit",
+          "text": "Submit",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Save As Draft",
+          "text": "Save As Draft",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Cancel",
+          "text": "Cancel",
+          "disabled": null
+        },
+        {
+          "tag": "oj-button",
+          "id": null,
+          "ariaLabel": null,
+          "text": "Back",
+          "disabled": null
+        },
+        {
+          "tag": "button",
+          "id": null,
+          "ariaLabel": "Back",
+          "text": "Back",
+          "disabled": null
+        }
+      ],
+      "links": [
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Skip to main content",
+          "href": "#maincontent"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "LC Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Goods and Shipment Details",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Documents and Conditions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Linkages",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Instructions",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Insurance",
+          "href": "#"
+        },
+        {
+          "id": null,
+          "ariaLabel": null,
+          "text": "Attachments",
+          "href": "#"
+        },
+        {
+          "id": "IaccepttheTermsConditions5920332",
+          "ariaLabel": "I accept the Terms & Conditions",
+          "text": "I accept the Terms & Conditions",
+          "href": "#"
+        }
+      ],
+      "url": "http://172.20.3.113:7777/home.html?ojr=initiate-letter-of-credit%3Bmodule%3Dletter-of-credit",
+      "title": "Initiate Letter of Credit - HBL"
+    },
+    "previewDraftCopyPresent": false,
+    "fileUpload": {
+      "dropZones": [
+        {
+          "tag": "oj-file-picker",
+          "id": null,
+          "ariaLabel": null,
+          "className": "oj-filepicker oj-filepicker-no-trigger oj-complete"
+        },
+        {
+          "tag": "div",
+          "id": null,
+          "ariaLabel": null,
+          "className": "oj-filepicker-dropzone "
+        }
+      ],
+      "fileInputs": []
+    }
+  },
+  "notes": [
+    "Tab 5 — Confirmation Instructions dropdown not visible"
+  ],
+  "createUrl": "http://172.20.3.113:7777/home.html?ojr=initiate-letter-of-credit%3Bmodule%3Dletter-of-credit",
+  "finishedAt": "2026-05-21T12:56:32.068Z",
+  "url": "http://172.20.3.113:7777/home.html?ojr=initiate-letter-of-credit%3Bmodule%3Dletter-of-credit"
+}

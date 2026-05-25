@@ -1,0 +1,302 @@
+- generic [ref=e1]:
+  - generic [ref=e112]:
+    - link "Skip to main content" [ref=e710] [cursor=pointer]:
+      - /url: "#maincontent"
+    - generic [ref=e114]:
+      - banner [ref=e115]:
+        - generic [ref=e116]:
+          - generic [ref=e117]:
+            - generic [ref=e118]:
+              - generic "Toggle Menu" [ref=e711]:
+                - button "Open Menu" [ref=e712] [cursor=pointer]:
+                  - generic [ref=e123]: 
+              - link "Open Dashboard" [ref=e713] [cursor=pointer]:
+                - /url: "#"
+                - img "Open Dashboard" [ref=e714]
+            - generic "Search Transaction" [ref=e715]:
+              - generic [ref=e132]: 
+              - combobox "Search Transaction" [ref=e716]:
+                - textbox "Search Transaction" [ref=e717]:
+                  - /placeholder: Search
+            - generic [ref=e135]:
+              - generic "99+" [ref=e718]:
+                - button "99+" [ref=e719] [cursor=pointer]:
+                  - generic [ref=e141]:
+                    - text: 
+                    - generic [ref=e142]: 99+
+              - button "corpmaker2" [ref=e720] [cursor=pointer]:
+                - generic [ref=e146]:
+                  - img "corpmaker2" [ref=e721]:
+                    - generic [ref=e151]: CM
+                  - text:  
+          - generic [ref=e156]:
+            - generic "Back" [ref=e724]:
+              - button "Back" [ref=e725] [cursor=pointer]:
+                - generic [ref=e726]:
+                  - generic [ref=e728]: 
+                  - generic [ref=e729]: Back
+            - generic [ref=e157]:
+              - heading "Initiate Letter of Credit" [level=1] [ref=e730]
+              - generic [ref=e985]: JZNNZI ZO AZNZM ULI KZKVI YLCVH ZMW | P000168
+      - main [ref=e167]:
+        - generic [ref=e993]:
+          - generic [ref=e1000]:
+            - text: 
+            - tablist "Initiate LC Screens" [ref=e1003]:
+              - tab " LC Details" [selected] [ref=e1004] [cursor=pointer]:
+                - generic [ref=e1005]: 
+                - generic [ref=e1007]: LC Details
+              - tab " Goods and Shipment Details" [ref=e1008] [cursor=pointer]:
+                - generic [ref=e1009]: 
+                - generic [ref=e1011]: Goods and Shipment Details
+              - tab " Documents and Conditions" [ref=e1012] [cursor=pointer]:
+                - generic [ref=e1013]: 
+                - generic [ref=e1015]: Documents and Conditions
+              - tab " Linkages" [ref=e1016] [cursor=pointer]:
+                - generic [ref=e1017]: 
+                - generic [ref=e1019]: Linkages
+              - tab " Instructions" [ref=e1020] [cursor=pointer]:
+                - generic [ref=e1021]: 
+                - generic [ref=e1023]: Instructions
+              - tab " Insurance" [ref=e1024] [cursor=pointer]:
+                - generic [ref=e1025]: 
+                - generic [ref=e1027]: Insurance
+              - tab " Attachments" [ref=e1028] [cursor=pointer]:
+                - generic [ref=e1029]: 
+                - generic [ref=e1031]: Attachments
+            - text: 
+          - generic [ref=e1033]:
+            - generic [ref=e1047]:
+              - heading "LC Details" [level=2] [ref=e1050]
+              - generic "LC Details" [ref=e1052]:
+                - generic [ref=e1060]:
+                  - generic [ref=e1061]: "50"
+                  - radiogroup "Applicant Details" [ref=e1062]:
+                    - generic [ref=e1065]: Applicant Details
+                    - generic [ref=e1067]:
+                      - generic [ref=e1068]:
+                        - text: 
+                        - radio "Existing customer" [checked] [disabled] [ref=e1069]
+                      - generic [ref=e1072]: Existing customer
+                  - generic [ref=e1074]:
+                    - combobox "Applicant Name" [ref=e1075]:
+                      - generic [ref=e1076]:
+                        - generic [ref=e1079]: Applicant Name
+                        - generic [ref=e1080]: JZNNZI ZO AZNZM ULI KZKVI YLCVH ZMW
+                      - generic [ref=e1081]: 
+                    - text: 
+                  - generic [ref=e1084]:
+                    - generic [ref=e1087]: Address
+                    - generic [ref=e1088]: Third Avenue
+                    - generic [ref=e1089]: Fort bay
+                    - generic [ref=e1090]: Den Forest
+                    - generic [ref=e1094]: Country
+                    - generic [ref=e1095]: UK
+                  - generic [ref=e1096]: 40A
+                  - generic [ref=e1097]:
+                    - radiogroup "Type of Documentary Credit" [ref=e1098]:
+                      - generic [ref=e1101]: Type of Documentary Credit
+                      - generic [ref=e1102]:
+                        - generic [ref=e1103]:
+                          - generic [ref=e1104]:
+                            - text: 
+                            - radio "Transferable" [ref=e1105]
+                          - generic [ref=e1108]: Transferable
+                        - generic [ref=e1109]:
+                          - generic [ref=e1110]:
+                            - text: 
+                            - radio "Non Transferable" [checked] [ref=e1111]
+                          - generic [ref=e1114]: Non Transferable
+                    - radiogroup "LC Type" [ref=e1116]:
+                      - generic [ref=e1119]: LC Type
+                      - generic [ref=e1120]:
+                        - generic [ref=e1121]:
+                          - generic [ref=e1122]:
+                            - text: 
+                            - radio "Sight" [checked] [ref=e1123]
+                          - generic [ref=e1126]: Sight
+                        - generic [ref=e1127]:
+                          - generic [ref=e1128]:
+                            - text: 
+                            - radio "Usance" [ref=e1129]
+                          - generic [ref=e1132]: Usance
+                    - radiogroup "Revolving" [ref=e1134]:
+                      - generic [ref=e1137]: Revolving
+                      - generic [ref=e1138]:
+                        - generic [ref=e1139]:
+                          - generic [ref=e1140]:
+                            - text: 
+                            - radio "Yes" [ref=e1141]
+                          - generic [ref=e1144]: "Yes"
+                        - generic [ref=e1145]:
+                          - generic [ref=e1146]:
+                            - text: 
+                            - radio "No" [checked] [ref=e1147]
+                          - generic [ref=e1150]: "No"
+                    - generic [ref=e1152]:
+                      - combobox "Select Product" [active] [ref=e1153]:
+                        - generic [ref=e1154]:
+                          - generic [ref=e1157]: Select Product
+                          - generic [ref=e1158]: ILC-INL - Import Letter of Credit-INLAND SIGHT LC
+                        - generic [ref=e1159]: 
+                      - text: 
+                  - generic [ref=e1163]: 31D
+                  - generic [ref=e1164]:
+                    - generic [ref=e1167]:
+                      - generic [ref=e1168]:
+                        - generic [ref=e1169]:
+                          - generic [ref=e1172]: Date of Expiry
+                          - combobox "Date of Expiry" [ref=e1173]
+                        - generic [ref=e1174]:
+                          - generic "Select Date." [ref=e1175] [cursor=pointer]: 
+                          - generic [ref=e1176]: Press Key down or Key up for access to Calendar.
+                      - generic [ref=e1178]: Required
+                    - generic [ref=e1181]:
+                      - generic [ref=e1182]:
+                        - generic [ref=e1185]: Place of Expiry
+                        - textbox "Place of Expiry" [ref=e1186]:
+                          - /placeholder: ""
+                      - generic [ref=e1188]: Required
+                  - generic [ref=e1189]: "59"
+                  - radiogroup "Beneficiary Details" [ref=e1190]:
+                    - generic [ref=e1193]: Beneficiary Details
+                    - generic [ref=e1194]:
+                      - generic [ref=e1195]:
+                        - generic [ref=e1196]:
+                          - text: 
+                          - radio "Existing" [checked] [ref=e1197]
+                        - generic [ref=e1200]: Existing
+                      - generic [ref=e1201]:
+                        - generic [ref=e1202]:
+                          - text: 
+                          - radio "New" [ref=e1203]
+                        - generic [ref=e1206]: New
+                  - generic [ref=e1208]:
+                    - combobox "Beneficiary Name" [ref=e1209]:
+                      - generic [ref=e1213]: Beneficiary Name
+                      - generic [ref=e1215]: 
+                    - text: 
+                    - generic [ref=e1218]: Required
+                  - generic [ref=e1398]: 32B
+                  - generic [ref=e1400]:
+                    - generic [ref=e1401]:
+                      - generic [ref=e1403]:
+                        - combobox "Currency" [ref=e1404]:
+                          - generic [ref=e1405]:
+                            - generic [ref=e1408]: Currency
+                            - generic [ref=e1409]: KRW
+                          - generic [ref=e1410]: 
+                        - text: 
+                      - generic [ref=e1413]:
+                        - generic [ref=e1414]:
+                          - generic [ref=e1417]: LC Amount
+                          - textbox "LC Amount" [ref=e1418]:
+                            - /placeholder: ""
+                        - generic [ref=e1420]: Required
+                    - generic [ref=e1421]: Local Currency Equivalent 0
+                  - generic [ref=e1425]: LC Amount Tolerance
+                  - generic [ref=e1219]:
+                    - generic [ref=e1223]:
+                      - generic [ref=e1226]: Tolerance Under(%)
+                      - textbox "Tolerance Under(%)" [ref=e1227]:
+                        - /placeholder: ""
+                        - text: "0"
+                    - generic [ref=e1232]:
+                      - generic [ref=e1235]: Tolerance Above(%)
+                      - textbox "Tolerance Above(%)" [ref=e1236]:
+                        - /placeholder: ""
+                        - text: "0"
+                  - generic [ref=e1429]:
+                    - generic [ref=e1432]: Total Exposure
+                    - textbox "Total Exposure" [ref=e1434]
+                  - generic [ref=e1238]: 39C
+                  - generic [ref=e1240]:
+                    - generic [ref=e1243]: Additional Amount Covered
+                    - textbox "Additional Amount Covered" [ref=e1244]:
+                      - /placeholder: ""
+                  - generic [ref=e1247]:
+                    - generic [ref=e1250]: Customer Reference Number
+                    - textbox "Customer Reference Number" [ref=e1251]:
+                      - /placeholder: ""
+                  - generic [ref=e1253]: 41A
+                  - generic [ref=e1435]:
+                    - combobox "Credit Available By" [ref=e1436]:
+                      - generic [ref=e1437]:
+                        - generic [ref=e1440]: Credit Available By
+                        - generic [ref=e1441]: Negotiation
+                      - generic [ref=e1442]: 
+                    - text: 
+                  - generic [ref=e1445]: 42P
+                  - generic [ref=e1448]: Negotiation/Deferred Payment Details
+                  - textbox "Payment Details" [ref=e1256]:
+                    - /placeholder: ""
+                  - radiogroup "Credit Available With" [ref=e1258]:
+                    - generic [ref=e1261]: Credit Available With
+                    - generic [ref=e1262]:
+                      - generic [ref=e1263]:
+                        - generic [ref=e1264]:
+                          - text: 
+                          - radio "SWIFT Code" [checked] [ref=e1265]
+                        - generic [ref=e1268]: SWIFT Code
+                      - generic [ref=e1269]:
+                        - generic [ref=e1270]:
+                          - text: 
+                          - radio "Bank Address" [ref=e1271]
+                        - generic [ref=e1274]: Bank Address
+                  - generic [ref=e1276]:
+                    - generic [ref=e1278]:
+                      - generic [ref=e1280]:
+                        - generic [ref=e1282]:
+                          - img "Required" [ref=e1284]: "*"
+                          - generic [ref=e1285]: SWIFT Code
+                        - textbox "SWIFT Code" [ref=e1286]:
+                          - /placeholder: ""
+                      - link "Lookup SWIFT Code" [ref=e1288] [cursor=pointer]:
+                        - /url: "#"
+                    - button "Verify" [ref=e1291] [cursor=pointer]:
+                      - generic [ref=e1293]: Verify
+                  - generic [ref=e1294]: 42C
+                  - generic [ref=e1297]:
+                    - generic [ref=e1300]: Tenor
+                    - textbox "Tenor" [ref=e1301]:
+                      - /placeholder: ""
+                  - generic [ref=e1304]:
+                    - generic [ref=e1307]: Credit Days From
+                    - textbox "Credit Days From" [ref=e1308]:
+                      - /placeholder: ""
+                  - generic [ref=e1310]: 42A
+                  - radiogroup "Drawee Bank" [ref=e1311]:
+                    - generic [ref=e1314]: Drawee Bank
+                    - generic [ref=e1315]:
+                      - generic [ref=e1316]:
+                        - generic [ref=e1317]:
+                          - text: 
+                          - radio "SWIFT Code" [checked] [ref=e1318]
+                        - generic [ref=e1321]: SWIFT Code
+                      - generic [ref=e1322]:
+                        - generic [ref=e1323]:
+                          - text: 
+                          - radio "Name and Address" [ref=e1324]
+                        - generic [ref=e1327]: Name and Address
+                  - generic [ref=e1329]:
+                    - generic [ref=e1331]:
+                      - generic [ref=e1333]:
+                        - generic [ref=e1336]: SWIFT Code
+                        - textbox "Drawee Swift Code" [ref=e1337]:
+                          - /placeholder: ""
+                      - link "Lookup SWIFT Code" [ref=e1339] [cursor=pointer]:
+                        - /url: "#"
+                    - button "Verify" [ref=e1342] [cursor=pointer]:
+                      - generic [ref=e1344]: Verify
+            - generic [ref=e1345]:
+              - button "Next" [ref=e1347] [cursor=pointer]:
+                - generic [ref=e1349]: Next
+              - button "Save As Draft" [ref=e1351] [cursor=pointer]:
+                - generic [ref=e1353]: Save As Draft
+              - button "Cancel" [ref=e1355] [cursor=pointer]:
+                - generic [ref=e1357]: Cancel
+      - contentinfo:
+        - generic:
+          - generic:
+            - log
+  - text:    兩                                

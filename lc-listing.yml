@@ -1,0 +1,149 @@
+- generic [ref=e1]:
+  - generic [ref=e112]:
+    - link "Skip to main content" [ref=e710] [cursor=pointer]:
+      - /url: "#maincontent"
+    - generic [ref=e114]:
+      - banner [ref=e115]:
+        - generic [ref=e116]:
+          - generic [ref=e117]:
+            - generic [ref=e118]:
+              - generic "Toggle Menu" [ref=e711]:
+                - button "Open Menu" [active] [ref=e712] [cursor=pointer]:
+                  - generic [ref=e123]: 
+              - link "Open Dashboard" [ref=e713] [cursor=pointer]:
+                - /url: "#"
+                - img "Open Dashboard" [ref=e714]
+            - generic "Search Transaction" [ref=e715]:
+              - generic [ref=e132]: 
+              - combobox "Search Transaction" [ref=e716]:
+                - textbox "Search Transaction" [ref=e717]:
+                  - /placeholder: Search
+            - generic [ref=e135]:
+              - generic "99+" [ref=e718]:
+                - button "99+" [ref=e719] [cursor=pointer]:
+                  - generic [ref=e141]:
+                    - text: 
+                    - generic [ref=e142]: 99+
+              - button "corpmaker2" [ref=e720] [cursor=pointer]:
+                - generic [ref=e146]:
+                  - img "corpmaker2" [ref=e721]:
+                    - generic [ref=e151]: CM
+                  - text:  
+          - generic [ref=e156]:
+            - generic "Back" [ref=e724]:
+              - button "Back" [ref=e725] [cursor=pointer]:
+                - generic [ref=e726]:
+                  - generic [ref=e728]: 
+                  - generic [ref=e729]: Back
+            - generic [ref=e157]:
+              - heading "Initiate Letter of Credit" [level=1] [ref=e730]
+              - generic [ref=e760]: JZNNZI ZO AZNZM ULI KZKVI YLCVH ZMW | P000168
+      - main [ref=e167]:
+        - generic [ref=e733]:
+          - generic [ref=e736]:
+            - generic [ref=e739]:
+              - text: 
+              - tablist "Trade Finance Navigation Bar" [ref=e742]:
+                - tab "By Template" [selected] [ref=e743] [cursor=pointer]:
+                  - generic [ref=e745]: By Template
+                - tab "Copy & Initiate" [ref=e746] [cursor=pointer]:
+                  - generic [ref=e748]: Copy & Initiate
+                - tab "By Drafts" [ref=e749] [cursor=pointer]:
+                  - generic [ref=e751]: By Drafts
+                - tab "Back To Back LC" [ref=e752] [cursor=pointer]:
+                  - generic [ref=e754]: Back To Back LC
+              - text: 
+            - button "Create LC" [ref=e757] [cursor=pointer]:
+              - generic [ref=e759]: Create LC
+          - generic [ref=e767]:
+            - generic [ref=e771]:
+              - generic "Search..." [ref=e776]:
+                - generic [ref=e777]: 
+                - textbox "Search..." [ref=e779]:
+                  - /placeholder: Search
+              - toolbar [ref=e782]:
+                - generic "thumbView" [ref=e783] [cursor=pointer]:
+                  - generic [ref=e785]:
+                    - generic [ref=e786]: 
+                    - generic [ref=e787]: thumbView
+                  - radio " thumbView" [checked] [ref=e788]
+                - generic "listView" [ref=e789] [cursor=pointer]:
+                  - generic [ref=e791]:
+                    - generic [ref=e792]: 
+                    - generic [ref=e793]: listView
+                  - radio " listView" [ref=e794]
+            - generic [ref=e796]:
+              - grid "LC Template List" [ref=e798]:
+                - row "Final Click here to delete Public Beneficiary Name Shehzad ul hassan Type Revolving LC Amount AED66,000 Draft At Usance 206faizan2 Click here to delete Public Beneficiary Name Shehzad ul hassan Type Non Revolving LC Amount $100.00 Draft At Sight Kt template Click here to delete Public Beneficiary Name Shehzad ul hassan Type Revolving LC Amount AED66,000 Draft At Usance" [ref=e799]:
+                  - gridcell "Final Click here to delete Public Beneficiary Name Shehzad ul hassan Type Revolving LC Amount AED66,000 Draft At Usance" [ref=e800]:
+                    - generic [ref=e808]:
+                      - generic [ref=e813]:
+                        - generic [ref=e814]:
+                          - generic [ref=e815]: Final
+                          - link "Click here to delete" [ref=e817] [cursor=pointer]:
+                            - /url: "#"
+                            - generic [ref=e818]: 
+                        - generic [ref=e821]: Public
+                      - generic [ref=e824]:
+                        - generic [ref=e828]:
+                          - generic [ref=e831]: Beneficiary Name
+                          - textbox "Beneficiary Name" [ref=e833]
+                        - generic [ref=e837]:
+                          - generic [ref=e840]: Type
+                          - textbox "Type" [ref=e842]
+                        - generic [ref=e846]:
+                          - generic [ref=e849]: LC Amount
+                          - textbox "LC Amount" [ref=e851]
+                        - generic [ref=e855]:
+                          - generic [ref=e858]: Draft At
+                          - textbox "Draft At" [ref=e860]
+                  - gridcell "206faizan2 Click here to delete Public Beneficiary Name Shehzad ul hassan Type Non Revolving LC Amount $100.00 Draft At Sight" [ref=e861]:
+                    - generic [ref=e869]:
+                      - generic [ref=e874]:
+                        - generic [ref=e875]:
+                          - generic [ref=e876]: 206faizan2
+                          - link "Click here to delete" [ref=e878] [cursor=pointer]:
+                            - /url: "#"
+                            - generic [ref=e879]: 
+                        - generic [ref=e882]: Public
+                      - generic [ref=e885]:
+                        - generic [ref=e889]:
+                          - generic [ref=e892]: Beneficiary Name
+                          - textbox "Beneficiary Name" [ref=e894]
+                        - generic [ref=e898]:
+                          - generic [ref=e901]: Type
+                          - textbox "Type" [ref=e903]
+                        - generic [ref=e907]:
+                          - generic [ref=e910]: LC Amount
+                          - textbox "LC Amount" [ref=e912]
+                        - generic [ref=e916]:
+                          - generic [ref=e919]: Draft At
+                          - textbox "Draft At" [ref=e921]
+                  - gridcell "Kt template Click here to delete Public Beneficiary Name Shehzad ul hassan Type Revolving LC Amount AED66,000 Draft At Usance" [ref=e922]:
+                    - generic [ref=e930]:
+                      - generic [ref=e935]:
+                        - generic [ref=e936]:
+                          - generic [ref=e937]: Kt template
+                          - link "Click here to delete" [ref=e939] [cursor=pointer]:
+                            - /url: "#"
+                            - generic [ref=e940]: 
+                        - generic [ref=e943]: Public
+                      - generic [ref=e946]:
+                        - generic [ref=e950]:
+                          - generic [ref=e953]: Beneficiary Name
+                          - textbox "Beneficiary Name" [ref=e955]
+                        - generic [ref=e959]:
+                          - generic [ref=e962]: Type
+                          - textbox "Type" [ref=e964]
+                        - generic [ref=e968]:
+                          - generic [ref=e971]: LC Amount
+                          - textbox "LC Amount" [ref=e973]
+                        - generic [ref=e977]:
+                          - generic [ref=e980]: Draft At
+                          - textbox "Draft At" [ref=e982]
+              - generic [ref=e984]: Use arrow keys to expand and collapse.
+      - contentinfo:
+        - generic:
+          - generic:
+            - log
+  - text:    兩                                

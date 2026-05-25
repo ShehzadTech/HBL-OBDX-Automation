@@ -1,0 +1,1121 @@
+{
+  "flow": "Initiate Import Letter of Credit",
+  "product": "ILC-INL (Inland Sight) / ILC-INU (Inland Usance)",
+  "source": "Curated from pages/trade-finance/ImportLcFlowPage.ts + data/lcTestData.ts — locators verified against live OBDX 25.1 HBL DOM; merged with rescrape captures from data/scraped/initiate-import-lc-locators-rescrape.json (rescrape-2026-05-21)",
+  "urlFragments": {
+    "create": "initiate-letter-of-credit",
+    "review": "review-letter-of-credit",
+    "confirmation": "confirm-screen"
+  },
+  "notes": [
+    "OBDX is Oracle JET — `page.fill()` does NOT commit values; the bound model stays empty. Always drive an oj-input-text via focus → native value setter → input/change/keyup → blur (see utils/ojHelper.ts ojFill).",
+    "Numeric ID suffixes (e.g. SelectProduct8713118, BeneficiaryName8826275) are session-scoped on some builds. Prefer the [id^=...] / [id*=...] fallback selectors below when refining a scraper.",
+    "Dropdowns: oj-select-one components need ojSelectByText or ojSelectWithSearch — clicking the input alone won't open the LOV reliably.",
+    "The 'Read Standard Instructions' checkbox and the Documents-tab Next button need a JS click (.evaluate(... cb.click())) — the OJet wrapper swallows Playwright's standard click.",
+    "Two pairs of label twins exist on Tab 1: 'Address' and 'Country' appear once for the Applicant section and once for the Beneficiary section — scope with .nth(0) / .nth(1) or section-relative selectors.",
+    "Revolving = Yes MUST be set BEFORE selecting the product, because the product LOV is filtered by Revolving state (Usance/Revolving-capable products only appear when Revolving = Yes).",
+    "Usance LC reveals two extra mandatory sub-fields: 'Credit Days From' (textbox, defaults to 'Sight') and 42A 'Drawee Swift Code' + its own Verify button (nth(1)). Sight LC does not render these.",
+    "Rescrape merge (rescrape-2026-05-21): 28 test.skip-blocker locators appended across Tabs 1-7. Each merged field carries source=\"rescrape-2026-05-21\" + unblocks=[\"TC-...\"] so future readers can trace them. The rescrape source file is in data/scraped/initiate-import-lc-locators-rescrape.json.",
+    "OBDX renders the 7 Initiate-LC tabs as <a href=\"#\"> anchor links (NOT role=tab elements). Click them directly by accessible text to bypass Next-button validation. See scripts/scrape-initiate-import-lc.js for the multi-strategy entry pattern that survives draft-state pollution.",
+    "Confirmed absent in the AE/corpmaker2 + ILC-INL Sight build: Limits LOV + View Limit Details + Reset (TC-IMPLC-006); Preview Draft Copy button (TC-IMPLC-047); 4-value 40A LOV (\"IRREVOCABLE\",\"IRREVOCABLE TRANSFERABLE\",\"IRREVOCABLE STANDBY\",\"IRREVOC TRANS STANDBY\") — those test.skip cases need entity/entitlement changes, not better selectors.",
+    "Sub-panels that exist but only render after explicit \"Add\" clicks (not captured in initial rescrape, need a 2nd scrape pass to capture): Documents checklist (TC-IMPLC-024), Deposit Linkage on Tab 4 (TC-IMPLC-033/034), Refer Codes overlay on Tab 3 (TC-IMPLC-027), Save-as-Template Yes-state sub-fields on Tab 7 (TC-IMPLC-045)."
+  ],
+  "menu": [
+    {
+      "step": "Toggle Menu",
+      "selector": "button[aria-label*='Toggle' i], .oj-applayout-drawer-toggle"
+    },
+    {
+      "step": "Trade Finance",
+      "selectorHint": "submenu link, text='Trade Finance'"
+    },
+    {
+      "step": "Letter Of Credit",
+      "selectorHint": "submenu link, text='Letter Of Credit'"
+    },
+    {
+      "step": "Initiate Letter Of Credit",
+      "selectorHint": "submenu link, text matches /initiate.*letter/i"
+    }
+  ],
+  "listing": {
+    "heading": "Letter of Credit",
+    "createLcButton": {
+      "primary": "button:has-text('Create LC')",
+      "role": {
+        "type": "button",
+        "name": "Create LC"
+      }
+    }
+  },
+  "tabs": [
+    {
+      "tab": "Tab 1 — LC Details",
+      "fields": [
+        {
+          "field": "Applicant Details (radio group)",
+          "type": "radiogroup",
+          "role": {
+            "type": "radiogroup",
+            "name": "Applicant Details"
+          },
+          "options": [
+            "Existing customer",
+            "Non-customer"
+          ],
+          "mandatory": true,
+          "notes": "Case-insensitive match for option name. In some entities (e.g. SG) the 'Existing customer' radio is checked+disabled — a click on a disabled radio hangs, treat as no-op."
+        },
+        {
+          "field": "Applicant Name",
+          "type": "oj-select-one",
+          "role": {
+            "type": "combobox",
+            "name": "Applicant Name"
+          },
+          "fallback": "oj-select-one[id*='ApplicantName'], oj-select-one[id*='Applicant']",
+          "mandatory": true
+        },
+        {
+          "field": "Applicant Address (auto-populated, read-only)",
+          "type": "text-div",
+          "selector": "text=Address  (nth(0) — first occurrence is Applicant)",
+          "notes": "Plain <div> with text content, NOT an <input readonly>."
+        },
+        {
+          "field": "Applicant Country (auto-populated, read-only)",
+          "type": "text-div",
+          "selector": "text=Country  (nth(0) — first occurrence is Applicant)"
+        },
+        {
+          "field": "Non-customer Applicant Name",
+          "type": "input",
+          "fallback": "input[id*='ApplicantName'][id*='NonCustomer'], input[id*='NonCustomerName']",
+          "mandatory": "when Applicant Details = Non-customer"
+        },
+        {
+          "field": "Non-customer Applicant Address",
+          "type": "textarea",
+          "fallback": "textarea[id*='ApplicantAddress'][id*='NonCustomer'], textarea[id*='NonCustomerAddress']"
+        },
+        {
+          "field": "Non-customer Applicant Country",
+          "type": "oj-select-one",
+          "fallback": "oj-select-one[id*='ApplicantCountry'], oj-select-one[id*='NonCustomerCountry']"
+        },
+        {
+          "field": "Product (Type of LC)",
+          "type": "oj-select-one",
+          "primaryId": "SelectProduct8713118",
+          "selector": "oj-select-one#SelectProduct8713118",
+          "fallback": "oj-select-one[id^='SelectProduct']",
+          "sampleValues": [
+            "ILC-INL",
+            "ILC-INU"
+          ],
+          "fullLabelSamples": [
+            "Import Letter of Credit-INLAND SIGHT LC",
+            "Import Letter of Credit-INLAND USANCE LC"
+          ],
+          "mandatory": true,
+          "notes": "Use ojSelectWithSearch — the LOV has a floating search overlay."
+        },
+        {
+          "field": "Field 40A — Type of Documentary Credit (radio)",
+          "type": "radioset",
+          "primaryId": "Transferable1086972",
+          "selector": "oj-radioset#Transferable1086972",
+          "fallback": "oj-radioset[id^='Transferable']",
+          "discrepancyNote": "Rescrape 2026-05-21 against AE/corpmaker2 confirms this radio is rendered with options [\"Transferable\",\"Non Transferable\"], NOT the SG 4-value LOV [\"IRREVOCABLE\",\"IRREVOCABLE TRANSFERABLE\",\"IRREVOCABLE STANDBY\",\"IRREVOC TRANS STANDBY\"]. The 4-value 40A LOV is SG-entity-only — tests TC-BS-021/022 cannot be unblocked on the AE build."
+        },
+        {
+          "field": "LC Type (Sight / Usance)",
+          "type": "radiogroup",
+          "role": {
+            "type": "radiogroup",
+            "name": "LC Type"
+          },
+          "options": [
+            "Sight",
+            "Usance"
+          ],
+          "mandatory": true
+        },
+        {
+          "field": "Tenor / Usance Days",
+          "type": "input",
+          "role": {
+            "type": "textbox",
+            "name": "/^Tenor$|Usance Days|Usance Period/i"
+          },
+          "fallback": "input[id*='UsanceDays'], input[id*='Tenor']",
+          "sampleValue": "90",
+          "mandatory": "when LC Type = Usance"
+        },
+        {
+          "field": "Credit Days From (Usance sub-field)",
+          "type": "oj-input-text",
+          "role": {
+            "type": "textbox",
+            "name": "Credit Days From",
+            "exact": true
+          },
+          "sampleValue": "Sight",
+          "mandatory": "when LC Type = Usance",
+          "notes": "Silently blocks Next if empty. Use .fill() (not native setter) — getByRole resolves to the oj-input-text wrapper, not HTMLInputElement, so the native setter throws 'Illegal invocation'."
+        },
+        {
+          "field": "42A Drawee Bank SWIFT Code",
+          "type": "oj-input-text",
+          "role": {
+            "type": "textbox",
+            "name": "Drawee Swift Code"
+          },
+          "mandatory": "when LC Type = Usance",
+          "notes": "Distinct from 'SWIFT Code' under Credit Available With."
+        },
+        {
+          "field": "42A Drawee Bank Verify button",
+          "type": "button",
+          "role": {
+            "type": "button",
+            "name": "Verify",
+            "index": 1
+          },
+          "notes": "Second Verify button on the page (nth(1))."
+        },
+        {
+          "field": "Transferable Credit",
+          "type": "radiogroup",
+          "role": {
+            "type": "radiogroup",
+            "name": "/Transferable( Credit)?/i"
+          },
+          "options": [
+            "Yes",
+            "No"
+          ]
+        },
+        {
+          "field": "Revolving",
+          "type": "radiogroup",
+          "role": {
+            "type": "radiogroup",
+            "name": "Revolving"
+          },
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "notes": "MUST be set BEFORE Product because Product LOV is filtered by Revolving state."
+        },
+        {
+          "field": "Revolving Type",
+          "type": "oj-select-one",
+          "role": {
+            "type": "combobox",
+            "name": "/Revolving Type/i"
+          },
+          "fallback": "oj-select-one[id*='RevolvingType'], oj-select-one[id*='Revolving']:not(#Revolving5328169)",
+          "options": [
+            "Monthly",
+            "Quarterly",
+            "Half Yearly",
+            "Yearly"
+          ],
+          "mandatory": "when Revolving = Yes"
+        },
+        {
+          "field": "Revolving Cycles / Revolving Type Value",
+          "type": "input",
+          "role": {
+            "type": "textbox",
+            "name": "/Cycles|Revolving Type Value/i"
+          },
+          "fallback": "input[id*='Cycles'], input[id*='RevolvingTypeValue']",
+          "mandatory": "when Revolving = Yes"
+        },
+        {
+          "field": "Date of Expiry",
+          "type": "oj-input-date",
+          "primaryId": "DateofExpiry3481130",
+          "selector": "#DateofExpiry3481130 input",
+          "fallback": "[id^='DateofExpiry'] input",
+          "sampleValue": "12/31/2026",
+          "mandatory": true,
+          "notes": "Use ojFillDate — date components reject simple .fill()."
+        },
+        {
+          "field": "Place of Expiry",
+          "type": "oj-input-text",
+          "primaryId": "PlaceofExpiry2710814",
+          "selector": "#PlaceofExpiry2710814 input",
+          "fallback": "[id^='PlaceofExpiry'] input",
+          "sampleValue": "LONDON",
+          "mandatory": true
+        },
+        {
+          "field": "Beneficiary Details (radio group)",
+          "type": "radiogroup",
+          "role": {
+            "type": "radiogroup",
+            "name": "Beneficiary Details"
+          },
+          "options": [
+            "Existing",
+            "New"
+          ]
+        },
+        {
+          "field": "Beneficiary Name (Existing)",
+          "type": "oj-select-one",
+          "primaryId": "BeneficiaryName8826275",
+          "selector": "oj-select-one#BeneficiaryName8826275",
+          "fallback": "oj-select-one[id^='BeneficiaryName']",
+          "sampleValue": "Shehzad",
+          "mandatory": true
+        },
+        {
+          "field": "Beneficiary Address (auto-populated, read-only)",
+          "type": "text-div",
+          "selector": "text=Address  (nth(1) — second occurrence = Beneficiary section)"
+        },
+        {
+          "field": "Beneficiary Country (auto-populated, read-only)",
+          "type": "text-div",
+          "selector": "text=Country  (nth(1) — second occurrence = Beneficiary section)"
+        },
+        {
+          "field": "New Beneficiary Name",
+          "type": "input",
+          "fallback": "input[id*='BeneficiaryName'][id*='New'], input[id*='NewBeneficiaryName']"
+        },
+        {
+          "field": "New Beneficiary Address",
+          "type": "textarea",
+          "fallback": "textarea[id*='BeneficiaryAddress'][id*='New'], textarea[id*='NewBeneficiaryAddress']"
+        },
+        {
+          "field": "New Beneficiary Country",
+          "type": "oj-select-one",
+          "fallback": "oj-select-one[id*='BeneficiaryCountry'], oj-select-one[id*='NewBeneficiaryCountry']"
+        },
+        {
+          "field": "LC Currency",
+          "type": "oj-select-one",
+          "primaryId": "lc-amount_currency",
+          "selector": "oj-select-one#lc-amount_currency",
+          "sampleValue": "USD",
+          "mandatory": true
+        },
+        {
+          "field": "LC Amount",
+          "type": "oj-input-text (numeric)",
+          "selector": "#lc-amount_field input, input[id*='lc-amount']",
+          "sampleValue": "50000",
+          "mandatory": true
+        },
+        {
+          "field": "Tolerance Under (%)",
+          "type": "oj-input-text (numeric)",
+          "role": {
+            "type": "textbox",
+            "name": "/Tolerance Under/i"
+          }
+        },
+        {
+          "field": "Tolerance Above (%)",
+          "type": "oj-input-text (numeric)",
+          "role": {
+            "type": "textbox",
+            "name": "/Tolerance Above/i"
+          }
+        },
+        {
+          "field": "Total Exposure (39B, auto-calculated read-only)",
+          "type": "readonly-field",
+          "selector": "[id*='TotalExposure'], [id*='totalExposure'], oj-text-field[id*='Exposure']"
+        },
+        {
+          "field": "Field 39C — Additional Amounts Covered",
+          "type": "input",
+          "fallback": "input[id*='AdditionalAmount'], input[id*='39C']"
+        },
+        {
+          "field": "Customer Reference Number",
+          "type": "oj-input-text",
+          "primaryId": "CustomerReferenceNumber8344067",
+          "selector": "#CustomerReferenceNumber8344067 input",
+          "fallback": "[id^='CustomerReferenceNumber'] input",
+          "sampleValue": "CUSTREF2024001"
+        },
+        {
+          "field": "Credit Available With — SWIFT Code",
+          "type": "oj-input-text",
+          "primaryId": "availableWithSwiftCode",
+          "selector": "#availableWithSwiftCode input",
+          "sampleValue": "CITIGB2LXXX",
+          "mandatory": true
+        },
+        {
+          "field": "Credit Available With — Verify button",
+          "type": "button",
+          "role": {
+            "type": "button",
+            "name": "Verify",
+            "index": 0
+          },
+          "notes": "First Verify on the page (nth(0)). Click triggers SWIFT lookup; Bank Name field auto-populates on success."
+        },
+        {
+          "field": "Bank Name (auto-populated after SWIFT verify)",
+          "type": "input (readonly)",
+          "fallback": "input[id*='BankName'], [id*='creditAvailableWithBankName'], input[id*='CreditAvailableWith'][id*='Bank']"
+        },
+        {
+          "field": "Next (Tab 1 → Tab 2)",
+          "type": "button",
+          "selector": "button:has-text('Next')",
+          "role": {
+            "type": "button",
+            "name": "Next"
+          }
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-BS-013"
+          ],
+          "field": "Lookup SWIFT Code (Tab 1 keyword search dialog)",
+          "type": "link",
+          "primaryId": "LookupSWIFTCode7829249",
+          "selector": "a#LookupSWIFTCode7829249",
+          "fallback": "a[id^=\"LookupSWIFTCode\"]",
+          "role": {
+            "type": "link",
+            "name": "Lookup SWIFT Code"
+          },
+          "notes": "Opens a SWIFT keyword search dialog. Two instances exist on Tab 1 (LookupSWIFTCode7829249 + LookupSWIFTCode1184155) — the first is the Credit-Available-With SWIFT lookup, the second is the 42A Drawee Bank lookup (visible only when LC Type = Usance)."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [],
+          "field": "Credit Available With (radio — SWIFT Code / Bank Address)",
+          "type": "radioset",
+          "primaryId": "CreditAvailableWith4862688",
+          "selector": "oj-radioset#CreditAvailableWith4862688",
+          "fallback": "oj-radioset[id^=\"CreditAvailableWith\"]",
+          "options": [
+            "SWIFT Code",
+            "Bank Address"
+          ],
+          "notes": "Toggles between SWIFT-code lookup and a free-text Bank Address path. Bank Address path mainly tested in SG-entity TCs."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-IMPLC-013"
+          ],
+          "field": "Credit Available By (Field 41A LOV)",
+          "type": "oj-select-one",
+          "primaryId": "CreditAvailableBy4735824",
+          "selector": "oj-select-one#CreditAvailableBy4735824",
+          "fallback": "oj-select-one[id^=\"CreditAvailableBy\"]",
+          "notes": "F41A LOV. In the AE/corpmaker2 build, this dropdown carries the default OBDX value set. SG-entity build adds a \"Payment\" option (per FSD C-9.6) — that variant is not visible in the AE build."
+        }
+      ]
+    },
+    {
+      "tab": "Tab 2 — Goods & Shipment",
+      "fields": [
+        {
+          "field": "Partial Shipment",
+          "type": "oj-select-one",
+          "primaryId": "PartialShipment2681350",
+          "selector": "oj-select-one#PartialShipment2681350",
+          "fallback": "oj-select-one[id^='PartialShipment']",
+          "options": [
+            "Allowed",
+            "Not Allowed",
+            "Conditional"
+          ],
+          "sampleValue": "Allowed",
+          "mandatory": true
+        },
+        {
+          "field": "Transshipment",
+          "type": "oj-select-one",
+          "primaryId": "Transshipment8893098",
+          "selector": "oj-select-one#Transshipment8893098",
+          "fallback": "oj-select-one[id^='Transshipment']",
+          "options": [
+            "Allowed",
+            "Not Allowed",
+            "Conditional"
+          ],
+          "sampleValue": "Allowed",
+          "mandatory": true
+        },
+        {
+          "field": "Place of Taking in Charge / Dispatch",
+          "type": "oj-input-text",
+          "primaryId": "PlaceofTaking770471",
+          "selector": "#PlaceofTaking770471 input",
+          "fallback": "[id^='PlaceofTaking'] input",
+          "sampleValue": "SHANGHAI PORT"
+        },
+        {
+          "field": "Place of Final Destination",
+          "type": "oj-input-text",
+          "primaryId": "PlaceofFinalDestination7797471",
+          "selector": "#PlaceofFinalDestination7797471 input",
+          "fallback": "[id^='PlaceofFinalDestination'] input",
+          "sampleValue": "PORT OF LONDON"
+        },
+        {
+          "field": "Shipment radio group (Date vs Period)",
+          "type": "radiogroup",
+          "role": {
+            "type": "radiogroup",
+            "name": "Shipment"
+          },
+          "options": [
+            "Date",
+            "Period"
+          ],
+          "notes": "Toggles between Shipment Date input and Shipment Period free-text — mutually exclusive."
+        },
+        {
+          "field": "Shipment Date",
+          "type": "oj-input-date",
+          "primaryId": "ShipmentDate8869450",
+          "selector": "#ShipmentDate8869450 input",
+          "fallback": "[id^='ShipmentDate'] input",
+          "role": {
+            "type": "combobox",
+            "name": "Shipment Date"
+          },
+          "sampleValue": "11/30/2026"
+        },
+        {
+          "field": "Shipment Period (free-text alt to Shipment Date)",
+          "type": "oj-input-text / textarea",
+          "role": {
+            "type": "textbox",
+            "name": "/Shipment Period|Period for Presentation|Period of Shipment/i"
+          },
+          "fallback": "input[id*='ShipmentPeriod'], textarea[id*='ShipmentPeriod']"
+        },
+        {
+          "field": "Port of Loading",
+          "type": "oj-input-text",
+          "primaryId": "PortofLoading7310493",
+          "selector": "#PortofLoading7310493 input",
+          "fallback": "[id^='PortofLoading'] input",
+          "sampleValue": "SHANGHAI"
+        },
+        {
+          "field": "Port of Discharge",
+          "type": "oj-input-text",
+          "primaryId": "PortofDischarge4407721",
+          "selector": "#PortofDischarge4407721 input",
+          "fallback": "[id^='PortofDischarge'] input",
+          "sampleValue": "LONDON"
+        },
+        {
+          "field": "Goods row — Type",
+          "type": "oj-select-one (in table row)",
+          "selector": "oj-select-one[data-id*='SelectOne_Goods_Type']",
+          "rowIndexed": true,
+          "sampleValue": "Manufactured Goods",
+          "notes": "Use .nth(rowIdx). Row 0 = auto-created. The option is in a list with class .oj-listbox-result-label / li[role='option']."
+        },
+        {
+          "field": "Goods row — Quantity",
+          "type": "input",
+          "selector": "input[aria-label='Quantity'][placeholder='0']",
+          "rowIndexed": true,
+          "sampleValue": "1"
+        },
+        {
+          "field": "Goods row — Cost per Unit",
+          "type": "input",
+          "selector": "[id='cost_per_unit|input'], input[aria-label*='Cost per Unit' i]",
+          "rowIndexed": true,
+          "sampleValue": "50000",
+          "notes": "Pipe-suffix ID is stable for row 0; subsequent rows fall back to aria-label."
+        },
+        {
+          "field": "Goods row — Gross Amount (auto, qty × cost)",
+          "type": "input (readonly)",
+          "selector": "[id='gross_amount|input'], input[aria-label*='Gross Amount' i]",
+          "rowIndexed": true
+        },
+        {
+          "field": "Add Row (goods table)",
+          "type": "button",
+          "role": {
+            "type": "button",
+            "name": "/^Add Row$|^\\+\\s*Add$|^Add$/i"
+          }
+        },
+        {
+          "field": "Delete Row (goods table)",
+          "type": "button",
+          "selector": "[aria-label*='Delete' i], button[title*='Delete' i]",
+          "rowIndexed": true
+        },
+        {
+          "field": "Goods total mismatch warning — OK button",
+          "type": "button",
+          "selector": "button:has-text('OK')",
+          "notes": "Appears after Next if qty×cost ≠ LC amount. POM auto-dismisses then proceeds. To avoid the popup keep quantity × costPerUnit === lcAmount."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-IMPLC-021",
+            "TC-BS-041"
+          ],
+          "field": "Add Goods row (link — multi-row scenarios)",
+          "type": "link",
+          "primaryId": "AddGoods7337627",
+          "selector": "a#AddGoods7337627",
+          "fallback": "a[id^=\"AddGoods\"]",
+          "role": {
+            "type": "link",
+            "name": "Add Goods"
+          },
+          "notes": "Adds a second/third row in the Goods & Services table. Each row's Qty × Cost contributes to a goods total which must equal LC Amount."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [],
+          "field": "View / Edit (goods row edit link)",
+          "type": "link",
+          "primaryId": "ViewEdit8189372",
+          "selector": "a#ViewEdit8189372",
+          "fallback": "a[id^=\"ViewEdit\"]",
+          "role": {
+            "type": "link",
+            "name": "View / Edit"
+          },
+          "notes": "Opens the per-row edit panel for an existing goods row."
+        }
+      ]
+    },
+    {
+      "tab": "Tab 3 — Documents",
+      "fields": [
+        {
+          "field": "Documents tab marker",
+          "type": "li (tab indicator)",
+          "selector": "li#letter-of-credit-document-details",
+          "selectedState": "classList contains 'oj-selected' OR aria-selected='true' OR descendant '.oj-selected'"
+        },
+        {
+          "field": "Documents to be presented within (days, Field 48)",
+          "type": "input",
+          "fallback": "input[id*='PresentationDays'], input[id*='presentDays'], input[aria-label*='presented within' i]"
+        },
+        {
+          "field": "Incoterm",
+          "type": "oj-select-one",
+          "fallback": "oj-select-one[id*='Incoterm']",
+          "sampleOptions": [
+            "CIF",
+            "FOB",
+            "CFR",
+            "EXW"
+          ]
+        },
+        {
+          "field": "Next (Tab 3 → Tab 4)",
+          "type": "button",
+          "notes": "Standard click is swallowed by JET — drive via .evaluate(): document.querySelectorAll('button') → find textContent==='Next' → .click()."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-IMPLC-028",
+            "TC-IMPLC-030"
+          ],
+          "field": "Documents Presentation Days (Field 48 — InputDays)",
+          "type": "oj-input-number",
+          "primaryId": "InputDays9476795",
+          "selector": "oj-input-number#InputDays9476795",
+          "fallback": "oj-input-number[id^=\"InputDays\"]",
+          "innerInputSelector": "#InputDays9476795 input",
+          "mandatory": false,
+          "notes": "Number-of-days input on Tab 3. Default 0. Negative values + non-numeric (\"abc\") trigger a validation error."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-IMPLC-025",
+            "TC-IMPLC-026"
+          ],
+          "field": "Clause Maintenance (opens Clauses sub-panel)",
+          "type": "link",
+          "primaryId": "ClauseMaintenance676292",
+          "selector": "a#ClauseMaintenance676292",
+          "fallback": "a[id^=\"ClauseMaintenance\"]",
+          "role": {
+            "type": "link",
+            "name": "Clause Maintenance."
+          },
+          "notes": "Opens the Clauses sub-panel. Sub-panel contents (Clause LOV / Identifiers multi-select / Description / Submit / View-Edit / Delete) are NOT pre-rendered — drive a 2nd scrape pass after clicking this link to capture them."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-IMPLC-027"
+          ],
+          "field": "Add Condition (opens Additional Conditions + Refer Codes overlay)",
+          "type": "link",
+          "primaryId": "AddCondition3088651",
+          "selector": "a#AddCondition3088651",
+          "fallback": "a[id^=\"AddCondition\"]",
+          "role": {
+            "type": "link",
+            "name": "Add Condition"
+          },
+          "notes": "Opens the Additional Conditions panel. Refer Codes & Description overlay opens from inside this panel. Sub-panel contents are NOT pre-rendered."
+        }
+      ]
+    },
+    {
+      "tab": "Tab 4 — Linkages / Collateral",
+      "fields": [
+        {
+          "field": "Add Collateral Linkage trigger",
+          "type": "link or button or text",
+          "role": [
+            {
+              "type": "link",
+              "name": "/click here to add collateral linkage|add collateral|add account/i"
+            },
+            {
+              "type": "button",
+              "name": "/click here to add collateral linkage|add collateral|add account/i"
+            }
+          ],
+          "fallback": "text=/click here to add collateral linkage/i",
+          "notes": "Label varies between OBDX patches — three-way .or() chain in POM."
+        },
+        {
+          "field": "Account Number",
+          "type": "input",
+          "selector": "input[id*='account-input']",
+          "sampleValue": "AT30008010036",
+          "notes": "After fill, a suggestion dropdown may appear — click first .oj-listbox-result / li[role='option']."
+        },
+        {
+          "field": "Contribution Amount for Collateral",
+          "type": "oj-input-text",
+          "role": {
+            "type": "textbox",
+            "name": "Contribution Amount for Collateral"
+          },
+          "sampleValue": "1000"
+        },
+        {
+          "field": "Collateral Linkages table (assert row added)",
+          "type": "oj-table",
+          "primaryId": "CollateralLinkages401204",
+          "selector": "oj-table#CollateralLinkages401204",
+          "fallback": "oj-table[id^='CollateralLinkages']"
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-BS-010",
+            "TC-BS-011"
+          ],
+          "field": "Cash Collateral Percent input",
+          "type": "oj-input-text",
+          "primaryId": "Percent2774746",
+          "selector": "oj-input-text#Percent2774746",
+          "fallback": "oj-input-text[id^=\"Percent\"]",
+          "innerInputSelector": "#Percent2774746 input",
+          "notes": "Cash Collateral % field on Tab 4. Setting to 0 + then adding a Collateral Linkage drives TC-BS-010. Setting to 2 + linking a USD account drives TC-BS-011."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-IMPLC-031",
+            "TC-IMPLC-032",
+            "TC-IMPLC-033",
+            "TC-IMPLC-034"
+          ],
+          "field": "Add Account (opens collateral account picker)",
+          "type": "link",
+          "primaryId": "AddAccount2665268",
+          "selector": "a#AddAccount2665268",
+          "fallback": "a[id^=\"AddAccount\"]",
+          "role": {
+            "type": "link",
+            "name": "Add Account"
+          },
+          "notes": "Two \"Add Account\" links exist (id=AddAccount2665268 + id=AddAccount7209291) — one for the Collateral Linkages section, one for Deposit Linkage. Confirm which row each opens before wiring. Deposit Linkage sub-panel (Tab 4 second section) only renders after the second Add Account click — needs a 2nd scrape pass."
+        }
+      ]
+    },
+    {
+      "tab": "Tab 5 — Instructions",
+      "fields": [
+        {
+          "field": "Advising Bank SWIFT Code",
+          "type": "oj-input-text",
+          "primaryId": "advBankSwiftCode",
+          "selector": "#advBankSwiftCode input",
+          "sampleValue": "CITIGB2LXXX",
+          "notes": "Often pre-filled from Tab 1 — only fill if empty."
+        },
+        {
+          "field": "Sender to Receiver Information (Field 72)",
+          "type": "textarea",
+          "selector": "textarea[id*='SenderToReceiver'], oj-text-area[id*='SenderToReceiver'] textarea"
+        },
+        {
+          "field": "Read Standard Instructions (mandatory checkbox)",
+          "type": "oj-checkboxset",
+          "primaryId": "ReadStandardInstructions6671350",
+          "selector": "oj-checkboxset#ReadStandardInstructions6671350",
+          "fallback": "oj-checkboxset[id^='ReadStandardInstructions']",
+          "mandatory": true,
+          "notes": "Submit is silently blocked with 'Please read and check Standard Instructions to proceed further' if not ticked. Click via JS: querySelector(...).querySelector('input[type=checkbox]').click()."
+        },
+        {
+          "field": "Next (Tab 5 → Tab 6)",
+          "type": "button",
+          "notes": "Same JS click as Documents tab."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-IMPLC-036",
+            "TC-IMPLC-037",
+            "TC-BS-014"
+          ],
+          "field": "Advising Bank (radio — SWIFT Code / Name and Address)",
+          "type": "radioset",
+          "primaryId": "AdvisingBank3000831",
+          "selector": "oj-radioset#AdvisingBank3000831",
+          "fallback": "oj-radioset[id^=\"AdvisingBank\"]",
+          "options": [
+            "SWIFT Code",
+            "Name and Address"
+          ],
+          "notes": "Toggles the advising-bank entry mode. SWIFT-Code path uses advBankSwiftCode + Verify. Name-and-Address path reveals 4 additional inputs (Name + Address + AddressLine 2 + AddressLine 3) — see Advising Bank Name fields below."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-IMPLC-037",
+            "TC-IMPLC-015"
+          ],
+          "field": "Advising Bank Name (visible when Advising Bank = Name and Address)",
+          "type": "oj-input-text",
+          "primaryId": "Name6443099",
+          "selector": "oj-input-text#Name6443099",
+          "fallback": "oj-input-text[id^=\"Name\"]",
+          "innerInputSelector": "#Name6443099 input",
+          "notes": "Renders only after toggling Advising Bank to Name and Address. Free-text bank name (max length per SWIFT MT700 35-char rule on SG entity)."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-IMPLC-037"
+          ],
+          "field": "Advising Bank Address line 1",
+          "type": "oj-input-text",
+          "primaryId": "Address3276872",
+          "selector": "oj-input-text#Address3276872",
+          "fallback": "oj-input-text[id^=\"Address\"]",
+          "innerInputSelector": "#Address3276872 input",
+          "notes": "First address line of Name-and-Address Advising Bank."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-IMPLC-037"
+          ],
+          "field": "Advising Bank Address line 2",
+          "type": "oj-input-text",
+          "primaryId": "AddressLine5785752",
+          "selector": "oj-input-text#AddressLine5785752",
+          "fallback": "oj-input-text[id^=\"AddressLine\"]",
+          "innerInputSelector": "#AddressLine5785752 input"
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-IMPLC-037"
+          ],
+          "field": "Advising Bank Address line 3",
+          "type": "oj-input-text",
+          "primaryId": "AddressLine8553367",
+          "selector": "oj-input-text#AddressLine8553367",
+          "fallback": "oj-input-text[id^=\"AddressLine\"]",
+          "innerInputSelector": "#AddressLine8553367 input"
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [],
+          "field": "Advise Through Bank (radio — SWIFT Code / Name and Address)",
+          "type": "radioset",
+          "primaryId": "AdviseThroughBank6595065",
+          "selector": "oj-radioset#AdviseThroughBank6595065",
+          "fallback": "oj-radioset[id^=\"AdviseThroughBank\"]",
+          "options": [
+            "SWIFT Code",
+            "Name and Address"
+          ],
+          "notes": "Separate Advise Through Bank radio — independent of Advising Bank radio."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [],
+          "field": "Advise Through Bank SWIFT Code",
+          "type": "oj-input-text",
+          "primaryId": "advThroughBankSwiftCode",
+          "selector": "#advThroughBankSwiftCode input",
+          "fallback": "oj-input-text[id^=\"advThroughBank\"]"
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-IMPLC-038"
+          ],
+          "field": "Special Payment Conditions for Beneficiary",
+          "type": "oj-text-area",
+          "primaryId": "SpecialPaymentConditionsforBeneficiary3001606",
+          "selector": "oj-text-area#SpecialPaymentConditionsforBeneficiary3001606",
+          "fallback": "oj-text-area[id^=\"SpecialPaymentConditionsforBeneficiary\"]",
+          "innerInputSelector": "#SpecialPaymentConditionsforBeneficiary3001606 textarea"
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-IMPLC-038"
+          ],
+          "field": "Special Payment Conditions for Bank Only",
+          "type": "oj-text-area",
+          "primaryId": "SpecialPaymentConditionsforBankOnly9311284",
+          "selector": "oj-text-area#SpecialPaymentConditionsforBankOnly9311284",
+          "fallback": "oj-text-area[id^=\"SpecialPaymentConditionsforBankOnly\"]",
+          "innerInputSelector": "#SpecialPaymentConditionsforBankOnly9311284 textarea"
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-IMPLC-039",
+            "TC-IMPLC-040",
+            "TC-BS-005",
+            "TC-BS-006",
+            "TC-BS-007"
+          ],
+          "field": "Confirmation Instructions (radio — Confirm / May Add / Without)",
+          "type": "radioset",
+          "primaryId": "ConfirmationInstructions2562782",
+          "selector": "oj-radioset#ConfirmationInstructions2562782",
+          "fallback": "oj-radioset[id^=\"ConfirmationInstructions\"]",
+          "options": [
+            "Confirm",
+            "May Add",
+            "Without"
+          ],
+          "notes": "Drives the SWIFT field 49 value. Confirm + May Add reveal a dependent Confirming Bank section (radio + SWIFT or Name+Address). Without keeps the LC unconfirmed. Live OBDX uses radio buttons here, not the LOV dropdown described in earlier specs — the curated file initially assumed a dropdown; rescrape confirms it is a radioset."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [],
+          "field": "Charges (Tab 5 textarea)",
+          "type": "oj-text-area",
+          "primaryId": "Charges9637008",
+          "selector": "oj-text-area#Charges9637008",
+          "fallback": "oj-text-area[id^=\"Charges\"]",
+          "innerInputSelector": "#Charges9637008 textarea"
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [],
+          "field": "Special Instructions (Tab 5 — distinct from Sender-to-Receiver)",
+          "type": "oj-text-area",
+          "primaryId": "SpecialInstructions2287485",
+          "selector": "oj-text-area#SpecialInstructions2287485",
+          "fallback": "oj-text-area[id^=\"SpecialInstructions\"]",
+          "innerInputSelector": "#SpecialInstructions2287485 textarea",
+          "notes": "Distinct from Sender-to-Receiver Information (F72). Special Instructions is an internal-only note that does not appear in the SWIFT message."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-BS-043",
+            "TC-BS-033"
+          ],
+          "field": "Sender to Receiver Information (F72) — primaryId now known",
+          "type": "oj-text-area",
+          "primaryId": "SendertoReceiverInformation6300598",
+          "selector": "oj-text-area#SendertoReceiverInformation6300598",
+          "fallback": "oj-text-area[id^=\"SendertoReceiverInformation\"]",
+          "innerInputSelector": "#SendertoReceiverInformation6300598 textarea",
+          "notes": "Curated field already covered this by label; rescrape pins the live primary ID."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-IMPLC-042"
+          ],
+          "field": "Standard Instructions overlay link",
+          "type": "link",
+          "primaryId": "KindlygothroughalltheStandardInstructions3154142",
+          "selector": "a#KindlygothroughalltheStandardInstructions3154142",
+          "fallback": "a[id^=\"Kindlygothrough\"]",
+          "role": {
+            "type": "link",
+            "name": "Kindly go through all the Standard Instructions"
+          },
+          "notes": "Click to open the Standard Instructions modal overlay (a separate flow from ticking the mandatory checkbox). Test TC-IMPLC-042 verifies the overlay opens, renders the text, and the close affordance returns to Tab 5."
+        }
+      ]
+    },
+    {
+      "tab": "Tab 6 — Insurance",
+      "fields": [
+        {
+          "field": "Insurance table",
+          "type": "oj-table",
+          "primaryId": "InsuranceDataTable8714597",
+          "selector": "oj-table#InsuranceDataTable8714597",
+          "fallback": "oj-table[id^='InsuranceDataTable']",
+          "mandatory": "must select a row",
+          "sampleRowMatch": "AIG INSURANCE / policy 123456789"
+        },
+        {
+          "field": "Insurance row radio",
+          "type": "input[type=radio] or oj-selector",
+          "selector": "tr[role='row'] input[type='radio'], tr[role='row'] oj-selector, tr[role='row'] .oj-selector-radio",
+          "notes": "Select by matching the row's textContent against the policy number; click the radio inside the matched row."
+        }
+      ]
+    },
+    {
+      "tab": "Tab 7 — Attachments → Review → Confirmation",
+      "fields": [
+        {
+          "field": "I accept Terms and Conditions",
+          "type": "checkbox",
+          "role": {
+            "type": "checkbox",
+            "name": "I accept Terms and Conditions"
+          },
+          "mandatory": true,
+          "notes": "Drive via .evaluate(el => { if (!el.checked) el.click(); }) — standard .check() does not commit."
+        },
+        {
+          "field": "Submit (Attachments → Review)",
+          "type": "button",
+          "selector": "button:has-text('Submit')",
+          "postCondition": "URL contains 'review-letter-of-credit'"
+        },
+        {
+          "field": "Submit (Review → Confirmation)",
+          "type": "button",
+          "selector": "button:has-text('Submit')",
+          "postCondition": "URL contains 'confirm-screen'",
+          "notes": "Usance variant takes longer (Drawee Bank lookup) — generous timeout (60s) prevents flake."
+        },
+        {
+          "field": "Confirmation message",
+          "type": "text",
+          "selector": "text=Transaction submitted for approval."
+        },
+        {
+          "field": "Confirmation status",
+          "type": "text",
+          "selector": "text=Pending for Approval"
+        },
+        {
+          "field": "Reference number (read-only)",
+          "type": "div",
+          "selector": "DIV.oj-text-field-readonly-div",
+          "notes": "Scan all DIVs with this class; the reference number matches /^[A-Z0-9]{10,}$/."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-IMPLC-045",
+            "TC-BS-003"
+          ],
+          "field": "Save As Template (radio — Yes / No)",
+          "type": "radioset",
+          "primaryId": "SaveAsTemplate1696954",
+          "selector": "oj-radioset#SaveAsTemplate1696954",
+          "fallback": "oj-radioset[id^=\"SaveAsTemplate\"]",
+          "options": [
+            "Yes",
+            "No"
+          ],
+          "notes": "Renders on Tab 7 (Attachments). Selecting Yes reveals dependent Template-Name + Access-Type fields (rescrape did NOT click into the Yes path — Save-as-Template Yes-state sub-fields need a 2nd scrape pass)."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [
+            "TC-IMPLC-043",
+            "TC-IMPLC-044",
+            "TC-BS-035"
+          ],
+          "field": "File-picker (drag-and-drop attachments zone)",
+          "type": "oj-file-picker",
+          "selector": "oj-file-picker.oj-filepicker",
+          "fallback": "oj-file-picker, [class*=\"oj-filepicker\"]",
+          "dropZoneSelector": ".oj-filepicker-dropzone",
+          "notes": "Live drop zone is an oj-file-picker with class \"oj-filepicker oj-filepicker-no-trigger oj-complete\". The hidden native <input type=\"file\"> was NOT exposed in the rescrape capture (`fileInputs: []`) — for Playwright setInputFiles, query for it after the user clicks/focuses the picker, or use locator('input[type=\"file\"]').setInputFiles(...) with `{ force: true }`."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [],
+          "field": "Accept Terms and Conditions (checkbox — primaryId now known)",
+          "type": "checkboxset",
+          "primaryId": "AcceptTermsandConditions9226903",
+          "selector": "oj-checkboxset#AcceptTermsandConditions9226903",
+          "fallback": "oj-checkboxset[id^=\"AcceptTermsandConditions\"]",
+          "innerInputSelector": "oj-checkboxset#AcceptTermsandConditions9226903 input[type=\"checkbox\"]",
+          "notes": "Rescrape pins the live ID. Curated entry already had this field tracked by label."
+        },
+        {
+          "source": "rescrape-2026-05-21",
+          "unblocks": [],
+          "field": "I accept the Terms & Conditions (link to T&C content)",
+          "type": "link",
+          "primaryId": "IaccepttheTermsConditions5920332",
+          "selector": "a#IaccepttheTermsConditions5920332",
+          "fallback": "a[id^=\"IaccepttheTermsConditions\"]",
+          "role": {
+            "type": "link",
+            "name": "I accept the Terms & Conditions"
+          },
+          "notes": "Clicking the link opens the T&C text (separate affordance from the checkbox)."
+        }
+      ]
+    }
+  ],
+  "errorAndValidation": {
+    "errorContainer": ".oj-message-error-text, [class*='error']",
+    "knownMessages": [
+      "Enter a value",
+      "Tenor should be zero for sight types of LC",
+      "Please read and check Standard Instructions to proceed further",
+      "Goods total amount should equal LC amount"
+    ]
+  },
+  "ojetHelpers": {
+    "ojFill": "focus → HTMLInputElement.value setter → dispatch input/change/keyup → blur (commits JET model)",
+    "ojFillDate": "same as ojFill but parses MM/DD/YYYY into the calendar component",
+    "ojSelectByText": "click oj-select-one → click visible option label (no search)",
+    "ojSelectWithSearch": "click oj-select-one → type into floating .oj-searchselect-filter input → click suggestion",
+    "ojCheckCheckbox": "find input[type=checkbox] inside oj-checkboxset → .click() if not already checked"
+  }
+}

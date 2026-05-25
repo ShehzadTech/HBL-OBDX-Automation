@@ -1,0 +1,186 @@
+{
+  "flow": "Create Import Letter of Credit — sub-panel deep-dive scrape (continuation of 2026-05-22)",
+  "scrapeDate": "2026-05-23",
+  "entity": "AE (corpmaker2)",
+  "purpose": "Capture locators for sub-panels that don't render in the initial form: Revolving sub-fields, Additional Conditions, Refer Codes overlay, Save As Draft dialog, Tab 7 Save-as-Template, file upload, Tab 5 Confirming Bank. Used to convert test.fixme cases in ilc-create.spec.ts into runnable tests.",
+
+  "tab1_revolving_subFields": {
+    "trigger": "Click Revolving = Yes (oj-radioset#Revolving5328169, value=true)",
+    "renderedWhen": "Revolving = Yes AND product selected",
+    "autoReinstatementRadio": {
+      "id": "AutoReinstatement5890136",
+      "selector": "oj-radioset#AutoReinstatement5890136",
+      "options": ["Yes", "No"],
+      "labelHint": "[[nls.LCDetails.AutoReinstatement]]"
+    },
+    "revolvingTypeRadio_new": {
+      "id": "RevolvingType7494476",
+      "selector": "oj-radioset#RevolvingType7494476",
+      "options": ["Value", "Time"],
+      "note": "Was previously assumed to be 'Monthly/Quarterly/Half Yearly/Yearly' per FSD — live AUT only exposes Value | Time. The Time path reveals Cumulative + Repeat Frequency below."
+    },
+    "cumulativeRadio": {
+      "id": "Cumulative8227808",
+      "selector": "oj-radioset#Cumulative8227808",
+      "options": ["Yes", "No"],
+      "visibleWhen": "Revolving=Yes AND RevolvingType=Time"
+    },
+    "repeatFrequencyLov": {
+      "id": "RepeatFrequency7761639",
+      "selector": "oj-select-one#RepeatFrequency7761639",
+      "options": ["Days", "Months"],
+      "note": "Two values only — Weeks/Years/Quarters NOT in this build's LOV."
+    },
+    "repeatFrequencyValue": {
+      "id": "RepeatFrequency6732900",
+      "inputId": "RepeatFrequency6732900|input",
+      "type": "oj-input-number"
+    }
+  },
+
+  "tab3_additionalConditions": {
+    "trigger": "Click 'Add Condition' link (a#AddCondition3088651)",
+    "conditionCodeLov": {
+      "id": "ConditionCode1895481",
+      "selector": "oj-select-one#ConditionCode1895481"
+    },
+    "identifierLov": {
+      "id": "Identifier6056414",
+      "selector": "oj-select-one#Identifier6056414"
+    },
+    "referCodesLink": {
+      "id": "ReferCodesandDescription7049347",
+      "selector": "a#ReferCodesandDescription7049347",
+      "text": "Refer Codes and Description"
+    },
+    "referCodesOverlay": {
+      "selector": "[role='dialog'][aria-label='Right Drawer']",
+      "innerHeading": "Reference",
+      "dismissButton": "button[aria-label*='dismiss overlay' i]"
+    }
+  },
+
+  "tab4_subPanel_notes": {
+    "cashCollateralAddAccount": {
+      "id": "AddAccount2665268",
+      "click_outcome_2026_05_23": "Click did NOT reveal the SettlementAccountNumber wrapper in this session, even with Percent set to 2. Sub-panel locators captured in the 2026-05-22 session (id=SettlementAccountNumber6046608, contribution input id='amount-check|input') are kept for reference but may not be reproducible without a non-empty draft or specific Percent + product state."
+    },
+    "depositLinkageAddAccount": {
+      "id": "AddAccount7209291",
+      "click_outcome_2026_05_23": "No revealed widgets — likely corpmaker2 has no eligible deposits to link. Bank-side seeding required to capture the deposit-linkage sub-panel."
+    },
+    "remaining_blockers": [
+      "TC-IMPLC-031 (Currency-filtered Account LOV) — needs the Add-Account flow to actually reveal the LOV in this env.",
+      "TC-IMPLC-032 (Multi-account collateral) — needs the same.",
+      "TC-IMPLC-033/034 (Deposit Linkage) — needs a seeded FD/TD account."
+    ]
+  },
+
+  "tab5_confirming_bank_notes": {
+    "confirmationInstructionsRadio": {
+      "id": "ConfirmationInstructions2562782",
+      "selector": "oj-radioset#ConfirmationInstructions2562782",
+      "options": ["Confirm", "May Add", "Without"],
+      "rendering": "CONDITIONAL — present in some Tab-5 sessions (rescrape-2026-05-22 captured it), ABSENT in others (rescrape-2026-05-23 did not). Suspected gating: product/entitlement filter on a saved-draft-resume state. Tests should skip cleanly when this widget is absent."
+    },
+    "confirmingBankSection": "Renders only when Confirmation Instructions = Confirm or May Add. The Confirming Bank section reveals a SWIFT/Name-and-Address radio mirroring the Advising Bank pattern. Literal ids NOT yet captured — use role+name selectors (getByRole('radiogroup', {name: /Confirming Bank/i}))."
+  },
+
+  "tab1_swiftLookup": {
+    "trigger": "Click 'Lookup SWIFT Code' link next to availableWithSwiftCode (Tab 1) or advBankSwiftCode (Tab 5).",
+    "dialogId_tab1": "availableWithLookup",
+    "dialogId_tab5": "draweeBankLookup",
+    "searchInputs": {
+      "swiftCode": "oj-input-text[id^='swiftCode_obdx']",
+      "city": "oj-input-text[id^='city_obdx']",
+      "bankName": "oj-input-text[id^='bankName_obdx']"
+    },
+    "note": "obdx-suffixed ids are session-scoped — match by [id^='swiftCode_obdx'] etc. Search input opens a results table; non-empty results depend on the test env's RMA data."
+  },
+
+  "saveAsDraft_dialog": {
+    "trigger": "Click 'Save As Draft' button (text-based selector; no stable id).",
+    "dialogId": "saveAsDialog",
+    "selector": "oj-dialog#saveAsDialog",
+    "draftNameInput": {
+      "id": "NameoftheDraft5341057",
+      "inputId": "NameoftheDraft5341057|input"
+    },
+    "saveButton": "Save button inside saveAsDialog",
+    "savedConfirmDialog": "oj-dialog#savedDialog (appears after successful save)"
+  },
+
+  "tab7_saveAsTemplate_notes": {
+    "saveAsTemplateRadio": {
+      "id": "SaveAsTemplate1696954",
+      "selector": "oj-radioset#SaveAsTemplate1696954",
+      "options": ["Yes", "No"],
+      "labelHint": "[[nls.LCAttachments.SaveAsTemplate]]"
+    },
+    "yesStateSubFields": "Toggling Yes is expected to reveal a Template Name input + Access Type (Public/Private) radio. Sub-field locators not captured in AE/corpmaker2 — feature likely entitlement-gated. TC-IMPLC-045 currently soft-skips when the sub-fields don't render."
+  },
+
+  "tab7_fileUpload": {
+    "ojFilePicker": "oj-file-picker, .oj-filepicker-dropzone",
+    "hiddenFileInput": "input[type='file'] (descendant of the drop zone)",
+    "uploadVia": "page.locator('input[type=\"file\"]').setInputFiles(paths)",
+    "postUpload": "Uploaded filename appears as text in the Attachments section. Per-row Delete + 'Delete All' affordances render after at least one file is uploaded.",
+    "fixturesAvailable": [
+      "fixtures/attachments/amendment_supporting_doc.pdf",
+      "fixtures/attachments/amendment_proforma_invoice.pdf",
+      "fixtures/attachments/amendment_revised_po.pdf",
+      "fixtures/attachments/amendment_board_resolution.pdf",
+      "fixtures/attachments/amendment_beneficiary_consent.pdf",
+      "fixtures/attachments/amendment_beneficiary_trade_licence.pdf",
+      "fixtures/attachments/outward_bg_supporting.pdf"
+    ]
+  },
+
+  "tests_converted_from_fixme": [
+    "TC-IMPLC-007 (Revolving by Time + Auto-Reinstatement + Cumulative + Repeat Frequency)",
+    "TC-IMPLC-008 (Revolving by Value — no Time-only sub-fields render)",
+    "TC-IMPLC-023 (Save Draft on Tab 2 — 'Saved' dialog appears)",
+    "TC-IMPLC-027 (Add Condition + Refer Codes overlay)",
+    "TC-IMPLC-035 (Save Draft on Tab 4 — 'Saved' dialog appears)",
+    "TC-IMPLC-043 (File upload via hidden input + filename row appears)",
+    "TC-IMPLC-045 (Save as Template Yes toggle — soft-skips when sub-fields absent)",
+    "TC-BS-002 (Save Draft mid-flow at Tab 3)",
+    "TC-BS-007 (Confirmation=Confirm + empty Confirming Bank blocks Next — skips when toggle absent)",
+    "TC-BS-013 (SWIFT lookup dialog opens + Bank Name search)",
+    "TC-BS-035 (Attach two PDF fixtures on CIF deal)",
+    "TC-BS-038 (Revolving Months × 12)"
+  ],
+
+  "still_blocked_test_fixmes": {
+    "needs_external_resources": {
+      "TC-BS-014": "Non-RMA SWIFT BIC — needs a bank-supplied SWIFT that's verified-but-not-in-RMA for this env.",
+      "TC-BS-028": "Cross-currency collateral — needs a seeded EUR (or non-USD) collateral account.",
+      "TC-BS-029": "Invalid SWIFT BIC — needs a synthetic invalid value + bank confirmation of expected error wording.",
+      "TC-BS-031": "Maker submits, Checker approves — needs a corpchecker2 fixture + ApprovalQueuePage.",
+      "TC-BS-032": "Checker rejects with reason — depends on TC-BS-031 unblocker."
+    },
+    "needs_SG_entity_or_LOV_values": {
+      "TC-IMPLC-015": "SG 42A 35-char limit — needs SG Tab-1 advising-bank scrape on corpmaker3.",
+      "TC-IMPLC-018": "SG 44A/44B 65-char — needs SG Tab-1 mandatory-field scrape so Tab-2 can be reached.",
+      "TC-BS-021": "40A IRREVOCABLE STANDBY — value absent in AE build's 40A LOV (SG-only).",
+      "TC-BS-022": "40A IRREVOCABLE TRANSFERABLE — same as TC-BS-021."
+    },
+    "needs_env_seeded_state": {
+      "TC-IMPLC-006": "Limits LOV — confirmed absent in AE/corpmaker2 build. Needs an entitled user.",
+      "TC-IMPLC-024": "Documents picker — confirmed NOT exposed in AE/corpmaker2 build (Tab 3 search-by-document-name returns empty for 'Commercial'/'Invoice').",
+      "TC-IMPLC-031": "Currency-filtered Account LOV — Cash Collateral Add Account is a no-op in this env.",
+      "TC-IMPLC-032": "Multi-account collateral — same.",
+      "TC-IMPLC-033": "Deposit Linkage — no eligible deposits surfaced.",
+      "TC-IMPLC-034": "Linked amount exceeds balance — depends on TC-IMPLC-033 unblocker.",
+      "TC-IMPLC-047": "Preview Draft Copy — confirmed absent in this build."
+    },
+    "needs_additional_POM_work": {
+      "TC-BS-003": "List saved templates — needs a TemplatesPage object.",
+      "TC-BS-030": "View Import LC after submission — needs ViewImportLcFlowPage.searchByCustomerReference + assertLcRowVisible helpers.",
+      "TC-IMPLC-044": "Reject .exe / oversize file — needs a 25MB fixture + a .exe fixture under fixtures/attachments/.",
+      "TC-IMPLC-023-RESUME": "Cross-session resume — needs a SavedDraftsPage object with searchByName + openDraft.",
+      "TC-IMPLC-035-RESUME": "Same.",
+      "TC-BS-036": "Usance LC USN-ACC-RY-05 — needs ILC-INU product to actually appear in the Revolving=Yes filtered product LOV. Verified not present in AE/corpmaker2 LOV."
+    }
+  }
+}

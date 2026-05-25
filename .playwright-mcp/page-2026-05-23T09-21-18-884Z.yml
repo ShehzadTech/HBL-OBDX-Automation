@@ -1,0 +1,193 @@
+- generic [ref=e1]:
+  - dialog "Right Drawer" [ref=e1809]:
+    - generic [ref=e1811]:
+      - generic [ref=e1813]:
+        - heading "Description" [level=2] [ref=e1815]
+        - generic "Click to dismiss overlay" [ref=e1816]:
+          - button "Click to dismiss overlay" [active] [ref=e1817] [cursor=pointer]:
+            - generic [ref=e1818]:
+              - generic [ref=e1819]: Click to dismiss overlay
+              - generic [ref=e1821]: 
+      - generic [ref=e1835]:
+        - textbox "Description" [ref=e1841]:
+          - /placeholder: ""
+        - button "Ok" [ref=e1848] [cursor=pointer]:
+          - generic [ref=e1850]: Ok
+  - generic [ref=e116]:
+    - link [ref=e1851] [cursor=pointer]:
+      - /url: "#maincontent"
+      - text: Skip to main content
+    - generic [ref=e118]:
+      - banner [ref=e119]:
+        - generic [ref=e120]:
+          - generic [ref=e121]:
+            - generic [ref=e122]:
+              - button [ref=e1853] [cursor=pointer]:
+                - generic [ref=e127]: 
+              - link [ref=e1854] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e1855]
+            - generic [ref=e1856]:
+              - generic [ref=e136]: 
+              - combobox [ref=e1857]:
+                - textbox [ref=e1858]:
+                  - /placeholder: Search
+            - generic [ref=e139]:
+              - button [ref=e1860] [cursor=pointer]:
+                - generic [ref=e145]:
+                  - text: 
+                  - generic [ref=e177]: 99+
+              - button [ref=e1861] [cursor=pointer]:
+                - generic [ref=e149]:
+                  - img [ref=e1862]:
+                    - generic [ref=e154]: CM
+                  - text:  
+          - generic [ref=e159]:
+            - button [ref=e1864] [cursor=pointer]:
+              - generic [ref=e336]:
+                - generic [ref=e338]: 
+                - generic [ref=e339]: Back
+            - generic [ref=e160]:
+              - heading [level=1] [ref=e1865]: Initiate Letter of Credit
+              - generic [ref=e595]: JZNNZI ZO AZNZM ULI KZKVI YLCVH ZMW | P000168
+      - main [ref=e169]:
+        - generic [ref=e603]:
+          - generic [ref=e610]:
+            - text: 
+            - tablist [ref=e1866]:
+              - tab [ref=e1867] [cursor=pointer]:
+                - generic [ref=e615]: 
+                - generic [ref=e617]: LC Details
+              - tab [selected] [ref=e1868] [cursor=pointer]:
+                - generic [ref=e619]: 
+                - generic [ref=e621]: Goods and Shipment Details
+              - tab [ref=e1869] [cursor=pointer]:
+                - generic [ref=e623]: 
+                - generic [ref=e625]: Documents and Conditions
+              - tab [ref=e1870] [cursor=pointer]:
+                - generic [ref=e627]: 
+                - generic [ref=e629]: Linkages
+              - tab [ref=e1871] [cursor=pointer]:
+                - generic [ref=e631]: 
+                - generic [ref=e633]: Instructions
+              - tab [ref=e1872] [cursor=pointer]:
+                - generic [ref=e635]: 
+                - generic [ref=e637]: Insurance
+              - tab [ref=e1873] [cursor=pointer]:
+                - generic [ref=e639]: 
+                - generic [ref=e641]: Attachments
+            - text: 
+          - generic [ref=e643]:
+            - generic [ref=e1578]:
+              - generic [ref=e1582]:
+                - heading [level=2] [ref=e1874]: Goods and Shipment Details
+                - generic [ref=e1589]:
+                  - generic [ref=e1592]: 43P
+                  - generic [ref=e1595]:
+                    - combobox [ref=e1876]:
+                      - generic [ref=e1597]:
+                        - generic [ref=e1600]: Partial Shipment
+                        - generic [ref=e1601]: Allowed
+                      - generic [ref=e1602]: 
+                    - text: 
+                  - generic [ref=e1607]: 43T
+                  - generic [ref=e1610]:
+                    - combobox [ref=e1877]:
+                      - generic [ref=e1612]:
+                        - generic [ref=e1615]: Transshipment
+                        - generic [ref=e1616]: Allowed
+                      - generic [ref=e1617]: 
+                    - text: 
+                  - generic [ref=e1622]: 44A
+                  - generic [ref=e1626]:
+                    - generic [ref=e1629]: Place of Taking
+                    - textbox [ref=e1878]: SHANGHAI PORT
+                  - generic [ref=e1634]: 44B
+                  - generic [ref=e1638]:
+                    - generic [ref=e1641]: Place of Final Destination
+                    - textbox [ref=e1879]: PORT OF LONDON
+                  - generic [ref=e1646]: 44C / 44D
+                  - radiogroup [ref=e1880]:
+                    - generic [ref=e1652]: Shipment
+                    - generic [ref=e1653]:
+                      - generic [ref=e1654]:
+                        - generic [ref=e1655]:
+                          - text: 
+                          - radio [checked] [ref=e1881]
+                        - generic [ref=e1659]: Date
+                      - generic [ref=e1660]:
+                        - generic [ref=e1661]:
+                          - text: 
+                          - radio [ref=e1882]
+                        - generic [ref=e1665]: Period
+                  - generic [ref=e1670]:
+                    - generic [ref=e1671]:
+                      - generic [ref=e1674]: Shipment Date
+                      - combobox [ref=e1883]: 11/30/2026
+                    - generic [ref=e1676]:
+                      - generic [ref=e1884] [cursor=pointer]: 
+                      - generic [ref=e1678]: Press Key down or Key up for access to Calendar.
+                  - generic [ref=e1682]: 44E
+                  - generic [ref=e1686]:
+                    - generic [ref=e1689]: Port of Loading
+                    - textbox [ref=e1885]: SHANGHAI
+                  - generic [ref=e1694]: 44F
+                  - generic [ref=e1698]:
+                    - generic [ref=e1701]: Port of Discharge
+                    - textbox [ref=e1886]: LONDON
+              - generic [ref=e1887]:
+                - application [ref=e1888]:
+                  - rowgroup [ref=e1714]:
+                    - row [ref=e1889]:
+                      - columnheader [ref=e1890]:
+                        - generic [ref=e1718]: Goods
+                      - columnheader [ref=e1891]:
+                        - generic [ref=e1721]: Goods Description
+                      - columnheader [ref=e1892]:
+                        - generic [ref=e1724]: Quantity
+                      - columnheader [ref=e1893]:
+                        - generic [ref=e1727]: Cost / Unit
+                      - columnheader [ref=e1894]:
+                        - generic [ref=e1730]: Gross Amount
+                      - columnheader [ref=e1731]
+                  - rowgroup [ref=e1732]:
+                    - row [ref=e1895]:
+                      - cell [ref=e1734]
+                      - cell [ref=e1896]:
+                        - link [ref=e1897] [cursor=pointer]:
+                          - /url: "#"
+                          - text: View / Edit
+                      - cell [ref=e1898]:
+                        - textbox [ref=e1899]:
+                          - /placeholder: "0"
+                          - text: "0"
+                      - cell [ref=e1900]:
+                        - textbox [ref=e1901]:
+                          - /placeholder: $0.00
+                          - text: $0.00
+                      - cell [ref=e1902]:
+                        - textbox [ref=e1903]
+                      - cell [ref=e1904]:
+                        - link [ref=e1905] [cursor=pointer]:
+                          - /url: "#"
+                          - generic [ref=e1765]: 
+                - status [ref=e1766]
+                - generic [ref=e1767]:
+                  - generic [ref=e1768]: Table with 6 columns and more than 1 rows
+                  - generic [ref=e1769]: Row 1
+                  - generic [ref=e1770]: Column 1
+                  - generic [ref=e1771]: Select Row
+                - generic [ref=e1773]: Contains Controls
+              - link [ref=e1906] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e1775]: Add Goods
+            - generic [ref=e955]:
+              - button [ref=e1907] [cursor=pointer]:
+                - generic [ref=e959]: Next
+              - button [ref=e1908] [cursor=pointer]:
+                - generic [ref=e963]: Save As Draft
+              - button [ref=e1909] [cursor=pointer]:
+                - generic [ref=e967]: Cancel
+              - button [ref=e1910] [cursor=pointer]:
+                - generic [ref=e1779]: Back
+  - text:    兩                                

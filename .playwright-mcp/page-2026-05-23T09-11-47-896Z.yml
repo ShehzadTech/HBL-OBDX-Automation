@@ -1,0 +1,42 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e116]:
+    - link "Skip to main content" [ref=e117] [cursor=pointer]:
+      - /url: "#maincontent"
+    - generic [ref=e118]:
+      - banner [ref=e119]:
+        - generic [ref=e120]:
+          - generic [ref=e121]:
+            - generic [ref=e122]:
+              - generic "Toggle Menu" [ref=e123]:
+                - button "Open Menu" [ref=e124] [cursor=pointer]:
+                  - generic [ref=e127]: 
+              - link "Open Dashboard" [ref=e129] [cursor=pointer]:
+                - /url: "#"
+                - img "Open Dashboard" [ref=e130]
+            - generic "Search Transaction" [ref=e134]:
+              - generic [ref=e136]: 
+              - combobox "Search Transaction" [ref=e137]:
+                - textbox "Search Transaction" [ref=e138]:
+                  - /placeholder: Search
+            - generic [ref=e139]:
+              - generic "Click here for notifications" [ref=e141]:
+                - button "Click here for notifications" [ref=e142] [cursor=pointer]:
+                  - generic [ref=e145]: 
+              - button "corpmaker2" [ref=e148] [cursor=pointer]:
+                - generic [ref=e149]:
+                  - img "corpmaker2" [ref=e151]:
+                    - generic [ref=e154]: CM
+                  - text:  
+          - generic [ref=e160]:
+            - heading [level=1]
+            - generic "Personalization Menu" [ref=e163]:
+              - button "Personalization Menu" [ref=e164] [cursor=pointer]:
+                - generic [ref=e165]:
+                  - generic [ref=e166]: Personalization Menu
+                  - generic [ref=e167]: 
+      - main [ref=e169]
+      - contentinfo:
+        - generic:
+          - generic:
+            - log
+  - text:   兩                                   

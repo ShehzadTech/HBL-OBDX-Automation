@@ -1,0 +1,533 @@
+{
+  "flow": "Create Import Letter of Credit (ILC-INL)",
+  "scrapeDate": "2026-05-22",
+  "entity": "AE (corpmaker2)",
+  "product": "ILC-INL — Import Letter of Credit-INLAND SIGHT LC",
+  "submittedReference": "22059216766E",
+  "submittedStatus": "Pending for Approval",
+  "confirmationMessage": "Transaction submitted for approval.",
+  "source": "Live MCP-Playwright walk-through driven from the OBDX 25.1 HBL test env, 2026-05-22. Captured the happy path login → Initiate Import LC → ILC-INL → all 7 tabs → review → confirmation. Locators come from real DOM ids/labels.",
+
+  "urlFragments": {
+    "create":       "initiate-letter-of-credit",
+    "review":       "review-letter-of-credit",
+    "confirmation": "confirm-screen"
+  },
+
+  "tabAnchors": {
+    "tab1_lcDetails":      "li#lc-details-init",
+    "tab2_goodsShipment":  "li#shipment-details-init",
+    "tab3_documents":      "li#letter-of-credit-document-details",
+    "tab4_linkages":       "li#letter-of-credit-linkage",
+    "tab5_instructions":   "li#instructions",
+    "tab6_insurance":      "li#letter-of-credit-insurance",
+    "tab7_attachments":    "li#lc-attachment-details"
+  },
+
+  "navigation": {
+    "hamburger":             "button[aria-label='Open Menu']",
+    "tradeFinance":          "menuitem 'Trade Finance'",
+    "letterOfCredit":        "menuitem 'Letter Of Credit'",
+    "importLetterOfCredit":  "menuitem 'Import Letter of Credit'",
+    "initiateImportLC":      "menuitem 'Initiate Import LC'",
+    "createLcButton":        "button 'Create LC'"
+  },
+
+  "tab1_lcDetails": {
+    "applicantDetailsRadio": {
+      "id": "ApplicantDetails3883366",
+      "selector": "oj-radioset#ApplicantDetails3883366",
+      "options_AE_corpmaker2": ["Existing customer"],
+      "note": "FINDING: On AE/corpmaker2 the 'Non-customer' radio is ABSENT — only 'Existing customer' renders. Previously memorised as SG-only customisation; that memory is stale — verify on AE before relying on the Non-customer code path. selectApplicantType('Non-customer') will hang."
+    },
+    "applicantNameDropdown": {
+      "id": "ApplicantName1425571",
+      "selector": "oj-select-one#ApplicantName1425571",
+      "labelHint": "[[nls.LCDetails.ApplicantName]]",
+      "required": true
+    },
+    "field40A_typeOfDocumentaryCredit": {
+      "id": "Transferable1086972",
+      "selector": "oj-radioset#Transferable1086972",
+      "labelHint": "[[nls.LCDetails.TypeofDocumentaryCredit]]",
+      "options": ["Transferable", "Non Transferable"],
+      "note": "Same widget covers POM 'transferableCredit' (Yes/No → Transferable/Non Transferable) and 'field40A' — keep them pointing at the same id."
+    },
+    "lcTypeRadio": {
+      "id": "LCType7704147",
+      "selector": "oj-radioset#LCType7704147",
+      "options": ["Sight", "Usance"]
+    },
+    "revolvingRadio": {
+      "id": "Revolving5328169",
+      "selector": "oj-radioset#Revolving5328169",
+      "options": ["Yes", "No"]
+    },
+    "productDropdown": {
+      "id": "SelectProduct8713118",
+      "selector": "oj-select-one#SelectProduct8713118",
+      "labelHint": "[[nls.LCDetails.SelectProduct]]",
+      "required": true,
+      "lov_AE_corpmaker2_default": ["ILC-INL Import Letter of Credit-INLAND SIGHT LC", "ILC-OTH Import Letter of Credit-OTHER IMPORT L/C", "ILC-BTB Import Letter of Credit-Back to Back L/C", "ELC-FLC Export Letter of Credit-Foreign LC", "ELC-INL Export Letter of Credit-Inland LC"],
+      "note": "ILC-INU (Usance) does NOT appear by default — it filters in only when Revolving=Yes is selected first."
+    },
+    "dateOfExpiry": {
+      "id": "DateofExpiry3481130",
+      "selector": "oj-input-date#DateofExpiry3481130",
+      "inputId": "DateofExpiry3481130|input",
+      "labelHint": "[[nls.LCDetails.DateofExpiry]]",
+      "required": true,
+      "happyPathValue": "12/31/2026"
+    },
+    "placeOfExpiry": {
+      "id": "PlaceofExpiry2710814",
+      "selector": "oj-input-text#PlaceofExpiry2710814",
+      "inputId": "PlaceofExpiry2710814|input",
+      "labelHint": "[[nls.LCDetails.PlaceofExpiry]]",
+      "required": true,
+      "happyPathValue": "LONDON"
+    },
+    "beneficiaryDetailsRadio": {
+      "id": "BeneficiaryDetails7386148",
+      "selector": "oj-radioset#BeneficiaryDetails7386148",
+      "options": ["Existing", "New"]
+    },
+    "beneficiaryNameDropdown": {
+      "id": "BeneficiaryName8826275",
+      "selector": "oj-select-one#BeneficiaryName8826275",
+      "labelHint": "[[nls.LCDetails.BeneficiaryName]]",
+      "required": true,
+      "happyPathValue": "Shehzad"
+    },
+    "lcAmountCurrencyDropdown": {
+      "id": "lc-amount_currency",
+      "selector": "oj-select-one#lc-amount_currency",
+      "labelHint": "[[locale.currency]]",
+      "required": true,
+      "happyPathValue": "USD",
+      "note": "Only renders AFTER a Product is selected — initial-load DOM does not contain it."
+    },
+    "lcAmountInput": {
+      "id": "lc-amount",
+      "selector": "oj-input-text#lc-amount",
+      "inputId": "lc-amount|input",
+      "labelHint": "[[$properties.label]]",
+      "required": true,
+      "happyPathValue": "50000",
+      "note": "BUG IN POM: existing locator '#lc-amount_field input' does NOT exist — id is 'lc-amount' (no '_field' suffix). Fallback 'input[id*=\"lc-amount\"]' double-matches (currency input + amount input) so it's not safe either. Pin to `oj-input-text#lc-amount input` or `input[id=\"lc-amount|input\"]`."
+    },
+    "toleranceUnderInput": {
+      "id": "Under3869314",
+      "selector": "oj-input-text#Under3869314",
+      "inputId": "Under3869314|input",
+      "labelHint": "[[nls.LCDetails.ToleranceUnder]]"
+    },
+    "toleranceAboveInput": {
+      "id": "Above4228273",
+      "selector": "oj-input-text#Above4228273",
+      "inputId": "Above4228273|input",
+      "labelHint": "[[nls.LCDetails.ToleranceAbove]]"
+    },
+    "additionalAmountsCovered_39C": {
+      "id": "AdditionalAmountCovered8411447",
+      "selector": "oj-text-area#AdditionalAmountCovered8411447",
+      "inputId": "AdditionalAmountCovered8411447|input",
+      "innerTag": "textarea",
+      "labelHint": "[[nls.LCDetails.AdditionalAmountCovered]]",
+      "note": "BUG IN POM: existing locator 'input[id*=\"AdditionalAmount\"]' is wrong — the inner element is a <textarea>, not an <input>. Use [id=\"AdditionalAmountCovered8411447|input\"] or 'oj-text-area#AdditionalAmountCovered8411447 textarea'."
+    },
+    "customerReferenceNumber": {
+      "id": "CustomerReferenceNumber8344067",
+      "selector": "oj-input-text#CustomerReferenceNumber8344067",
+      "inputId": "CustomerReferenceNumber8344067|input",
+      "labelHint": "[[nls.LCDetails.CustomerReferenceNumber]]",
+      "happyPathValue": "CUSTREF2024001"
+    },
+    "creditAvailableBy_41A_LOV": {
+      "id": "CreditAvailableBy4735824",
+      "selector": "oj-select-one#CreditAvailableBy4735824",
+      "labelHint": "[[nls.LCDetails.CreditAvailableBy]]",
+      "required": true,
+      "options_AE_corpmaker2_ILC_INL": ["Negotiation", "Sight Payment"],
+      "happyPathValue": "Sight Payment",
+      "note": "MISSING FROM POM: required LOV not represented in ImportLcFlowPage. The form WILL NOT advance past Tab 1 unless this is set. Add a setCreditAvailableBy(name) helper and call it from fillLcDetails."
+    },
+    "creditAvailableWithRadio": {
+      "id": "CreditAvailableWith4862688",
+      "selector": "oj-radioset#CreditAvailableWith4862688",
+      "labelHint": "[[nls.LCDetails.CreditAvailableWith]]",
+      "options_AE_corpmaker2": ["SWIFT Code", "Bank Address"],
+      "note": "MISSING FROM POM. Tab 1's Credit-Available-With toggle lets the user enter the negotiating bank as either SWIFT or Bank Address. Default is 'SWIFT Code'. Note the label is 'Bank Address' here, NOT 'Name and Address' (which is used on the Tab 5 Advising Bank radio)."
+    },
+    "creditAvailableWith_SWIFT": {
+      "id": "availableWithSwiftCode",
+      "selector": "oj-input-text#availableWithSwiftCode",
+      "inputId": "availableWithSwiftCode|input",
+      "labelHint": "[[nls.LCDetails.SWIFTCode]]",
+      "required": true,
+      "verifyButton": "first button text='Verify' on the form",
+      "happyPathValue": "CITIGB2LXXX",
+      "note": "POM selector '#availableWithSwiftCode input' still works (stable id, no suffix)."
+    },
+    "tenor_usance": {
+      "id": "[['draftTenor']]",
+      "selectorAttr": "oj-input-number[id=\"[['draftTenor']]\"]",
+      "inputId": "[['draftTenor']]|input",
+      "labelHint": "[[nls.LCDetails.Tenor]]",
+      "innerAriaLabel": "Tenor",
+      "note": "Renders for Usance LCs. POM uses role-based selector which still works."
+    },
+    "creditDaysFrom_usance": {
+      "id": "[['draftCreditDays']]",
+      "selectorAttr": "oj-text-area[id=\"[['draftCreditDays']]\"]",
+      "inputId": "[['draftCreditDays']]|input",
+      "innerTag": "textarea",
+      "innerAriaLabel": "Credit Days From"
+    },
+    "draweeBankRadio_usance": {
+      "id": "[['draweeBankSelected']]",
+      "selectorAttr": "oj-radioset[id=\"[['draweeBankSelected']]\"]",
+      "labelHint": "[[nls.LCDetails.DraweeBank]]"
+    },
+    "draweeSwiftCode_usance": {
+      "id": "[['draweeSwiftCode']]",
+      "selectorAttr": "oj-input-text[id=\"[['draweeSwiftCode']]\"]",
+      "inputId": "[['draweeSwiftCode']]|input",
+      "innerAriaLabel": "Drawee Swift Code",
+      "verifyButton": "second button text='Verify' on Tab 1"
+    },
+    "actionButtons": {
+      "Verify":        { "selector": "button:has-text('Verify')", "ids": "none — text-based selector required" },
+      "Next":          { "selector": "button:has-text('Next')" },
+      "SaveAsDraft":   { "selector": "button:has-text('Save As Draft')" },
+      "Cancel":        { "selector": "button:has-text('Cancel')" },
+      "Back":          { "selector": "button:has-text('Back')" }
+    }
+  },
+
+  "tab2_goodsShipment": {
+    "partialShipmentDropdown": {
+      "id": "PartialShipment2681350",
+      "selector": "oj-select-one#PartialShipment2681350",
+      "options": ["Please Select", "Allowed", "Not Allowed", "Conditional"],
+      "happyPathValue": "Allowed"
+    },
+    "transshipmentDropdown": {
+      "id": "Transshipment8893098",
+      "selector": "oj-select-one#Transshipment8893098",
+      "options": ["Please Select", "Allowed", "Not Allowed", "Conditional"],
+      "happyPathValue": "Allowed"
+    },
+    "placeOfTaking": {
+      "id": "PlaceofTaking770471",
+      "selector": "oj-input-text#PlaceofTaking770471",
+      "inputId": "PlaceofTaking770471|input",
+      "happyPathValue": "SHANGHAI PORT"
+    },
+    "placeOfFinalDestination": {
+      "id": "PlaceofFinalDestination7797471",
+      "selector": "oj-input-text#PlaceofFinalDestination7797471",
+      "inputId": "PlaceofFinalDestination7797471|input",
+      "happyPathValue": "PORT OF LONDON"
+    },
+    "shipmentDateOrPeriodRadio": {
+      "id": "Shipment2414745",
+      "selector": "oj-radioset#Shipment2414745",
+      "options": ["Date", "Period"],
+      "note": "Toggles between Shipment Date input and Shipment Period text area."
+    },
+    "shipmentDate": {
+      "id": "ShipmentDate8869450",
+      "selector": "oj-input-date#ShipmentDate8869450",
+      "inputId": "ShipmentDate8869450|input",
+      "happyPathValue": "11/30/2026"
+    },
+    "portOfLoading": {
+      "id": "PortofLoading7310493",
+      "selector": "oj-input-text#PortofLoading7310493",
+      "inputId": "PortofLoading7310493|input",
+      "happyPathValue": "SHANGHAI"
+    },
+    "portOfDischarge": {
+      "id": "PortofDischarge4407721",
+      "selector": "oj-input-text#PortofDischarge4407721",
+      "inputId": "PortofDischarge4407721|input",
+      "happyPathValue": "LONDON"
+    },
+    "goodsType_row0": {
+      "id": "GoodsType4990836",
+      "selector": "oj-select-one#GoodsType4990836",
+      "stableSelector": "oj-select-one[data-id*=\"SelectOne_Goods_Type\"]",
+      "options_sample": ["1059200", "1060000", "2011000", "2061000", "2064100", "2073300", "2081000", "1011100", "1041000", "1051200"],
+      "happyPathValue": "1059200",
+      "note": "Numeric commodity codes only. POM stable-selector works."
+    },
+    "goodsQuantity_row0": {
+      "id": "Quantity6865691",
+      "inputId": "Quantity6865691|input",
+      "stableSelector": "input[aria-label=\"Quantity\"][placeholder=\"0\"]",
+      "happyPathValue": "1"
+    },
+    "goodsCostPerUnit_row0": {
+      "id": "cost_per_unit",
+      "inputId": "cost_per_unit|input",
+      "innerAriaLabel": "Cost per Unit",
+      "stableSelector": "input[id=\"cost_per_unit|input\"]",
+      "happyPathValue": "50000"
+    },
+    "goodsGrossAmount_row0": {
+      "id": "gross_amount",
+      "inputId": "gross_amount|input",
+      "note": "Auto-calculated from quantity × cost — readonly."
+    },
+    "addGoodsRowLink": {
+      "id": "AddGoods7337627",
+      "selector": "a#AddGoods7337627",
+      "text": "Add Goods"
+    }
+  },
+
+  "tab3_documentsConditions": {
+    "presentationDaysInput": {
+      "id": "InputDays9476795",
+      "selector": "oj-input-number#InputDays9476795",
+      "inputId": "InputDays9476795|input",
+      "note": "Field 48 — Documents to be presented within N days. POM selector matches."
+    },
+    "incotermsDropdown": {
+      "id": "Incoterms9641864",
+      "selector": "oj-select-one#Incoterms9641864",
+      "labelHint": "[[nls.DocumentsandConditions.Incoterms]]"
+    },
+    "documentCheckboxesPerRow": {
+      "id_pattern": "docSelected_<rowIdx>",
+      "selector_pattern": "oj-checkboxset[id^='docSelected_']"
+    },
+    "documentRow_originals":      { "id": "originals3589783" },
+    "documentRow_originalsOutOff":{ "id": "originalsoutoff4842600" },
+    "documentRow_copies":         { "id": "Copies9728576" },
+    "behaviour": "POM uses clickNextViaJs() — no field interaction required, per CLAUDE.md."
+  },
+
+  "tab4_linkages": {
+    "cashCollateralSection": {
+      "addAccountLink": {
+        "id": "AddAccount2665268",
+        "selector": "a#AddAccount2665268",
+        "text": "Add Account",
+        "note": "FIRST 'Add Account' link on the Tab 4 form — used for Cash Collateral. POM matches via text-based .or() chain; literal id is more stable."
+      },
+      "cashCollateralCurrency": {
+        "id": "Currency8451156",
+        "selector": "oj-select-one#Currency8451156"
+      },
+      "cashCollateralPercent": {
+        "id": "Percent2774746",
+        "selector": "oj-input-text#Percent2774746",
+        "inputId": "Percent2774746|input",
+        "labelHint": "[[nls.Percent]]",
+        "note": "POM selector matches. MUST be set BEFORE clicking Add Account, otherwise the form throws 'Collateral percentage cannot be zero'."
+      },
+      "settlementAccountWrapper": {
+        "id_pattern": "SettlementAccountNumber<digits>",
+        "id_observed": "SettlementAccountNumber6046608",
+        "selector": "account-input[id^='SettlementAccountNumber']",
+        "note": "Renders ONLY after AddAccount2665268 is clicked. Click the wrapper to open the 'Select Account' grid dialog."
+      },
+      "accountLovDialog": {
+        "selector": "[role='grid'][aria-label='Select Account']",
+        "rowSelector": "row matching new RegExp(accountNumber, 'i')",
+        "sample_accounts": ["AT30008010036 (MVR savings)", "AT30008010014 (GBP current)"]
+      },
+      "contributionAmountInput": {
+        "id": "amount-check",
+        "inputId": "amount-check|input",
+        "innerAriaLabel": "Contribution Amount for Collateral",
+        "happyPathValue": "1000"
+      },
+      "contributionPercentageInput": {
+        "id_pattern": "ContributionPercentage<digits>",
+        "id_observed": "ContributionPercentage472144",
+        "inputId": "ContributionPercentage472144|input",
+        "innerAriaLabel": "Contribution Percentage"
+      },
+      "collateralTable": {
+        "id": "CollateralLinkages401204",
+        "selector": "oj-table#CollateralLinkages401204"
+      }
+    },
+    "depositLinkagesSection": {
+      "addAccountLink": {
+        "id": "AddAccount7209291",
+        "selector": "a#AddAccount7209291",
+        "note": "SECOND 'Add Account' link on Tab 4 — Deposit linkages. POM does not currently wire this section."
+      },
+      "linkagesTable": {
+        "id": "Linkages2618773",
+        "selector": "oj-table#Linkages2618773"
+      }
+    }
+  },
+
+  "tab5_instructions": {
+    "advisingBankRadio": {
+      "id": "AdvisingBank3000831",
+      "selector": "oj-radioset#AdvisingBank3000831",
+      "options": ["SWIFT Code", "Name and Address"]
+    },
+    "advisingBankSwiftInput": {
+      "id": "advBankSwiftCode",
+      "selector": "oj-input-text#advBankSwiftCode",
+      "inputId": "advBankSwiftCode|input",
+      "labelHint": "[[nls.Instructions.SWIFTCode]]",
+      "note": "Pre-populated from Tab 1 SWIFT verify. POM is correct."
+    },
+    "adviseThroughBankRadio_NEW": {
+      "id": "AdviseThroughBank6595065",
+      "selector": "oj-radioset#AdviseThroughBank6595065",
+      "options": ["SWIFT Code", "Name and Address"],
+      "note": "MISSING FROM POM. Optional Advise-Through-Bank radio."
+    },
+    "adviseThroughBankSwiftInput_NEW": {
+      "id": "advThroughBankSwiftCode",
+      "selector": "oj-input-text#advThroughBankSwiftCode",
+      "inputId": "advThroughBankSwiftCode|input"
+    },
+    "specialPaymentForBeneficiary": {
+      "id": "SpecialPaymentConditionsforBeneficiary3001606",
+      "selector": "oj-text-area#SpecialPaymentConditionsforBeneficiary3001606",
+      "inputId": "SpecialPaymentConditionsforBeneficiary3001606|input",
+      "innerTag": "textarea"
+    },
+    "specialPaymentForBankOnly": {
+      "id": "SpecialPaymentConditionsforBankOnly9311284",
+      "selector": "oj-text-area#SpecialPaymentConditionsforBankOnly9311284",
+      "inputId": "SpecialPaymentConditionsforBankOnly9311284|input",
+      "innerTag": "textarea"
+    },
+    "confirmationInstructionsRadio": {
+      "id": "ConfirmationInstructions2562782",
+      "selector": "oj-radioset#ConfirmationInstructions2562782",
+      "options": ["Confirm", "May Add", "Without"]
+    },
+    "sendertoReceiverInformation_72": {
+      "id": "SendertoReceiverInformation6300598",
+      "selector": "oj-text-area#SendertoReceiverInformation6300598",
+      "inputId": "SendertoReceiverInformation6300598|input",
+      "innerTag": "textarea",
+      "labelHint": "[[nls.Instructions.SendertoReceiverInformation]]",
+      "note": "BUG IN POM: locator searches for 'SenderToReceiver' (capital T), but the live id is 'SendertoReceiver' (lowercase t). CSS [id*=...] is case-sensitive, so POM does not match. Fix: use [id*=\"Sendertoreceiver\" i] OR pin to literal id."
+    },
+    "chargesArea_NEW": {
+      "id": "Charges9637008",
+      "selector": "oj-text-area#Charges9637008",
+      "innerTag": "textarea",
+      "note": "MISSING FROM POM. Optional free-text Charges field."
+    },
+    "specialInstructionsArea_NEW": {
+      "id": "SpecialInstructions2287485",
+      "selector": "oj-text-area#SpecialInstructions2287485",
+      "innerTag": "textarea",
+      "note": "MISSING FROM POM. Optional free-text Special Instructions field."
+    },
+    "readStandardInstructionsCheckbox": {
+      "id": "ReadStandardInstructions6671350",
+      "selector": "oj-checkboxset#ReadStandardInstructions6671350",
+      "note": "Mandatory — Next is silently blocked if unchecked. POM's checkReadStandardInstructions() JS click is required."
+    },
+    "standardInstructionsOverlayLink": {
+      "id": "KindlygothroughalltheStandardInstructions3154142",
+      "selector": "a#KindlygothroughalltheStandardInstructions3154142",
+      "text": "Kindly go through all the Standard Instructions"
+    },
+    "nextButtonRequiresJsClick": true
+  },
+
+  "tab6_insurance": {
+    "insuranceDataTable": {
+      "id": "InsuranceDataTable8714597",
+      "selector": "oj-table#InsuranceDataTable8714597",
+      "label": "Insurance Data Table"
+    },
+    "sample_rows_AE_corpmaker2": [
+      { "policyNumber": "123456789", "company": "AIG INSURANCE", "country": "INDIA" },
+      { "policyNumber": "987654321", "company": "ICICI LOMABRD", "country": "INDIA" }
+    ],
+    "rowSelection": "click the row containing the desired policy number",
+    "nextButtonRequiresJsClick": true
+  },
+
+  "tab7_attachments": {
+    "saveAsTemplateRadio": {
+      "id": "SaveAsTemplate1696954",
+      "selector": "oj-radioset#SaveAsTemplate1696954",
+      "labelHint": "[[nls.LCAttachments.SaveAsTemplate]]",
+      "note": "Optional. Used by TC-IMPLC-045 Save-as-Template flow."
+    },
+    "acceptTermsCheckbox": {
+      "id": "AcceptTermsandConditions9226903",
+      "selector": "oj-checkboxset#AcceptTermsandConditions9226903",
+      "innerInputAriaLabel": "I accept Terms and Conditions",
+      "note": "Mandatory before Submit. POM's getByRole('checkbox', {name:'I accept Terms and Conditions'}) matches the inner <input type='checkbox'>."
+    },
+    "submitButton": {
+      "selector": "button:has-text('Submit')",
+      "note": "Tab 7 Submit → Review page (URL fragment 'review-letter-of-credit')."
+    }
+  },
+
+  "review_page": {
+    "urlFragment": "review-letter-of-credit",
+    "buttons": ["Back", "Submit", "Cancel"],
+    "submitButton": "button:has-text('Submit')",
+    "note": "Final Submit → confirm-screen URL fragment."
+  },
+
+  "confirmation_page": {
+    "urlFragment": "confirm-screen",
+    "successMessage": "Transaction submitted for approval.",
+    "status": "Pending for Approval",
+    "referenceFormat": "12-character alphanumeric (observed: 22059216766E)",
+    "readOnlyValueSelector": "div.oj-text-field-readonly-div",
+    "note": "POM's getReferenceNumber() loops through .oj-text-field-readonly-div looking for the alphanumeric match. The 12-char observed value matches the existing /^[A-Z0-9]{10,}$/ regex."
+  },
+
+  "summary_of_bugs_against_current_POM": [
+    {
+      "tab": 1,
+      "field": "lcAmountInput",
+      "issue": "POM selector '#lc-amount_field input' does NOT exist in live DOM (id is 'lc-amount', no '_field' suffix). Fallback 'input[id*=\"lc-amount\"]' is unsafe because it matches the currency selector's underlying input too.",
+      "fix": "Replace with 'oj-input-text#lc-amount input' or directly target id='lc-amount|input'."
+    },
+    {
+      "tab": 1,
+      "field": "additionalAmountsCovered (39C)",
+      "issue": "POM uses 'input[id*=\"AdditionalAmount\"]'. The inner editable element is a <textarea>, not <input>, so the selector returns nothing.",
+      "fix": "Use 'oj-text-area#AdditionalAmountCovered8411447 textarea' or [id=\"AdditionalAmountCovered8411447|input\"]."
+    },
+    {
+      "tab": 1,
+      "field": "creditAvailableBy (41A)",
+      "issue": "Required LOV missing from POM entirely. Tab 1 cannot Submit unless this is set. Existing happy-path tests pass only because the form must currently default to a value before the rescrape — or because the previous test runs left a draft selection. Confirmed required=true on live DOM.",
+      "fix": "Add a private locator + helper (e.g. `setCreditAvailableBy(name)`) and invoke it inside fillLcDetails before Verify."
+    },
+    {
+      "tab": 1,
+      "field": "creditAvailableWith (radio)",
+      "issue": "Tab 1 'SWIFT Code | Bank Address' radio not represented in POM. Label is 'Bank Address' (not 'Name and Address' which is the Tab 5 label).",
+      "fix": "Optional helper. If a future test exercises the Bank-Address branch, add setCreditAvailableWith()."
+    },
+    {
+      "tab": 1,
+      "field": "applicantDetailsRadio",
+      "issue": "Memory feedback_obdx_test_credentials.md claims 'Non-Customer radio absent' is SG-only. AE/corpmaker2 also shows ONLY 'Existing customer' — so the customisation is no longer SG-only. Tests TC-IMPLC-002 (asserts SG-only absence) and TC-IMPLC-003 (uses Non-customer) need to be reconciled.",
+      "fix": "Update test assumptions and update the saved memory."
+    },
+    {
+      "tab": 5,
+      "field": "sendertoReceiverInformation (F72)",
+      "issue": "POM locator 'textarea[id*=\"SenderToReceiver\"]' uses capital T (matching 'SenderTo'), but the live id is 'SendertoReceiverInformation6300598' (lowercase t). CSS attribute selectors are case-sensitive — POM does not match.",
+      "fix": "Use 'oj-text-area#SendertoReceiverInformation6300598 textarea' OR the case-insensitive flag: [id*=\"Sendertoreceiver\" i]."
+    }
+  ]
+}

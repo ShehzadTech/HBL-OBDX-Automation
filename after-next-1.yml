@@ -1,0 +1,185 @@
+- generic [ref=e1]:
+  - generic [ref=e112]:
+    - link "Skip to main content" [ref=e710] [cursor=pointer]:
+      - /url: "#maincontent"
+    - generic [ref=e114]:
+      - banner [ref=e115]:
+        - generic [ref=e116]:
+          - generic [ref=e117]:
+            - generic [ref=e118]:
+              - generic "Toggle Menu" [ref=e711]:
+                - button "Open Menu" [ref=e712] [cursor=pointer]:
+                  - generic [ref=e123]: 
+              - link "Open Dashboard" [ref=e713] [cursor=pointer]:
+                - /url: "#"
+                - img "Open Dashboard" [ref=e714]
+            - generic "Search Transaction" [ref=e715]:
+              - generic [ref=e132]: 
+              - combobox "Search Transaction" [ref=e716]:
+                - textbox "Search Transaction" [ref=e717]:
+                  - /placeholder: Search
+            - generic [ref=e135]:
+              - generic "99+" [ref=e718]:
+                - button "99+" [ref=e719] [cursor=pointer]:
+                  - generic [ref=e141]:
+                    - text: 
+                    - generic [ref=e142]: 99+
+              - button "corpmaker2" [ref=e720] [cursor=pointer]:
+                - generic [ref=e146]:
+                  - img "corpmaker2" [ref=e721]:
+                    - generic [ref=e151]: CM
+                  - text:  
+          - generic [ref=e156]:
+            - generic "Back" [ref=e724]:
+              - button "Back" [ref=e725] [cursor=pointer]:
+                - generic [ref=e726]:
+                  - generic [ref=e728]: 
+                  - generic [ref=e729]: Back
+            - generic [ref=e157]:
+              - heading "Initiate Letter of Credit" [level=1] [ref=e730]
+              - generic [ref=e985]: JZNNZI ZO AZNZM ULI KZKVI YLCVH ZMW | P000168
+      - main [ref=e167]:
+        - generic [ref=e993]:
+          - generic [ref=e1000]:
+            - text: 
+            - tablist "Initiate LC Screens" [ref=e1003]:
+              - tab " LC Details" [ref=e1864] [cursor=pointer]:
+                - generic [ref=e1005]: 
+                - generic [ref=e1007]: LC Details
+              - tab " Goods and Shipment Details" [selected] [ref=e1008] [cursor=pointer]:
+                - generic [ref=e1009]: 
+                - generic [ref=e1011]: Goods and Shipment Details
+              - tab " Documents and Conditions" [ref=e1012] [cursor=pointer]:
+                - generic [ref=e1013]: 
+                - generic [ref=e1015]: Documents and Conditions
+              - tab " Linkages" [ref=e1016] [cursor=pointer]:
+                - generic [ref=e1017]: 
+                - generic [ref=e1019]: Linkages
+              - tab " Instructions" [ref=e1020] [cursor=pointer]:
+                - generic [ref=e1021]: 
+                - generic [ref=e1023]: Instructions
+              - tab " Insurance" [ref=e1024] [cursor=pointer]:
+                - generic [ref=e1025]: 
+                - generic [ref=e1027]: Insurance
+              - tab " Attachments" [ref=e1028] [cursor=pointer]:
+                - generic [ref=e1029]: 
+                - generic [ref=e1031]: Attachments
+            - text: 
+          - generic [ref=e1033]:
+            - generic [ref=e1869]:
+              - generic [ref=e1873]:
+                - heading "Goods and Shipment Details" [level=2] [ref=e1876]
+                - generic "Goods and Shipment Details" [ref=e1878]:
+                  - generic [ref=e1880]:
+                    - generic [ref=e1883]: 43P
+                    - generic [ref=e1886]:
+                      - combobox "Partial Shipment" [ref=e1887]:
+                        - generic [ref=e1891]: Partial Shipment
+                        - generic [ref=e1893]: 
+                      - text: 
+                    - generic [ref=e1898]: 43T
+                    - generic [ref=e1901]:
+                      - combobox "Transshipment" [ref=e1902]:
+                        - generic [ref=e1906]: Transshipment
+                        - generic [ref=e1908]: 
+                      - text: 
+                    - generic [ref=e1913]: 44A
+                    - generic [ref=e1917]:
+                      - generic [ref=e1920]: Place of Taking
+                      - textbox "Place of Taking" [ref=e1921]:
+                        - /placeholder: ""
+                    - generic [ref=e1925]: 44B
+                    - generic [ref=e1929]:
+                      - generic [ref=e1932]: Place of Final Destination
+                      - textbox "Place of Final Destination" [ref=e1933]:
+                        - /placeholder: ""
+                    - generic [ref=e1937]: 44C / 44D
+                    - radiogroup "Shipment" [ref=e1940]:
+                      - generic [ref=e1943]: Shipment
+                      - generic [ref=e1944]:
+                        - generic [ref=e1945]:
+                          - generic [ref=e1946]:
+                            - text: 
+                            - radio "Date" [checked] [ref=e1947]
+                          - generic [ref=e1950]: Date
+                        - generic [ref=e1951]:
+                          - generic [ref=e1952]:
+                            - text: 
+                            - radio "Period" [ref=e1953]
+                          - generic [ref=e1956]: Period
+                    - generic [ref=e1961]:
+                      - generic [ref=e1962]:
+                        - generic [ref=e1965]: Shipment Date
+                        - combobox "Shipment Date" [ref=e1966]
+                      - generic [ref=e1967]:
+                        - generic "Select Date." [ref=e1968] [cursor=pointer]: 
+                        - generic [ref=e1969]: Press Key down or Key up for access to Calendar.
+                    - generic [ref=e1973]: 44E
+                    - generic [ref=e1977]:
+                      - generic [ref=e1980]: Port of Loading
+                      - textbox "Port of Loading" [ref=e1981]:
+                        - /placeholder: ""
+                    - generic [ref=e1985]: 44F
+                    - generic [ref=e1989]:
+                      - generic [ref=e1992]: Port of Discharge
+                      - textbox "Port of Discharge" [ref=e1993]:
+                        - /placeholder: ""
+              - generic "Goods and Services" [ref=e1995]:
+                - application "Goods and Services" [ref=e1997]:
+                  - rowgroup [ref=e2005]:
+                    - row "Goods Goods Description Quantity Cost / Unit Gross Amount" [ref=e2006]:
+                      - columnheader "Goods" [ref=e2007]:
+                        - generic [ref=e2009]: Goods
+                      - columnheader "Goods Description" [ref=e2010]:
+                        - generic [ref=e2012]: Goods Description
+                      - columnheader "Quantity" [ref=e2013]:
+                        - generic [ref=e2015]: Quantity
+                      - columnheader "Cost / Unit" [ref=e2016]:
+                        - generic [ref=e2018]: Cost / Unit
+                      - columnheader "Gross Amount" [ref=e2019]:
+                        - generic [ref=e2021]: Gross Amount
+                      - columnheader [ref=e2022]
+                  - rowgroup [ref=e2023]:
+                    - row "View / Edit 0 $0.00 $0.00 Delete" [ref=e2024]:
+                      - cell [ref=e2025]:
+                        - generic [ref=e2027]:
+                          - combobox "Select Goods Type" [ref=e2028]:
+                            - generic [ref=e2030]: Please Select
+                            - generic [ref=e2031]: 
+                          - text: 
+                      - cell "View / Edit" [ref=e2033]:
+                        - link "View / Edit" [ref=e2035] [cursor=pointer]:
+                          - /url: "#"
+                      - cell "0" [ref=e2036]:
+                        - textbox "Quantity" [ref=e2040]:
+                          - /placeholder: "0"
+                          - text: "0"
+                      - cell "$0.00" [ref=e2041]:
+                        - textbox "Cost per Unit" [ref=e2049]:
+                          - /placeholder: $0.00
+                          - text: $0.00
+                      - cell "$0.00" [ref=e2050]:
+                        - textbox "Gross Amount" [ref=e2059]
+                      - cell "Delete" [ref=e2060]:
+                        - link "Delete" [ref=e2062] [cursor=pointer]:
+                          - /url: "#"
+                          - generic [ref=e2063]: 
+                - status [ref=e2064]
+                - generic [ref=e2069]: Select Row
+              - link "Add Goods" [ref=e2072] [cursor=pointer]:
+                - /url: "#"
+                - generic [ref=e2073]: Add Goods
+            - generic [ref=e1345]:
+              - button "Next" [active] [ref=e1347] [cursor=pointer]:
+                - generic [ref=e1349]: Next
+              - button "Save As Draft" [ref=e1351] [cursor=pointer]:
+                - generic [ref=e1353]: Save As Draft
+              - button "Cancel" [ref=e1355] [cursor=pointer]:
+                - generic [ref=e1357]: Cancel
+              - button "Back" [ref=e2075] [cursor=pointer]:
+                - generic [ref=e2077]: Back
+      - contentinfo:
+        - generic:
+          - generic:
+            - log
+  - text:    兩                                

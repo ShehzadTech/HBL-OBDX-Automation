@@ -1,0 +1,6 @@
+[    5293ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://172.20.3.113:7777/digx-common/user/v1/me?locale=en:0
+[   11768ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://172.20.3.113:7777/home.html?ojr=login-form-main%3Bmodule%3Dlogin:0
+[   12035ms] TypeError: Cannot read properties of null (reading 'style')
+    at eval (webpack-internal:///./components/login/oracle-live/oracle-live.js:184:63)
+[   44429ms] [ERROR] Failed to load resource: the server responded with a status of 400 (Bad Request) @ http://172.20.3.113:7777/digx-infra/login/v1/login?locale=en:0
+[  115751ms] [ERROR] Failed to load resource: the server responded with a status of 400 (Bad Request) @ http://172.20.3.113:7777/digx-infra/login/v1/login?locale=en:0

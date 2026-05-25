@@ -1,0 +1,30 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/Shehzad-Ul-Hassan/.claude/projects/E--QA-Artifacts-HBL-TradeFinance-Automation-main/**)",
+      "Read(//c/Users/Shehzad-Ul-Hassan/.claude/projects/**)",
+      "Bash(node scripts/append-batch-5.js)",
+      "Bash(node scripts/append-batch-8.js)",
+      "Bash(npx playwright *)",
+      "Bash(grep -E \"trade-finance\\\\\\\\\\\\\\\\\\(cancel|settlement|initiate-transfer|initiate-outward\\)\")",
+      "Bash(awk -F'\\\\\\\\\\\\\\\\' '{print $2}')",
+      "Bash(awk -F'.spec.ts' '{print $1}')",
+      "Bash(tee test-run-outward-bg.log)",
+      "Bash(npm run *)",
+      "Bash(cd \"d:/QA Artifacts/HBL-TradeFinance-Automation-main/obdx-ilc-playwright\" && rm scripts/synthesize-results-json.js && ls reports/custom-report.html && stat -c \"%y\" reports/custom-report.html)",
+      "Read(//d/QA Artifacts/HBL-TradeFinance-Automation-main/obdx-ilc-playwright/**)",
+      "Bash(node scripts/scrape-view-outward-bg.js)",
+      "Bash(npx tsc *)",
+      "Bash(tee test-run-view-outward-bg.log)",
+      "Bash(powershell -Command \"Get-Item reports\\\\custom-report.html,playwright-report\\\\results.json,reports\\\\history.json | Select-Object Name,Length,LastWriteTime | Format-Table -AutoSize\")",
+      "Bash(powershell -Command \"Start-Process reports\\\\custom-report.html\")",
+      "Bash(node *)",
+      "Bash(mkdir -p \"C:/Agent Workflow/claude_code_cli_node/workspace/skills/qa-test-case-writer/references\")",
+      "Bash(cp \"D:/QA Artifacts/HBL-TradeFinance-Automation-main/obdx-ilc-playwright/.claude/skills/qa-test-case-writer/references/obdx-format.md\" \"C:/Agent Workflow/claude_code_cli_node/workspace/skills/qa-test-case-writer/references/obdx-format.md\")",
+      "Bash(grep -E \"^\\\\s+[a-z-]+:\\\\s*$|image:\" docker-compose.yml)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)"
+    ]
+  }
+}

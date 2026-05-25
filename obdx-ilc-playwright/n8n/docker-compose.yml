@@ -1,0 +1,110 @@
+# OBDX Full QA Pipeline — single-service Docker Compose.
+#
+# Build:  docker compose build
+# Run:    docker compose up -d
+# Logs:   docker compose logs -f n8n
+# Stop:   docker compose down
+#
+# First-boot setup is documented in n8n/README-full-qa.md (Docker section).
+
+services:
+  n8n:
+    build:
+      context: ..
+      dockerfile: n8n/Dockerfile
+    image: obdx-qa-n8n:latest
+    container_name: obdx-qa-n8n
+
+    # The HITL gate emits a webhook URL that the QA reviewer clicks. n8n
+    # composes that URL from N8N_HOST + N8N_PROTOCOL + N8N_PORT (or
+    # WEBHOOK_URL if set). Override WEBHOOK_URL in .env to your ngrok /
+    # reverse-proxy hostname when you expose the container publicly.
+    ports:
+      - "5678:5678"
+
+    env_file:
+      - .env
+
+    environment:
+      # --- n8n runtime ---
+      - N8N_HOST=${N8N_HOST:-localhost}
+      - N8N_PORT=5678
+      - N8N_PROTOCOL=${N8N_PROTOCOL:-http}
+      - WEBHOOK_URL=${WEBHOOK_URL:-http://localhost:5678/}
+      - GENERIC_TIMEZONE=${TZ:-Asia/Karachi}
+      - TZ=${TZ:-Asia/Karachi}
+
+      # --- Basic auth (REQUIRED whenever WEBHOOK_URL is publicly reachable) ---
+      - N8N_BASIC_AUTH_ACTIVE=${N8N_BASIC_AUTH_ACTIVE:-true}
+      - N8N_BASIC_AUTH_USER=${N8N_BASIC_AUTH_USER:-admin}
+      - N8N_BASIC_AUTH_PASSWORD=${N8N_BASIC_AUTH_PASSWORD}
+
+      # --- Project paths inside the container ---
+      # The Set Config node hard-codes a Windows path; the workflow needs to
+      # work with the container's view of the project. The .env override
+      # PROJECT_PATH=/workspace flows into the Set Config node via a
+      # workflow variable (see README).
+      - PROJECT_PATH=/workspace
+
+      # --- OBDX target (read by config/environments.ts) ---
+      - OBDX_USER=${OBDX_USER}
+      - OBDX_PASSWORD=${OBDX_PASSWORD}
+      - BASE_URL=${OBDX_BASE_URL}
+      - TEST_ENV=${TEST_ENV:-uat}
+
+      # --- Playwright in Docker ---
+      - HEADLESS=true
+      - CI=true
+
+      # --- Claude Code CLI ---
+      # Auth is interactive (subscription / OAuth) and persists in the
+      # obdx_qa_claude_auth volume. Override the model per run via env if
+      # your account supports a specific Sonnet/Opus version.
+      - CLAUDE_MODEL=${CLAUDE_MODEL:-sonnet}
+
+      # --- Jira (used by workflow nodes via n8n credentials, but exposing
+      # as env makes first-boot credential bootstrap copy-pasteable) ---
+      - JIRA_BASE_URL=${JIRA_BASE_URL}
+      - JIRA_USER_EMAIL=${JIRA_USER_EMAIL}
+      - JIRA_API_TOKEN=${JIRA_API_TOKEN}
+      - JIRA_PROJECT_KEY=${JIRA_PROJECT_KEY:-OBDX}
+
+    volumes:
+      # Project source — bind-mount so spec writes / report writes go back
+      # to the host. Read-write because Stage-1 writes data/ and Stage-3
+      # writes tests/<module>/.
+      - ../:/workspace
+
+      # node_modules persisted as a named volume so the host's Windows
+      # node_modules (if any) doesn't shadow the Linux-built ones from
+      # the image. The image already installed Linux node_modules into
+      # /workspace; this volume keeps them.
+      - obdx_qa_node_modules:/workspace/node_modules
+
+      # n8n's data dir (creds, workflows, executions) — durable across rebuilds.
+      - obdx_qa_n8n_data:/home/node/.n8n
+
+      # Claude Code CLI auth + session state. After your one-time
+      # `docker compose exec -it n8n claude` login, the auth lives here
+      # and survives container rebuilds.
+      - obdx_qa_claude_auth:/home/node/.claude
+
+      # Playwright artefacts — separate volume so docker compose down -v
+      # without affecting your n8n data wipes only the artefacts. Optional;
+      # remove if you want them on the host bind-mount only.
+      - obdx_qa_pw_results:/workspace/test-results
+
+    restart: unless-stopped
+
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:5678/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+
+volumes:
+  obdx_qa_n8n_data:
+  obdx_qa_node_modules:
+  obdx_qa_pw_results:
+  obdx_qa_claude_auth:

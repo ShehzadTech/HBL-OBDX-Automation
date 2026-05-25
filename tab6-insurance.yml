@@ -1,0 +1,144 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e112]:
+    - link "Skip to main content" [ref=e710] [cursor=pointer]:
+      - /url: "#maincontent"
+    - generic [ref=e114]:
+      - banner [ref=e115]:
+        - generic [ref=e116]:
+          - generic [ref=e117]:
+            - generic [ref=e118]:
+              - generic "Toggle Menu" [ref=e711]:
+                - button "Open Menu" [ref=e712] [cursor=pointer]:
+                  - generic [ref=e123]: 
+              - link "Open Dashboard" [ref=e713] [cursor=pointer]:
+                - /url: "#"
+                - img "Open Dashboard" [ref=e714]
+            - generic "Search Transaction" [ref=e715]:
+              - generic [ref=e132]: 
+              - combobox "Search Transaction" [ref=e716]:
+                - textbox "Search Transaction" [ref=e717]:
+                  - /placeholder: Search
+            - generic [ref=e135]:
+              - generic "99+" [ref=e718]:
+                - button "99+" [ref=e719] [cursor=pointer]:
+                  - generic [ref=e141]:
+                    - text: 
+                    - generic [ref=e142]: 99+
+              - button "corpmaker2" [ref=e720] [cursor=pointer]:
+                - generic [ref=e146]:
+                  - img "corpmaker2" [ref=e721]:
+                    - generic [ref=e151]: CM
+                  - text:  
+          - generic [ref=e156]:
+            - generic "Back" [ref=e724]:
+              - button "Back" [ref=e725] [cursor=pointer]:
+                - generic [ref=e726]:
+                  - generic [ref=e728]: 
+                  - generic [ref=e729]: Back
+            - generic [ref=e157]:
+              - heading "Initiate Letter of Credit" [level=1] [ref=e730]
+              - generic [ref=e985]: JZNNZI ZO AZNZM ULI KZKVI YLCVH ZMW | P000168
+      - main [ref=e167]:
+        - generic [ref=e993]:
+          - generic [ref=e1000]:
+            - text: 
+            - tablist "Initiate LC Screens" [ref=e1003]:
+              - tab " LC Details" [ref=e1864] [cursor=pointer]:
+                - generic [ref=e1005]: 
+                - generic [ref=e1007]: LC Details
+              - tab " Goods and Shipment Details" [ref=e2264] [cursor=pointer]:
+                - generic [ref=e1009]: 
+                - generic [ref=e1011]: Goods and Shipment Details
+              - tab " Documents and Conditions" [ref=e2501] [cursor=pointer]:
+                - generic [ref=e1013]: 
+                - generic [ref=e1015]: Documents and Conditions
+              - tab " Linkages" [ref=e2816] [cursor=pointer]:
+                - generic [ref=e1017]: 
+                - generic [ref=e1019]: Linkages
+              - tab " Instructions" [ref=e3016] [cursor=pointer]:
+                - generic [ref=e1021]: 
+                - generic [ref=e1023]: Instructions
+              - tab " Insurance" [selected] [ref=e1024] [cursor=pointer]:
+                - generic [ref=e1025]: 
+                - generic [ref=e1027]: Insurance
+              - tab " Attachments" [ref=e1028] [cursor=pointer]:
+                - generic [ref=e1029]: 
+                - generic [ref=e1031]: Attachments
+            - text: 
+          - generic [ref=e1033]:
+            - generic [ref=e3027]:
+              - heading "Insurance" [level=2] [ref=e3030]
+              - generic "Insurance" [ref=e3032]:
+                - generic [ref=e3034]:
+                  - generic "Search..." [ref=e3039]:
+                    - generic [ref=e3040]: 
+                    - textbox "Search..." [ref=e3042]:
+                      - /placeholder: Search
+                  - generic "Insurance Data Table" [ref=e3045]:
+                    - application "Insurance Data Table" [ref=e3047]:
+                      - rowgroup [ref=e3056]:
+                        - row "Policy Number Company Name Country Cover Date Expiry Date Amount" [ref=e3057]:
+                          - columnheader "null" [ref=e3058]
+                          - columnheader "Policy Number" [ref=e3059]:
+                            - generic [ref=e3061]: Policy Number
+                          - columnheader "Company Name" [ref=e3062]:
+                            - generic [ref=e3064]: Company Name
+                          - columnheader "Country" [ref=e3065]:
+                            - generic [ref=e3067]: Country
+                          - columnheader "Cover Date" [ref=e3068]:
+                            - generic [ref=e3070]: Cover Date
+                          - columnheader "Expiry Date" [ref=e3071]:
+                            - generic [ref=e3073]: Expiry Date
+                          - columnheader "Amount" [ref=e3074]:
+                            - generic [ref=e3076]: Amount
+                      - rowgroup [ref=e3077]:
+                        - row "Select Row 123456789 AIG INSURANCE INDIA 1/1/2021 1/1/2025 £99,999.00" [ref=e3078]:
+                          - cell "Select Row" [ref=e3079]:
+                            - radiogroup "Select Row" [ref=e3080]:
+                              - generic [ref=e3082]:
+                                - generic [ref=e3083]:
+                                  - text: 
+                                  - radio "Select Row" [ref=e3084]
+                                - generic:
+                                  - generic:
+                                    - generic "Select Row"
+                          - cell "123456789" [ref=e3085]
+                          - cell "AIG INSURANCE" [ref=e3086]
+                          - cell "INDIA" [ref=e3087]
+                          - cell "1/1/2021" [ref=e3088]
+                          - cell "1/1/2025" [ref=e3089]
+                          - cell "£99,999.00" [ref=e3090]
+                        - row "Select Row 987654321 ICICI LOMABRD INDIA 1/1/2021 1/1/2025 £100,000.00" [ref=e3091]:
+                          - cell "Select Row" [ref=e3092]:
+                            - radiogroup "Select Row" [ref=e3093]:
+                              - generic [ref=e3095]:
+                                - generic [ref=e3096]:
+                                  - text: 
+                                  - radio "Select Row" [ref=e3097]
+                                - generic:
+                                  - generic:
+                                    - generic "Select Row"
+                          - cell "987654321" [ref=e3098]
+                          - cell "ICICI LOMABRD" [ref=e3099]
+                          - cell "INDIA" [ref=e3100]
+                          - cell "1/1/2021" [ref=e3101]
+                          - cell "1/1/2025" [ref=e3102]
+                          - cell "£100,000.00" [ref=e3103]
+                    - status [ref=e3104]
+                    - generic [ref=e3109]: Select Row
+                  - button "Clear Selection" [ref=e3117] [cursor=pointer]:
+                    - generic [ref=e3119]: Clear Selection
+            - generic [ref=e1345]:
+              - button "Next" [ref=e1347] [cursor=pointer]:
+                - generic [ref=e1349]: Next
+              - button "Save As Draft" [ref=e1351] [cursor=pointer]:
+                - generic [ref=e1353]: Save As Draft
+              - button "Cancel" [ref=e1355] [cursor=pointer]:
+                - generic [ref=e1357]: Cancel
+              - button "Back" [ref=e2075] [cursor=pointer]:
+                - generic [ref=e2077]: Back
+      - contentinfo:
+        - generic:
+          - generic:
+            - log
+  - text:    兩                                

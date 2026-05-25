@@ -1,0 +1,22 @@
+[    3595ms] [ERROR] Failed to load resource: the server responded with a status of 401 (Unauthorized) @ http://172.20.3.113:7777/digx-common/user/v1/me?locale=en-US:0
+[    3604ms] [ERROR] Failed to load resource: the server responded with a status of 403 (Forbidden) @ http://172.20.3.113:7777/digx-common/lovlookup/cz/v1/lovlookup/OTP_TIMER/OTP_TIMER?locale=en-US:0
+[    3948ms] Error: Cannot find module 'ojL10n!ojtranslations/nls/en/ojtranslations'
+    at webpackEmptyContext (http://172.20.3.113:7777/js/main.bundle.js:23591:10)
+    at eval (webpack-internal:///./node_modules/@oracle/oraclejet/dist/js/libs/oj/debug/ojconfig.js:120:255)
+[    4374ms] [VERBOSE] [DOM] Password field is not contained in a form: (More info: https://goo.gl/9p2vKq) %o @ http://172.20.3.113:7777/?ojr=login-form-main%3Bmodule%3Dwidgets%252Fpre-login:0
+[    4651ms] TypeError: Cannot read properties of null (reading 'style')
+    at eval (webpack-internal:///./components/login/oracle-live/oracle-live.js:184:63)
+[  428836ms] TypeError: Cannot read properties of null (reading 'style')
+    at eval (webpack-internal:///./components/login/oracle-live/oracle-live.js:172:71)
+[  430607ms] Error: Cannot find module './corporateDashboard/recent-payments/loader.js'
+    at webpackContextResolve (http://172.20.3.113:7777/js/components_file-upload_file-input_loader_js-components_origination_add-zip-code_loader_js-fra-fc5e9e.bundle.js:294:11)
+    at webpackContext (http://172.20.3.113:7777/js/components_file-upload_file-input_loader_js-components_origination_add-zip-code_loader_js-fra-fc5e9e.bundle.js:289:11)
+    at Module.getComponent (webpack-internal:///./modules/widgets.js:8:12)
+    at eval (webpack-internal:///./framework/js/utils.js:136:23)
+[ 1282595ms] ConverterError
+[ 1537198ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://172.20.3.113:7777/digx-tradefinance/tradefinance/v1/letterofcredits/?locale=en:0
+[ 1537452ms] Object
+[12018849ms] [ERROR] Failed to load resource: net::ERR_NETWORK_IO_SUSPENDED @ http://172.20.3.113:7777/static/images/texture-dialog-144x20-opacity-08e6b3c6b2ea63172ea520.png:0
+[12018897ms] [ERROR] Failed to load resource: net::ERR_NETWORK_IO_SUSPENDED @ http://172.20.3.113:7777/static/fonts/OracleSans_W_XBdd0f3bcdab068fb0554dc.woff2:0
+[12018908ms] [ERROR] Failed to load resource: net::ERR_NETWORK_IO_SUSPENDED @ http://172.20.3.113:7777/static/fonts/OracleSans_W_XBdeea5b446fbc3874ba5df.woff:0
+[67480961ms] [ERROR] Failed to load resource: net::ERR_ADDRESS_UNREACHABLE @ http://172.20.3.113:7777/static/fonts/OracleSans_W_Ltf2a2dc711b34a1d61967.woff2:0

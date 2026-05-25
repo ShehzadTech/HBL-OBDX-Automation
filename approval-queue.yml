@@ -1,0 +1,123 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e115]:
+    - link "Skip to main content" [ref=e705] [cursor=pointer]:
+      - /url: "#maincontent"
+    - generic [ref=e117]:
+      - banner [ref=e118]:
+        - generic [ref=e119]:
+          - generic [ref=e120]:
+            - generic [ref=e121]:
+              - generic "Toggle Menu" [ref=e706]:
+                - button "Open Menu" [ref=e707] [cursor=pointer]:
+                  - generic [ref=e126]: 
+              - link "Open Dashboard" [ref=e708] [cursor=pointer]:
+                - /url: "#"
+                - img "Open Dashboard" [ref=e709]
+            - generic "Search Transaction" [ref=e710]:
+              - generic [ref=e135]: 
+              - combobox "Search Transaction" [ref=e711]:
+                - textbox "Search Transaction" [ref=e712]:
+                  - /placeholder: Search
+            - generic [ref=e138]:
+              - generic "99+" [ref=e713]:
+                - button "99+" [ref=e714] [cursor=pointer]:
+                  - generic [ref=e144]:
+                    - text: 
+                    - generic [ref=e145]: 99+
+              - button "corpchecker2" [ref=e715] [cursor=pointer]:
+                - generic [ref=e149]:
+                  - img "corpchecker2" [ref=e716]:
+                    - generic [ref=e154]: CC
+                  - text:  
+          - generic [ref=e159]:
+            - generic "Back" [ref=e719]:
+              - button "Back" [ref=e720] [cursor=pointer]:
+                - generic [ref=e721]:
+                  - generic [ref=e723]: 
+                  - generic [ref=e724]: Back
+            - heading "Pending For Approval" [level=1] [ref=e725]
+      - main [ref=e170]:
+        - generic [ref=e729]:
+          - generic [ref=e734]:
+            - generic [ref=e738]:
+              - generic [ref=e739]: All
+              - generic [ref=e742]: "49"
+            - generic [ref=e746]:
+              - generic [ref=e747]: Financial
+              - generic [ref=e750]: "7"
+            - generic [ref=e754]:
+              - generic [ref=e755]: Non Financial
+              - generic [ref=e758]: "42"
+            - generic [ref=e762]:
+              - generic [ref=e763]: Urgent
+              - generic [ref=e766]: "0"
+            - generic [ref=e769]:
+              - generic [ref=e770]:
+                - textbox "Enter exact correct reference number" [ref=e772]:
+                  - /placeholder: Reference Number
+                - generic [ref=e774]:
+                  - text: 
+                  - button [ref=e775] [cursor=pointer]
+              - generic [ref=e776]: Enter exact reference number
+            - button "" [ref=e781] [cursor=pointer]:
+              - generic [ref=e784]: 
+          - generic [ref=e786]:
+            - generic [ref=e787]:
+              - heading "Financial" [level=3] [ref=e792]
+              - generic [ref=e793]:
+                - grid [ref=e795]:
+                  - row "Bulk Record 1" [ref=e796]:
+                    - gridcell "Bulk Record 1" [ref=e797]:
+                      - link "Bulk Record 1" [ref=e802] [cursor=pointer]:
+                        - /url: "#"
+                        - generic [ref=e803]:
+                          - generic [ref=e804]: Bulk Record
+                          - generic [ref=e805]: "1"
+                  - row "Trade Finance Transactions 6" [ref=e806]:
+                    - gridcell "Trade Finance Transactions 6" [ref=e807]:
+                      - link "Trade Finance Transactions 6" [ref=e812] [cursor=pointer]:
+                        - /url: "#"
+                        - generic [ref=e813]:
+                          - generic [ref=e814]: Trade Finance Transactions
+                          - generic [ref=e815]: "6"
+                - generic [ref=e817]: Use arrow keys to expand and collapse.
+            - generic [ref=e818]:
+              - heading "Non Financial" [level=3] [ref=e823]
+              - generic [ref=e824]:
+                - grid [ref=e826]:
+                  - row "Accounts 18" [ref=e827]:
+                    - gridcell "Accounts 18" [ref=e828]:
+                      - link "Accounts 18" [ref=e833] [cursor=pointer]:
+                        - /url: "#"
+                        - generic [ref=e834]:
+                          - generic [ref=e835]: Accounts
+                          - generic [ref=e836]: "18"
+                  - row "Payee and Biller 21" [ref=e837]:
+                    - gridcell "Payee and Biller 21" [ref=e838]:
+                      - link "Payee and Biller 21" [ref=e843] [cursor=pointer]:
+                        - /url: "#"
+                        - generic [ref=e844]:
+                          - generic [ref=e845]: Payee and Biller
+                          - generic [ref=e846]: "21"
+                  - row "Trade Finance Maintenance 1" [ref=e847]:
+                    - gridcell "Trade Finance Maintenance 1" [ref=e848]:
+                      - link "Trade Finance Maintenance 1" [ref=e853] [cursor=pointer]:
+                        - /url: "#"
+                        - generic [ref=e854]:
+                          - generic [ref=e855]: Trade Finance Maintenance
+                          - generic [ref=e856]: "1"
+                  - row "Others 2" [ref=e857]:
+                    - gridcell "Others 2" [ref=e858]:
+                      - link "Others 2" [ref=e863] [cursor=pointer]:
+                        - /url: "#"
+                        - generic [ref=e864]:
+                          - generic [ref=e865]: Others
+                          - generic [ref=e866]: "2"
+                - generic [ref=e868]: Use arrow keys to expand and collapse.
+          - button "Back" [ref=e871] [cursor=pointer]:
+            - generic [ref=e873]: Back
+      - contentinfo:
+        - generic:
+          - generic:
+            - log
+  - text:    兩                                  

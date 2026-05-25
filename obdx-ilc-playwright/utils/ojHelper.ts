@@ -20,8 +20,13 @@ export class OjHelper {
     await locator.scrollIntoViewIfNeeded();
     await locator.focus();
     await locator.evaluate((input, val) => {
-      const el = input as HTMLInputElement;
-      const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!;
+      const el = input as HTMLInputElement | HTMLTextAreaElement;
+      // Pick the right prototype based on the actual tag — calling the
+      // HTMLInputElement setter on a <textarea> throws "Illegal invocation".
+      const proto = el.tagName.toLowerCase() === 'textarea'
+        ? HTMLTextAreaElement.prototype
+        : HTMLInputElement.prototype;
+      const setter = Object.getOwnPropertyDescriptor(proto, 'value')!.set!;
       setter.call(el, val);
       el.dispatchEvent(new Event('input',  { bubbles: true }));
       el.dispatchEvent(new Event('change', { bubbles: true }));

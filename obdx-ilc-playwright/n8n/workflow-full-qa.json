@@ -1,0 +1,762 @@
+{
+  "name": "OBDX Full QA Pipeline (Drive → Test Data → Cases → Spec → Run → Jira)",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            { "mode": "everyMinute" }
+          ]
+        },
+        "triggerOn": "specificFolder",
+        "folderToWatch": "={{ $vars.DRIVE_WATCH_FOLDER_ID }}",
+        "event": "fileCreated",
+        "options": {}
+      },
+      "id": "drive-trigger",
+      "name": "Drive Trigger (new file)",
+      "type": "n8n-nodes-base.googleDriveTrigger",
+      "typeVersion": 1,
+      "position": [220, 320],
+      "credentials": {
+        "googleDriveOAuth2Api": { "name": "Google Drive OAuth2" }
+      },
+      "notes": "Watches the folder ID set in workflow variable DRIVE_WATCH_FOLDER_ID. Fires on every new file; the If node below filters to *__GO.txt only."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": false, "leftValue": "", "typeValidation": "loose" },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.name }}",
+              "rightValue": ".*__GO\\.txt$",
+              "operator": { "type": "string", "operation": "regex" }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-go-file",
+      "name": "Is it a GO marker?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.1,
+      "position": [440, 320]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            { "id": "1", "name": "projectPath",       "value": "={{ $env.PROJECT_PATH || 'D:/QA Artifacts/HBL-TradeFinance-Automation-main/obdx-ilc-playwright' }}", "type": "string" },
+            { "id": "5", "name": "jiraProjectKey",    "value": "OBDX", "type": "string" },
+            { "id": "6", "name": "driveFolderId",     "value": "={{ $json.parents && $json.parents[0] }}", "type": "string" },
+            { "id": "7", "name": "goFileName",        "value": "={{ $json.name }}", "type": "string" },
+            { "id": "8", "name": "module",            "value": "={{ ($json.name.match(/^([a-z][a-z0-9-]*)__([a-z][a-z0-9-]*)__GO\\.txt$/i) || [])[1] || 'trade-finance' }}", "type": "string" },
+            { "id": "9", "name": "featureSlug",       "value": "={{ ($json.name.match(/^([a-z][a-z0-9-]*)__([a-z][a-z0-9-]*)__GO\\.txt$/i) || [])[2] || $json.name.replace(/__GO\\.txt$/i, '').toLowerCase() }}", "type": "string" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "set-config",
+      "name": "Set Config",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [660, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Load the consolidated n8n/project-context.md once at workflow start.\n// Every Stage-N builder later wraps this single string in <PROJECT_CONTEXT>\n// at the top of its Claude CLI prompt.\n//\n// Source of truth: .claude/skills/ — the build script concatenates them\n// into n8n/project-context.md. We run the script every workflow execution\n// so live edits to any skill file flow straight into the next run.\n//\n// Why also cd /workspace before `claude -p`: CLAUDE.md auto-discovery is a\n// fallback for project-level conventions not bundled in the skills.\n\nconst fs = require('fs');\nconst path = require('path');\nconst { execSync } = require('child_process');\nconst projectPath = $json.projectPath;\n\n// Auto-regenerate from .claude/skills/. Non-fatal if it fails (e.g. missing\n// node in PATH, file lock) — we fall back to whatever is already on disk.\ntry {\n  execSync('node scripts/build-project-context.js', { cwd: projectPath, stdio: 'pipe' });\n} catch (e) {\n  // Swallow — the read below either succeeds with stale content or throws.\n}\n\nconst contextPath = path.join(projectPath, 'n8n', 'project-context.md');\nif (!fs.existsSync(contextPath)) {\n  throw new Error('n8n/project-context.md not found at ' + contextPath + '. Run `node scripts/build-project-context.js` once from the project root.');\n}\nconst projectContext = fs.readFileSync(contextPath, 'utf8');\n\n// Preserve upstream fields so downstream Drive nodes still have driveFolderId, etc.\nreturn [{ json: { ...$json, projectContext } }];"
+      },
+      "id": "load-project-context",
+      "name": "Load Project Context",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [770, 100],
+      "notes": "Reads CLAUDE.md + .claude/skills/{obdx-25.1-framework, qa-test-case-writer, playwright-script-writer}/*.md once. Each Build Stage-N Prompt node pulls its subset via $('Load Project Context').first().json.projectContext."
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "queryString": "='{{ $json.driveFolderId }}' in parents and (name contains '__FSD' or name contains '__RSD' or name contains '__REQ') and trashed = false",
+        "returnAll": true,
+        "filter": {},
+        "options": {}
+      },
+      "id": "drive-list-siblings",
+      "name": "Drive: List sibling docs",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [880, 200],
+      "credentials": {
+        "googleDriveOAuth2Api": { "name": "Google Drive OAuth2" }
+      },
+      "notes": "Lists FSD/RSD/REQ siblings of the GO marker. The downstream Code node picks the one for the current slug."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Group sibling files by module + slug + role (FSD / RSD / REQ).\n// Filename convention: <module>__<slug>__<ROLE>.<ext>\n// e.g. funds-transfer__internal-fx-transfer__FSD.md\n\nconst mod  = $('Set Config').first().json.module;\nconst slug = $('Set Config').first().json.featureSlug;\nconst files = $input.all().map(i => i.json);\n\nconst pick = (role) => {\n  const rx = new RegExp(`^${mod}__${slug}__${role}\\\\.`, 'i');\n  return files.find(f => rx.test(f.name)) || null;\n};\n\nconst fsd = pick('FSD');\nconst rsd = pick('RSD');\nconst req = pick('REQ');\n\nif (!fsd && !rsd && !req) {\n  throw new Error(`No FSD/RSD/REQ siblings found for ${mod}__${slug}. Expected file names like ${mod}__${slug}__FSD.md`);\n}\n\nreturn [\n  { json: { role: 'FSD',          fileId: fsd && fsd.id, fileName: fsd && fsd.name, mimeType: fsd && fsd.mimeType } },\n  { json: { role: 'RSD',          fileId: rsd && rsd.id, fileName: rsd && rsd.name, mimeType: rsd && rsd.mimeType } },\n  { json: { role: 'REQUIREMENTS', fileId: req && req.id, fileName: req && req.name, mimeType: req && req.mimeType } },\n];"
+      },
+      "id": "code-pick-docs",
+      "name": "Pick FSD / RSD / REQ by slug",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1100, 200]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "leftValue": "", "typeValidation": "loose" },
+          "conditions": [
+            { "leftValue": "={{ $json.fileId }}", "rightValue": "", "operator": { "type": "string", "operation": "notEmpty" } }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-file-present",
+      "name": "File present?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.1,
+      "position": [1320, 200]
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": { "__rl": true, "value": "={{ $json.fileId }}", "mode": "id" },
+        "options": {
+          "googleFileConversion": {
+            "conversion": {
+              "docsToFormat": "text/plain"
+            }
+          }
+        }
+      },
+      "id": "drive-download",
+      "name": "Drive: Download doc",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [1540, 120],
+      "credentials": {
+        "googleDriveOAuth2Api": { "name": "Google Drive OAuth2" }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "text",
+        "binaryPropertyName": "data",
+        "options": {}
+      },
+      "id": "extract-text",
+      "name": "Extract text from doc",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [1760, 120],
+      "notes": "Handles .md / .txt / .pdf via the built-in extractor. Google Docs are converted to text/plain by the Download node."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Pass through the role + extracted text, dropping binary data.\nconst role = $('Pick FSD / RSD / REQ by slug').item.json.role;\nconst text = $json.text || $json.data || '';\nreturn [{ json: { role, text } }];"
+      },
+      "id": "code-tag-role",
+      "name": "Tag with role + text",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1980, 120]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineAll",
+        "options": {}
+      },
+      "id": "merge-docs",
+      "name": "Merge all 3 docs",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [2200, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Collapse the 3-item merge into a single object with FSD/RSD/REQUIREMENTS text fields.\nconst cfg = $('Set Config').first().json;\nconst items = $input.all().map(i => i.json);\nconst byRole = Object.fromEntries(items.map(i => [i.role, i.text || '']));\n\nconst tsd = `<MODULE>${cfg.module}</MODULE>\\n<FEATURE_SLUG>${cfg.featureSlug}</FEATURE_SLUG>\\n\\n<FSD>\\n${byRole.FSD || ''}\\n</FSD>\\n\\n<RSD>\\n${byRole.RSD || ''}\\n</RSD>\\n\\n<REQUIREMENTS>\\n${byRole.REQUIREMENTS || ''}\\n</REQUIREMENTS>`;\n\nreturn [{ json: {\n  module:         cfg.module,\n  featureSlug:    cfg.featureSlug,\n  projectPath:    cfg.projectPath,\n  claudeModel:    cfg.claudeModel,\n  jiraProjectKey: cfg.jiraProjectKey,\n  fsdPresent:     !!(byRole.FSD || '').trim(),\n  rsdPresent:     !!(byRole.RSD || '').trim(),\n  reqPresent:     !!(byRole.REQUIREMENTS || '').trim(),\n  tsd,\n} }];"
+      },
+      "id": "code-build-tsd",
+      "name": "Build combined TSD",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2420, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build a consolidated Stage-0 prompt and write it to /tmp/ for `claude -p` to read on stdin.\n// The system text is kept in sync with n8n/prompts/v2-00-extract-requirements.md — edit there first, paste here.\nconst fs = require('fs');\nconst ctx = $('Load Project Context').first().json.projectContext;\nconst projectContextBlock = '<PROJECT_CONTEXT>\\n' + ctx + '\\n</PROJECT_CONTEXT>\\n\\n';\n\nconst system = `# System prompt — Stage 0: FSD + RSD + Requirements → structured feature digest\n\nYou are a senior business analyst on the Techlogix HBL OBDX 25.1 programme. You receive three documents for a single feature (FSD, RSD, Requirements) across any OBDX module (Trade Finance, Funds Transfer, Bill Payment, Reports, Bulk File Upload, Approvals, etc.) and produce one canonical, machine-readable digest that downstream prompts consume.\n\nThe <PROJECT_CONTEXT> block above is authoritative — when it disagrees with this prompt on terminology, module conventions, or test-data shape, the project context wins. Use it to ground every digest field.\n\nReturn ONLY a single fenced JSON code block matching the shape in n8n/prompts/v2-00-extract-requirements.md. No prose before or after.\n\nKey rules:\n- module field == <MODULE> input; feature_slug == <FEATURE_SLUG> input.\n- Use the module-profile table in v2-00-extract-requirements.md to populate module_profile{ page_object_dir, fixture_name, test_data_file_hint, ... }.\n- Quote system messages VERBATIM from the source.\n- business_scenarios are cross-section multi-actor flows; single-field validations go in validation_rules.\n- Conflicts between FSD and RSD: FSD is the system of record; record the conflict in open_questions.\n- Multiple distinct features in the input → refuse via open_questions[0].`;\n\nconst slug = $('Set Config').first().json.featureSlug;\nconst promptPath = '/tmp/' + slug + '-stage0-prompt.md';\nfs.writeFileSync(promptPath, projectContextBlock + system + '\\n\\n---\\n\\n' + $json.tsd, 'utf8');\nreturn [{ json: { promptPath, slug } }];"
+      },
+      "id": "code-stage0-prompt",
+      "name": "Build Stage-0 Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2640, 200]
+    },
+    {
+      "parameters": {
+        "command": "={{ 'cd \"' + ($env.PROJECT_PATH || $('Set Config').first().json.projectPath) + '\" && claude -p --output-format text --model \"' + ($env.CLAUDE_MODEL || 'sonnet') + '\" < \"' + $json.promptPath + '\"' }}"
+      },
+      "id": "claude-stage0",
+      "name": "Claude — Stage 0 (Digest)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [2860, 200],
+      "notes": "Runs the Claude Code CLI in print mode. Auth lives in /home/node/.claude (persistent volume); model overridable via CLAUDE_MODEL env."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract the single fenced JSON block from the Claude CLI's stdout.\nif ($json.exitCode !== 0) throw new Error('Stage 0: claude CLI exit ' + $json.exitCode + '\\n' + ($json.stderr || ''));\nconst text = $json.stdout || '';\nconst m = text.match(/```json\\s*([\\s\\S]*?)```/);\nif (!m) throw new Error('Stage 0: no fenced JSON block in Claude response.\\n\\n' + text.slice(0, 500));\nconst digest = JSON.parse(m[1]);\nreturn [{ json: { digest, digestRaw: m[1] } }];"
+      },
+      "id": "code-parse-digest",
+      "name": "Parse Digest JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [3080, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Resolve the canonical test-data file path (honour digest hint if present) and read existing contents.\nconst fs   = require('fs');\nconst path = require('path');\nconst projectPath = $('Set Config').first().json.projectPath;\nconst slug = $('Set Config').first().json.featureSlug;\nconst digest = $json.digest;\n\n// Prefer digest.module_profile.test_data_file_hint; fall back to camelCased slug.\nconst camel = slug.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase());\nconst hinted = (digest.module_profile && digest.module_profile.test_data_file_hint) || ('data/' + camel + 'TestData.ts');\nconst dataFileName = path.basename(hinted);\nconst dataFilePath = path.isAbsolute(hinted) ? hinted : path.join(projectPath, hinted);\n\nlet existingContent = '';\nlet existingPresent = false;\nif (fs.existsSync(dataFilePath)) {\n  existingContent = fs.readFileSync(dataFilePath, 'utf8');\n  existingPresent = true;\n}\n\nreturn [{ json: {\n  digest,\n  dataFileName,\n  dataFilePath,\n  existingContent,\n  existingPresent,\n} }];"
+      },
+      "id": "code-read-existing-data",
+      "name": "Read existing test-data file",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [3300, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Stage-1: build the consolidated prompt and write to /tmp/.\nconst fs = require('fs');\nconst ctx = $('Load Project Context').first().json.projectContext;\nconst projectContextBlock = '<PROJECT_CONTEXT>\\n' + ctx + '\\n</PROJECT_CONTEXT>\\n\\n';\n\nconst system = `# System prompt — Stage 1: digest → test data file (append-mode, any OBDX module)\n\nYou produce a TypeScript test-data file for the Techlogix HBL OBDX 25.1 project. Output is a complete file at digest.module_profile.test_data_file_hint (typically data/<camelCasedSlug>TestData.ts) ready to be written to disk. Module-agnostic — same structural rules whether Trade Finance, Funds Transfer, Bill Payment, Reports, Bulk File Upload, etc.\n\nAppend-mode: if <EXISTING_FILE> is non-empty, preserve every existing key with its existing value verbatim, then add NEW keys produced from the digest. You may NOT delete or change existing values.\n\nReturn ONLY a single fenced TypeScript code block.\n\nFile shape (see n8n/prompts/v2-01-test-data.md for full template):\n- JSDoc header citing the FSD/RSD references from the digest.\n- export const <UPPER_SNAKE> = { ... } as const;\n- export type <PascalCase> = typeof <UPPER_SNAKE>;\n- Section banners // ── Section N — <label> ──...─ (use 'Tab' for trade-finance for parity).\n- Login block with process.env.OBDX_USER / OBDX_PASSWORD fallback; add checker block if digest.actors has 2+ roles.\n- Union types inline: as 'A' | 'B'.\n- confirmationMessage and expectedStatus quoted VERBATIM from digest.system_messages.\n- Negative-test data at the bottom, each commented with the rule it violates.\n- Date format MM/DD/YYYY.\n- No imports.`;\n\nconst userParts = [];\nuserParts.push('<DIGEST>\\n' + JSON.stringify($json.digest, null, 2) + '\\n</DIGEST>');\nuserParts.push('');\nuserParts.push('<EXISTING_FILE path=\"' + ('data/' + $json.dataFileName) + '\">');\nuserParts.push($json.existingContent || '');\nuserParts.push('</EXISTING_FILE>');\n\nconst slug = $('Set Config').first().json.featureSlug;\nconst promptPath = '/tmp/' + slug + '-stage1-prompt.md';\nfs.writeFileSync(promptPath, projectContextBlock + system + '\\n\\n---\\n\\n' + userParts.join('\\n'), 'utf8');\n\nreturn [{ json: { promptPath, dataFilePath: $json.dataFilePath, dataFileName: $json.dataFileName, digest: $json.digest } }];"
+      },
+      "id": "code-stage1-prompt",
+      "name": "Build Stage-1 Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [3520, 200]
+    },
+    {
+      "parameters": {
+        "command": "={{ 'cd \"' + ($env.PROJECT_PATH || $('Set Config').first().json.projectPath) + '\" && claude -p --output-format text --model \"' + ($env.CLAUDE_MODEL || 'sonnet') + '\" < \"' + $json.promptPath + '\"' }}"
+      },
+      "id": "claude-stage1",
+      "name": "Claude — Stage 1 (Test Data)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [3740, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract the fenced ts block from CLI stdout and write it to disk.\nconst fs = require('fs');\nconst path = require('path');\nif ($json.exitCode !== 0) throw new Error('Stage 1: claude CLI exit ' + $json.exitCode + '\\n' + ($json.stderr || ''));\nconst text = $json.stdout || '';\nconst m = text.match(/```(?:ts|typescript)\\s*([\\s\\S]*?)```/);\nif (!m) throw new Error('Stage 1: no fenced TS block in Claude response.\\n\\n' + text.slice(0, 500));\nconst code = m[1];\n\nconst dataFilePath = $('Build Stage-1 Prompt').first().json.dataFilePath;\nfs.mkdirSync(path.dirname(dataFilePath), { recursive: true });\nfs.writeFileSync(dataFilePath, code, 'utf8');\n\nreturn [{ json: {\n  digest:        $('Build Stage-1 Prompt').first().json.digest,\n  dataFilePath,\n  dataFileName:  $('Build Stage-1 Prompt').first().json.dataFileName,\n  dataFileContent: code,\n} }];"
+      },
+      "id": "code-write-data",
+      "name": "Write test-data file",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [3960, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Stage-2: build the consolidated prompt and write to /tmp/.\nconst fs = require('fs');\nconst ctx = $('Load Project Context').first().json.projectContext;\nconst projectContextBlock = '<PROJECT_CONTEXT>\\n' + ctx + '\\n</PROJECT_CONTEXT>\\n\\n';\n\nconst system = `# System prompt — Stage 2: digest + test-data → OBDX 11-column test cases (any module, with business scenarios)\n\nReturn ONLY a single fenced JSON code block with shape:\n{ module, feature, module_code, summary, test_data_const, test_cases: [...] }\n\nRules:\n- TC-IDs: TC-<MODULE_CODE>-NNN section-scoped, TC-BS-NNN Business Scenarios (independent numbering).\n- source_section values: \"Section N — <label>\" or literal \"Business Scenarios\". For trade-finance use \"Tab N — <label>\" for parity.\n- category: Happy Path | Negative | Boundary | Edge | Business Scenario.\n- priority P1 critical / P2 important / P3 nice-to-have. Every Business Scenario defaults to P1.\n- Symbolic data refs: <CONST>.<key> for any value in the test-data file. Literals only when scenario hinges on them.\n- Login + nav steps in every test_steps using digest.navigation_path.\n- Quote digest.system_messages[].exact_text VERBATIM in expected_result.\n- Wire digest.module_profile.module_specific_gotchas[] as explicit verification steps where they apply.\n- Aim for 25-45 test cases for a typical 4-6 AC digest.\n- Always include >=5 Business Scenario rows: maker-checker happy path, checker rejection, multi-actor data integrity, regulatory cross-tab edges. If digest.actors has multiple roles, every BS row names which actor performs which step.\n- Add module-specific extras per v2-02-test-cases.md (FX-rate staleness for funds-transfer, biller-fetch failure for bill-payment, large-date-range for reports, file-format mismatch for bulk-file-upload, etc.).`;\n\nconst userParts = [];\nuserParts.push('<DIGEST>\\n' + JSON.stringify($json.digest, null, 2) + '\\n</DIGEST>');\nuserParts.push('');\nuserParts.push('<TEST_DATA path=\"data/' + $json.dataFileName + '\">');\nuserParts.push($json.dataFileContent);\nuserParts.push('</TEST_DATA>');\n\nconst slug = $('Set Config').first().json.featureSlug;\nconst promptPath = '/tmp/' + slug + '-stage2-prompt.md';\nfs.writeFileSync(promptPath, projectContextBlock + system + '\\n\\n---\\n\\n' + userParts.join('\\n'), 'utf8');\n\nreturn [{ json: { promptPath, dataFileName: $json.dataFileName, dataFileContent: $json.dataFileContent, digest: $json.digest } }];"
+      },
+      "id": "code-stage2-prompt",
+      "name": "Build Stage-2 Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [4180, 200]
+    },
+    {
+      "parameters": {
+        "command": "={{ 'cd \"' + ($env.PROJECT_PATH || $('Set Config').first().json.projectPath) + '\" && claude -p --output-format text --model \"' + ($env.CLAUDE_MODEL || 'sonnet') + '\" < \"' + $json.promptPath + '\"' }}"
+      },
+      "id": "claude-stage2",
+      "name": "Claude — Stage 2 (Test Cases)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [4400, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse the test-cases JSON from CLI stdout and stage it for HITL review.\nconst fs = require('fs');\nconst path = require('path');\nif ($json.exitCode !== 0) throw new Error('Stage 2: claude CLI exit ' + $json.exitCode + '\\n' + ($json.stderr || ''));\nconst text = $json.stdout || '';\nconst m = text.match(/```json\\s*([\\s\\S]*?)```/);\nif (!m) throw new Error('Stage 2: no fenced JSON block.\\n\\n' + text.slice(0, 500));\nconst cases = JSON.parse(m[1]);\n\nconst projectPath = $('Set Config').first().json.projectPath;\nconst slug = $('Set Config').first().json.featureSlug;\nconst stagingDir = path.join(projectPath, 'n8n', 'staging');\nfs.mkdirSync(stagingDir, { recursive: true });\nconst stagingPath = path.join(stagingDir, slug + '-cases.json');\nfs.writeFileSync(stagingPath, JSON.stringify(cases, null, 2), 'utf8');\n\nreturn [{ json: {\n  digest:           $('Build Stage-2 Prompt').first().json.digest,\n  dataFileName:     $('Build Stage-2 Prompt').first().json.dataFileName,\n  dataFileContent:  $('Build Stage-2 Prompt').first().json.dataFileContent,\n  testCases:        cases,\n  stagingPath,\n  caseCount:        (cases.test_cases || []).length,\n} }];"
+      },
+      "id": "code-write-cases",
+      "name": "Parse + stage test cases",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [4620, 200]
+    },
+    {
+      "parameters": {
+        "resume": "webhook",
+        "options": {}
+      },
+      "id": "wait-hitl",
+      "name": "HITL — wait for QA approval",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [4840, 200],
+      "webhookId": "obdx-qa-hitl-resume",
+      "notes": "Workflow pauses here. QA reviews/edits the staged JSON at stagingPath, then GETs the resume URL printed in the prior node's output (or POSTs JSON to override the test_cases)."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Re-read the (possibly edited) test cases from disk so QA edits flow through.\nconst fs = require('fs');\nconst stagingPath = $('Parse + stage test cases').first().json.stagingPath;\nconst testCases = JSON.parse(fs.readFileSync(stagingPath, 'utf8'));\nreturn [{ json: {\n  digest:           $('Parse + stage test cases').first().json.digest,\n  dataFileName:     $('Parse + stage test cases').first().json.dataFileName,\n  dataFileContent:  $('Parse + stage test cases').first().json.dataFileContent,\n  testCases,\n  caseCount:        (testCases.test_cases || []).length,\n} }];"
+      },
+      "id": "code-reread-cases",
+      "name": "Re-read approved cases",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [5060, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// pipeline.md Stage 2 — locator scraper is MANDATORY before spec/POM generation.\n// Skip the scrape ONLY if a scraped JSON already exists on disk (lets QA pre-scrape manually for tricky flows).\nconst fs   = require('fs');\nconst path = require('path');\nconst slug = $('Set Config').first().json.featureSlug;\nconst projectPath = $('Set Config').first().json.projectPath;\nconst scrapedPath = path.join(projectPath, 'data', 'scraped', slug + '-scraped.json');\nconst scrapedExists = fs.existsSync(scrapedPath);\nreturn [{ json: { ...$json, scrapedPath, scrapedExists } }];"
+      },
+      "id": "code-check-scraped",
+      "name": "Check Scraped JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [5280, 200]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "leftValue": "", "typeValidation": "loose" },
+          "conditions": [
+            { "leftValue": "={{ $json.scrapedExists }}", "rightValue": true, "operator": { "type": "boolean", "operation": "true" } }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-scraped-exists",
+      "name": "Scraped JSON present?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.1,
+      "position": [5500, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build the Stage-2.5 scraper-generation prompt.\n// Reads the canonical scrape-view-outward-bg.js as a structural template.\nconst fs   = require('fs');\nconst path = require('path');\nconst ctx  = $('Load Project Context').first().json.projectContext;\nconst projectContextBlock = '<PROJECT_CONTEXT>\\n' + ctx + '\\n</PROJECT_CONTEXT>\\n\\n';\n\nconst projectPath = $('Set Config').first().json.projectPath;\nconst canonicalPath = path.join(projectPath, 'scripts', 'scrape-view-outward-bg.js');\nconst canonicalScraper = fs.existsSync(canonicalPath) ? fs.readFileSync(canonicalPath, 'utf8') : '// (canonical scraper not present — generate from first principles using the digest)';\n\nconst system = `# System prompt — Stage 2.5: digest + test cases → scripts/scrape-<slug>.js (Playwright DOM-locator scraper)\n\nYou generate a standalone Playwright Node script that drives the live OBDX AUT through ONE happy path, captures real DOM locators + values, and writes data/scraped/<feature_slug>-scraped.json. The downstream Stage 3 (Playwright spec + POM) reads ONLY this JSON — never the FSD or the digest — so this scrape is the source of truth for selectors.\n\nFull rules in n8n/prompts/v2-04-scraper.md. Key points:\n- Use require('playwright'), NOT @playwright/test. Standalone Node script.\n- Read creds from process.env.OBDX_USER / OBDX_PASSWORD / BASE_URL (or OBDX_BASE_URL).\n- Drive digest.navigation_path[] verbatim. For each tab, open every dropdown and capture every option + its literal id + stable fallback.\n- Never use page.fill() on OJet inputs — use the native-setter + dispatch input/change/blur cycle (mirror canonical scraper helper).\n- Headless by default (HEADED=1 to watch).\n- On failure write partial JSON + process.exit(1) so the workflow halts.\n- Output JSON shape: { env, feature, module, startedAt, finishedAt, url, menu[], tabs[{ index, label, literalId, fields[{ name, type, literalId, stableFallback, valueEntered, options, mandatory, errorText }] }], systemMessages{ successBanner, expectedStatus, referenceNumberLocator } }.\n\nReturn ONLY a single fenced JavaScript code block. No prose.`;\n\nconst userParts = [];\nuserParts.push('<DIGEST>\\n' + JSON.stringify($json.digest, null, 2) + '\\n</DIGEST>');\nuserParts.push('');\nuserParts.push('<TEST_CASES>\\n' + JSON.stringify($json.testCases, null, 2) + '\\n</TEST_CASES>');\nuserParts.push('');\nuserParts.push('<TEST_DATA path=\"data/' + $json.dataFileName + '\">');\nuserParts.push($json.dataFileContent);\nuserParts.push('</TEST_DATA>');\nuserParts.push('');\nuserParts.push('<CANONICAL_SCRAPER path=\"scripts/scrape-view-outward-bg.js\">');\nuserParts.push(canonicalScraper);\nuserParts.push('</CANONICAL_SCRAPER>');\n\nconst slug = $('Set Config').first().json.featureSlug;\nconst promptPath = '/tmp/' + slug + '-stage2-5-scraper-prompt.md';\nfs.writeFileSync(promptPath, projectContextBlock + system + '\\n\\n---\\n\\n' + userParts.join('\\n'), 'utf8');\n\nreturn [{ json: { ...$json, promptPath } }];"
+      },
+      "id": "code-build-scraper-prompt",
+      "name": "Build Scraper Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [5720, 320]
+    },
+    {
+      "parameters": {
+        "command": "={{ 'cd \"' + ($env.PROJECT_PATH || $('Set Config').first().json.projectPath) + '\" && claude -p --output-format text --model \"' + ($env.CLAUDE_MODEL || 'sonnet') + '\" < \"' + $json.promptPath + '\"' }}"
+      },
+      "id": "claude-scraper",
+      "name": "Claude — Stage 2.5 (Scraper)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [5940, 320]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Extract the fenced JS block from CLI stdout and write to scripts/scrape-<slug>.js.\nconst fs   = require('fs');\nconst path = require('path');\nif ($json.exitCode !== 0) throw new Error('Stage 2.5: claude CLI exit ' + $json.exitCode + '\\n' + ($json.stderr || ''));\nconst text = $json.stdout || '';\nconst m = text.match(/```(?:js|javascript)\\s*([\\s\\S]*?)```/);\nif (!m) throw new Error('Stage 2.5: no fenced JS block in scraper-generation response.\\n\\n' + text.slice(0, 500));\nconst code = m[1];\n\nconst projectPath = $('Set Config').first().json.projectPath;\nconst slug = $('Set Config').first().json.featureSlug;\nconst scraperPath = path.join(projectPath, 'scripts', 'scrape-' + slug + '.js');\nfs.mkdirSync(path.dirname(scraperPath), { recursive: true });\nfs.writeFileSync(scraperPath, code, 'utf8');\n\nreturn [{ json: {\n  digest:          $('Build Scraper Prompt').first().json.digest,\n  testCases:       $('Build Scraper Prompt').first().json.testCases,\n  dataFileName:    $('Build Scraper Prompt').first().json.dataFileName,\n  dataFileContent: $('Build Scraper Prompt').first().json.dataFileContent,\n  scrapedPath:     $('Build Scraper Prompt').first().json.scrapedPath,\n  scraperPath,\n} }];"
+      },
+      "id": "code-write-scraper",
+      "name": "Write Scraper Script",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [6160, 320]
+    },
+    {
+      "parameters": {
+        "command": "={{ 'cd \"' + ($env.PROJECT_PATH || $('Set Config').first().json.projectPath) + '\" && node \"scripts/scrape-' + $('Set Config').first().json.featureSlug + '.js\"' }}"
+      },
+      "id": "exec-run-scraper",
+      "name": "Run Scraper",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [6380, 320],
+      "notes": "Drives the live OBDX AUT through the happy path. On exit != 0, the next node throws and the workflow halts before spec/POM generation."
+    },
+    {
+      "parameters": {
+        "jsCode": "// Verify the scrape produced a JSON, then load it. Hard fail if missing.\n// Reachable from two upstream paths (True branch skips the scrape; False branch ran it).\n// Either way, 'Check Scraped JSON' ran upstream and carries the full data envelope.\nconst fs = require('fs');\n\n// If we just came from Run Scraper, $json is { exitCode, stdout, stderr } —\n// bail on non-zero before reading the JSON.\nif (typeof $json.exitCode === 'number' && $json.exitCode !== 0) {\n  throw new Error('Scraper exited with code ' + $json.exitCode + '. STDERR (last 2KB):\\n' + ($json.stderr || '').slice(-2000));\n}\n\nconst envelope = $('Check Scraped JSON').first().json;\nconst scrapedPath = envelope.scrapedPath;\nif (!fs.existsSync(scrapedPath)) {\n  throw new Error('Expected scraped JSON at ' + scrapedPath + ' but it is missing. Cannot proceed to Stage 3 with no locators.');\n}\nconst scrapedJson = JSON.parse(fs.readFileSync(scrapedPath, 'utf8'));\n\nreturn [{ json: {\n  digest:          envelope.digest,\n  testCases:       envelope.testCases,\n  dataFileName:    envelope.dataFileName,\n  dataFileContent: envelope.dataFileContent,\n  scrapedJson,\n  scrapedPath,\n} }];"
+      },
+      "id": "code-read-scraped",
+      "name": "Read Scraped JSON",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [6600, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Stage-3: build the consolidated prompt and write to /tmp/.\n// Stage 3 emits TWO files: the spec AND the page object.\n// Locators MUST come from <SCRAPED_LOCATORS> — never invented from the digest.\nconst fs = require('fs');\nconst ctx = $('Load Project Context').first().json.projectContext;\nconst projectContextBlock = '<PROJECT_CONTEXT>\\n' + ctx + '\\n</PROJECT_CONTEXT>\\n\\n';\n\nconst system = `# System prompt — Stage 3: test cases + test data + scraped locators → Playwright .spec.ts + page object\n\nYou produce TWO files in one response:\n  1. The page object   at pages/<digest.module>/<digest.module_profile.page_object_class_hint>.ts\n  2. The spec          at tests/<digest.module>/<digest.feature_slug>.spec.ts\n\n## Output format — STRICT\n\nReturn TWO fenced TypeScript code blocks, each preceded by an exact \"File: <path>\" header. No prose between or around the blocks.\n\nFile: pages/<digest.module>/<digest.module_profile.page_object_class_hint>.ts\n\\`\\`\\`ts\n// page object contents\n\\`\\`\\`\n\nFile: tests/<digest.module>/<digest.feature_slug>.spec.ts\n\\`\\`\\`ts\n// spec contents\n\\`\\`\\`\n\nThe parser splits on /^File:\\\\s*([^\\\\n]+)\\\\n\\\\\\`\\\\\\`\\\\\\`(?:ts|typescript)\\\\n/.\n\n## Locator policy — NON-NEGOTIABLE\n\nEvery selector in the generated page object MUST be backed by an entry in <SCRAPED_LOCATORS>.\n- Prefer the literalId for a unique match, with the stableFallback as a backup chain (\\`page.locator('#literal').or(page.locator('[id^=\"prefix\"]'))\\`).\n- For dropdowns: use the literalId of the dropdown trigger; option labels MUST come from scrapedJson.tabs[].fields[].options[].label verbatim.\n- For mandatory fields: assertions of validation errors use scrapedJson.tabs[].fields[].errorText verbatim.\n- If a test case references a field that does NOT appear in <SCRAPED_LOCATORS>: emit \\`test.fixme(...)\\` with a \\`// TODO: re-scrape — field <name> not captured\\` comment. Do NOT invent locators.\n\n## Non-negotiable conventions (obdx-25.1-framework skill is authoritative — see PROJECT_CONTEXT)\n\n- import { test, expect } from '@fixtures/auth.fixture' (NEVER @playwright/test).\n- Path aliases @pages/* @utils/* @fixtures/* @config/* @data/*. No ../.. relative imports.\n- test.describe.configure({ mode: 'serial' }) for section-progression and Business Scenario describes.\n- Tags: @positive @negative @boundary @edge @business + @P1/P2/P3 + @regression + @<module>. For trade-finance also include per-tab tag (@tab1..@tab6).\n- OJet inputs: NEVER page.fill() — use OjHelper.ojFill / ojFillDate from @utils/ojHelper.\n- NEVER waitForLoadState('networkidle') — use WaitHelper.\n- NEVER skip dashboardPage.waitForDashboard() before navigation.\n- Page object structure: one class per flow, methods named after the action (fillTransferDetails, selectBiller, submit, assertConfirmation). Constructor takes (private page: Page). Export the class as default + named.\n- Use <TEST_DATA_CONST>.<key> wherever the test cases reference symbolic data.\n- Wire digest.module_profile.module_specific_gotchas[] into the appropriate POM method (FX-rate-wait, bill-fetch-wait, report-poll, file-upload two-step, etc.).\n- Business Scenario rows requiring Maker→Checker switch open a fresh browser context for the checker.`;\n\nconst userParts = [];\nuserParts.push('<TEST_CASES>\\n' + JSON.stringify($json.testCases, null, 2) + '\\n</TEST_CASES>');\nuserParts.push('');\nuserParts.push('<TEST_DATA path=\"data/' + $json.dataFileName + '\">');\nuserParts.push($json.dataFileContent);\nuserParts.push('</TEST_DATA>');\nuserParts.push('');\nuserParts.push('<DIGEST>\\n' + JSON.stringify($json.digest, null, 2) + '\\n</DIGEST>');\nuserParts.push('');\nuserParts.push('<SCRAPED_LOCATORS path=\"' + $json.scrapedPath + '\">');\nuserParts.push(JSON.stringify($json.scrapedJson, null, 2));\nuserParts.push('</SCRAPED_LOCATORS>');\n\nconst slug = $('Set Config').first().json.featureSlug;\nconst promptPath = '/tmp/' + slug + '-stage3-prompt.md';\nfs.writeFileSync(promptPath, projectContextBlock + system + '\\n\\n---\\n\\n' + userParts.join('\\n'), 'utf8');\n\nreturn [{ json: { promptPath, testCases: $json.testCases } }];"
+      },
+      "id": "code-stage3-prompt",
+      "name": "Build Stage-3 Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [5280, 200]
+    },
+    {
+      "parameters": {
+        "command": "={{ 'cd \"' + ($env.PROJECT_PATH || $('Set Config').first().json.projectPath) + '\" && claude -p --output-format text --model \"' + ($env.CLAUDE_MODEL || 'sonnet') + '\" < \"' + $json.promptPath + '\"' }}"
+      },
+      "id": "claude-stage3",
+      "name": "Claude — Stage 3 (Playwright Spec)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [5500, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse the Stage-3 multi-file response. Stage 3 emits TWO files:\n//   1. The page object   at pages/<module>/<PascalCase>FlowPage.ts\n//   2. The spec          at tests/<module>/<slug>.spec.ts\n// Each file is announced by a 'File: <path>' header followed by a fenced ts block.\nconst fs = require('fs');\nconst path = require('path');\nif ($json.exitCode !== 0) throw new Error('Stage 3: claude CLI exit ' + $json.exitCode + '\\n' + ($json.stderr || ''));\n\nconst text = $json.stdout || '';\nconst projectPath = $('Set Config').first().json.projectPath;\nconst mod  = $('Set Config').first().json.module;\nconst slug = $('Set Config').first().json.featureSlug;\n\n// Match every 'File: <path>\\n```ts\\n<body>\\n```' block in order.\nconst fileBlockRegex = /^File:\\s*([^\\n]+)\\n```(?:ts|typescript)\\s*\\n([\\s\\S]*?)```/gm;\nconst written = [];\nlet match;\nwhile ((match = fileBlockRegex.exec(text)) !== null) {\n  const relPath = match[1].trim();\n  const code    = match[2];\n  // Safety: only allow writes inside the project (no absolute paths, no ..).\n  if (path.isAbsolute(relPath) || relPath.includes('..')) {\n    throw new Error('Stage 3: refusing to write outside project: ' + relPath);\n  }\n  const absPath = path.join(projectPath, relPath);\n  fs.mkdirSync(path.dirname(absPath), { recursive: true });\n  fs.writeFileSync(absPath, code, 'utf8');\n  written.push(relPath);\n}\n\nif (written.length < 2) {\n  throw new Error('Stage 3: expected >= 2 File: blocks (POM + spec); got ' + written.length + '.\\n\\nFirst 800 chars of response:\\n' + text.slice(0, 800));\n}\n\nconst specRelative = written.find(p => /\\.spec\\.ts$/.test(p));\nconst pomRelative  = written.find(p => /FlowPage\\.ts$/.test(p)) || written.find(p => /^pages\\//.test(p));\n\nif (!specRelative) throw new Error('Stage 3: no spec file (.spec.ts) in response. Got: ' + written.join(', '));\nif (!pomRelative)  throw new Error('Stage 3: no page object (pages/...) in response. Got: ' + written.join(', '));\n\nreturn [{ json: {\n  projectPath,\n  module:       mod,\n  slug,\n  specRelative,\n  pomRelative,\n  specPath:     path.join(projectPath, specRelative),\n  pomPath:      path.join(projectPath, pomRelative),\n  filesWritten: written,\n} }];"
+      },
+      "id": "code-write-spec",
+      "name": "Write spec file",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [5720, 200]
+    },
+    {
+      "parameters": {
+        "command": "={{ 'cd \"' + $json.projectPath + '\" && npx tsc --noEmit' }}"
+      },
+      "id": "exec-tsc",
+      "name": "tsc --noEmit (gate)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [5940, 200]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "leftValue": "", "typeValidation": "loose" },
+          "conditions": [
+            { "leftValue": "={{ $json.exitCode }}", "rightValue": 0, "operator": { "type": "number", "operation": "equals" } }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-tsc-passed",
+      "name": "TSC passed?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.1,
+      "position": [6160, 200]
+    },
+    {
+      "parameters": {
+        "command": "={{ 'cd \"' + $('Write spec file').first().json.projectPath + '\" && npx playwright test \"' + $('Write spec file').first().json.specRelative + '\" --reporter=list,json,html' }}"
+      },
+      "id": "exec-playwright",
+      "name": "Run Playwright suite",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [6380, 120],
+      "notes": "Runs only the newly-generated spec to keep cycle time tight. Drop the file filter to run the full suite."
+    },
+    {
+      "parameters": {
+        "command": "={{ 'cd \"' + $('Write spec file').first().json.projectPath + '\" && npm run report:custom' }}"
+      },
+      "id": "exec-custom-report",
+      "name": "Generate custom report",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [6600, 120]
+    },
+    {
+      "parameters": {
+        "command": "={{ 'cd \"' + $('Write spec file').first().json.projectPath + '\" && node scripts/build-jira-bugs.js playwright-report/results.json' }}",
+        "options": {}
+      },
+      "id": "exec-build-bugs",
+      "name": "Build Jira bug payloads",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [6820, 120]
+    },
+    {
+      "parameters": {
+        "jsCode": "// stdout is the JSON array of bug payloads.\nconst out = ($json.stdout || '').trim();\nconst bugs = out ? JSON.parse(out) : [];\nif (!bugs.length) {\n  return [{ json: { noFailures: true, count: 0 } }];\n}\nreturn bugs.map(b => ({ json: b }));"
+      },
+      "id": "code-parse-bugs",
+      "name": "Parse bug payloads",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [7040, 120]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "leftValue": "", "typeValidation": "loose" },
+          "conditions": [
+            { "leftValue": "={{ $json.noFailures }}", "rightValue": true, "operator": { "type": "boolean", "operation": "notEqual" } }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-have-failures",
+      "name": "Any failures?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.1,
+      "position": [7260, 120]
+    },
+    {
+      "parameters": {
+        "resource": "issue",
+        "operation": "create",
+        "project": "={{ $json.fields.project.key }}",
+        "issueType": "Bug",
+        "summary": "={{ $json.fields.summary }}",
+        "additionalFields": {
+          "description": "={{ JSON.stringify($json.fields.description) }}",
+          "labels": "={{ $json.fields.labels }}",
+          "priority": { "name": "={{ $json.fields.priority.name }}" }
+        }
+      },
+      "id": "jira-create",
+      "name": "Jira: Create Bug",
+      "type": "n8n-nodes-base.jira",
+      "typeVersion": 1,
+      "position": [7480, 40],
+      "credentials": {
+        "jiraSoftwareCloudApi": { "name": "Jira Cloud (OBDX)" }
+      },
+      "notes": "Creates one Bug per failed test. Description must be ADF JSON for Jira Cloud."
+    },
+    {
+      "parameters": {
+        "jsCode": "// For each Jira issue just created, build a list of {issueKey, filePath} pairs\n// so the next loop can attach screenshot/trace/video.\nconst issueKey = $json.key;\nconst attachments = $('Parse bug payloads').itemMatching($itemIndex).json.attachments || [];\nreturn attachments.map(p => ({ json: { issueKey, filePath: p } }));"
+      },
+      "id": "code-fanout-attach",
+      "name": "Fan out attachments",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [7700, 40]
+    },
+    {
+      "parameters": {
+        "fileSelector": "={{ $json.filePath }}",
+        "options": {}
+      },
+      "id": "read-attach-binary",
+      "name": "Read attachment binary",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [7920, 40]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://{{ $credentials.jiraSoftwareCloudApi.domain }}/rest/api/3/issue/{{ $('Fan out attachments').item.json.issueKey }}/attachments",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "jiraSoftwareCloudApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "X-Atlassian-Token", "value": "no-check" }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            { "name": "file", "parameterType": "formBinaryData", "inputDataFieldName": "data" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "jira-upload-attach",
+      "name": "Jira: Upload attachment",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [8140, 40],
+      "credentials": {
+        "jiraSoftwareCloudApi": { "name": "Jira Cloud (OBDX)" }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Final summary: roll up everything for the workflow response.\nconst writeSpec    = $('Write spec file').first().json;\nconst execTest     = $('Run Playwright suite').first().json;\nconst bugsRaw      = $('Parse bug payloads').all().map(i => i.json);\nconst jiraCreated  = $('Jira: Create Bug').all().map(i => i.json);\n\nreturn [{ json: {\n  status: 'ok',\n  feature: writeSpec.slug,\n  specPath: writeSpec.specPath,\n  testDataPath: $('Build Stage-1 Prompt').first().json.dataFilePath,\n  playwright: {\n    exitCode: execTest.exitCode,\n    stdoutTail: (execTest.stdout || '').slice(-2000),\n  },\n  customReport: $('Write spec file').first().json.projectPath + '/reports/custom-report.html',\n  htmlReport:   $('Write spec file').first().json.projectPath + '/playwright-report/index.html',\n  jira: {\n    issuesCreated: jiraCreated.map(j => j.key).filter(Boolean),\n    bugCount: bugsRaw.filter(b => !b.noFailures).length,\n  },\n} }];"
+      },
+      "id": "code-final-summary",
+      "name": "Final summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [8360, 200]
+    },
+    {
+      "parameters": {
+        "jsCode": "// TSC failed branch — return the tsc output so QA can debug.\nreturn [{ json: {\n  status: 'error',\n  stage: 'tsc-failed',\n  message: 'Generated spec failed TypeScript compilation. Almost always a missing POM method — extend the page object or refine the Stage-3 prompt allow-list.',\n  tsc_stdout: $json.stdout,\n  tsc_stderr: $json.stderr,\n  specPath: $('Write spec file').first().json.specPath,\n} }];"
+      },
+      "id": "code-tsc-failed",
+      "name": "TSC failed response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [6380, 320]
+    }
+  ],
+  "connections": {
+    "Drive Trigger (new file)": {
+      "main": [[ { "node": "Is it a GO marker?", "type": "main", "index": 0 } ]]
+    },
+    "Is it a GO marker?": {
+      "main": [
+        [ { "node": "Set Config", "type": "main", "index": 0 } ],
+        []
+      ]
+    },
+    "Set Config": {
+      "main": [[ { "node": "Load Project Context", "type": "main", "index": 0 } ]]
+    },
+    "Load Project Context": {
+      "main": [[ { "node": "Drive: List sibling docs", "type": "main", "index": 0 } ]]
+    },
+    "Drive: List sibling docs": {
+      "main": [[ { "node": "Pick FSD / RSD / REQ by slug", "type": "main", "index": 0 } ]]
+    },
+    "Pick FSD / RSD / REQ by slug": {
+      "main": [[ { "node": "File present?", "type": "main", "index": 0 } ]]
+    },
+    "File present?": {
+      "main": [
+        [ { "node": "Drive: Download doc", "type": "main", "index": 0 } ],
+        [ { "node": "Merge all 3 docs", "type": "main", "index": 0 } ]
+      ]
+    },
+    "Drive: Download doc": {
+      "main": [[ { "node": "Extract text from doc", "type": "main", "index": 0 } ]]
+    },
+    "Extract text from doc": {
+      "main": [[ { "node": "Tag with role + text", "type": "main", "index": 0 } ]]
+    },
+    "Tag with role + text": {
+      "main": [[ { "node": "Merge all 3 docs", "type": "main", "index": 0 } ]]
+    },
+    "Merge all 3 docs": {
+      "main": [[ { "node": "Build combined TSD", "type": "main", "index": 0 } ]]
+    },
+    "Build combined TSD": {
+      "main": [[ { "node": "Build Stage-0 Prompt", "type": "main", "index": 0 } ]]
+    },
+    "Build Stage-0 Prompt": {
+      "main": [[ { "node": "Claude — Stage 0 (Digest)", "type": "main", "index": 0 } ]]
+    },
+    "Claude — Stage 0 (Digest)": {
+      "main": [[ { "node": "Parse Digest JSON", "type": "main", "index": 0 } ]]
+    },
+    "Parse Digest JSON": {
+      "main": [[ { "node": "Read existing test-data file", "type": "main", "index": 0 } ]]
+    },
+    "Read existing test-data file": {
+      "main": [[ { "node": "Build Stage-1 Prompt", "type": "main", "index": 0 } ]]
+    },
+    "Build Stage-1 Prompt": {
+      "main": [[ { "node": "Claude — Stage 1 (Test Data)", "type": "main", "index": 0 } ]]
+    },
+    "Claude — Stage 1 (Test Data)": {
+      "main": [[ { "node": "Write test-data file", "type": "main", "index": 0 } ]]
+    },
+    "Write test-data file": {
+      "main": [[ { "node": "Build Stage-2 Prompt", "type": "main", "index": 0 } ]]
+    },
+    "Build Stage-2 Prompt": {
+      "main": [[ { "node": "Claude — Stage 2 (Test Cases)", "type": "main", "index": 0 } ]]
+    },
+    "Claude — Stage 2 (Test Cases)": {
+      "main": [[ { "node": "Parse + stage test cases", "type": "main", "index": 0 } ]]
+    },
+    "Parse + stage test cases": {
+      "main": [[ { "node": "HITL — wait for QA approval", "type": "main", "index": 0 } ]]
+    },
+    "HITL — wait for QA approval": {
+      "main": [[ { "node": "Re-read approved cases", "type": "main", "index": 0 } ]]
+    },
+    "Re-read approved cases": {
+      "main": [[ { "node": "Check Scraped JSON", "type": "main", "index": 0 } ]]
+    },
+    "Check Scraped JSON": {
+      "main": [[ { "node": "Scraped JSON present?", "type": "main", "index": 0 } ]]
+    },
+    "Scraped JSON present?": {
+      "main": [
+        [ { "node": "Read Scraped JSON", "type": "main", "index": 0 } ],
+        [ { "node": "Build Scraper Prompt", "type": "main", "index": 0 } ]
+      ]
+    },
+    "Build Scraper Prompt": {
+      "main": [[ { "node": "Claude — Stage 2.5 (Scraper)", "type": "main", "index": 0 } ]]
+    },
+    "Claude — Stage 2.5 (Scraper)": {
+      "main": [[ { "node": "Write Scraper Script", "type": "main", "index": 0 } ]]
+    },
+    "Write Scraper Script": {
+      "main": [[ { "node": "Run Scraper", "type": "main", "index": 0 } ]]
+    },
+    "Run Scraper": {
+      "main": [[ { "node": "Read Scraped JSON", "type": "main", "index": 0 } ]]
+    },
+    "Read Scraped JSON": {
+      "main": [[ { "node": "Build Stage-3 Prompt", "type": "main", "index": 0 } ]]
+    },
+    "Build Stage-3 Prompt": {
+      "main": [[ { "node": "Claude — Stage 3 (Playwright Spec)", "type": "main", "index": 0 } ]]
+    },
+    "Claude — Stage 3 (Playwright Spec)": {
+      "main": [[ { "node": "Write spec file", "type": "main", "index": 0 } ]]
+    },
+    "Write spec file": {
+      "main": [[ { "node": "tsc --noEmit (gate)", "type": "main", "index": 0 } ]]
+    },
+    "tsc --noEmit (gate)": {
+      "main": [[ { "node": "TSC passed?", "type": "main", "index": 0 } ]]
+    },
+    "TSC passed?": {
+      "main": [
+        [ { "node": "Run Playwright suite", "type": "main", "index": 0 } ],
+        [ { "node": "TSC failed response", "type": "main", "index": 0 } ]
+      ]
+    },
+    "Run Playwright suite": {
+      "main": [[ { "node": "Generate custom report", "type": "main", "index": 0 } ]]
+    },
+    "Generate custom report": {
+      "main": [[ { "node": "Build Jira bug payloads", "type": "main", "index": 0 } ]]
+    },
+    "Build Jira bug payloads": {
+      "main": [[ { "node": "Parse bug payloads", "type": "main", "index": 0 } ]]
+    },
+    "Parse bug payloads": {
+      "main": [[ { "node": "Any failures?", "type": "main", "index": 0 } ]]
+    },
+    "Any failures?": {
+      "main": [
+        [ { "node": "Jira: Create Bug", "type": "main", "index": 0 } ],
+        [ { "node": "Final summary", "type": "main", "index": 0 } ]
+      ]
+    },
+    "Jira: Create Bug": {
+      "main": [[ { "node": "Fan out attachments", "type": "main", "index": 0 } ]]
+    },
+    "Fan out attachments": {
+      "main": [[ { "node": "Read attachment binary", "type": "main", "index": 0 } ]]
+    },
+    "Read attachment binary": {
+      "main": [[ { "node": "Jira: Upload attachment", "type": "main", "index": 0 } ]]
+    },
+    "Jira: Upload attachment": {
+      "main": [[ { "node": "Final summary", "type": "main", "index": 0 } ]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [
+    { "name": "obdx" },
+    { "name": "qa" },
+    { "name": "playwright" }
+  ]
+}

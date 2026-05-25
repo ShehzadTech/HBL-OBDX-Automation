@@ -1,0 +1,67 @@
+- generic [ref=e1]:
+  - complementary "Messages" [ref=e2]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - text: 
+        - generic [ref=e7]: Access denied. User does not have permission to perform this action.
+      - generic "Close" [ref=e10]:
+        - button "Close" [ref=e11] [cursor=pointer]:
+          - generic [ref=e12]:
+            - generic [ref=e14]: 
+            - generic [ref=e16]: Close
+  - generic [ref=e20]:
+    - toolbar [ref=e25]:
+      - generic "Selected colour mode is Light" [ref=e26]:
+        - button "Selected colour mode is Light" [ref=e27] [cursor=pointer]:
+          - generic [ref=e28]:
+            - generic [ref=e29]: 麗
+            - generic [ref=e30]: Selected colour mode is Light
+            - generic [ref=e31]: 
+            - text: 麗  
+      - button "Selected Language is English" [ref=e33] [cursor=pointer]:
+        - generic [ref=e34]:
+          - generic [ref=e35]: English
+          - generic [ref=e36]: 
+      - button "Current Entity is Default Business Unit" [ref=e38] [cursor=pointer]:
+        - generic [ref=e39]:
+          - generic [ref=e40]: Default Business Unit
+          - generic [ref=e41]: 
+    - link "Skip to main content" [ref=e42] [cursor=pointer]:
+      - /url: "#maincontent"
+    - generic [ref=e43]:
+      - text: 麗  麗     
+      - main [ref=e45]:
+        - generic [ref=e63]:
+          - generic [ref=e65]:
+            - generic [ref=e70]:
+              - generic [ref=e72]:
+                - generic [ref=e75]: Username
+                - textbox "Username" [active] [ref=e76]:
+                  - /placeholder: ""
+              - generic [ref=e77]:
+                - text: Click to use
+                - link "Virtual Keyboard" [ref=e78] [cursor=pointer]:
+                  - /url: "#"
+            - generic [ref=e84]:
+              - generic [ref=e85]:
+                - generic [ref=e88]: Password
+                - textbox "Password" [ref=e89]:
+                  - /placeholder: ""
+              - button "Show password." [ref=e91] [cursor=pointer]:
+                - generic [ref=e92]: 
+          - generic [ref=e93]:
+            - link "Forgot Password" [ref=e94] [cursor=pointer]:
+              - /url: "#"
+            - text: /
+            - link "Username" [ref=e95] [cursor=pointer]:
+              - /url: "#"
+          - button "Login" [ref=e97] [cursor=pointer]:
+            - generic [ref=e99]: Login
+      - contentinfo:
+        - generic:
+          - generic:
+            - log
+  - text:        
+  - log [ref=e102]:
+    - generic [ref=e103]: Messages region has new messages. Press F6 to navigate to the most recent message region.
+    - generic [ref=e104]: Message category Error. Access denied. User does not have permission to perform this action.. Detail is not available.
